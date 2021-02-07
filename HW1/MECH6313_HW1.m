@@ -2,7 +2,7 @@
 clear
 close all
 
-pblm1 = true;
+pblm1 = false;
 pblm2 = true;
 
 if pblm1
@@ -85,7 +85,7 @@ saveas(fig,fullfile([pwd '\\' 'HW1' '\\' 'fig'],'pblm2_vs_time.png'))
 
 
 % Negative Equivelent
-sys2_neg= nlsys(@van_der_pol_neg);
+sys2_neg= nlsys(@van_der_pol,'empty',0,-1,0,0,-1);
 
 % Negative Stability
 x_0 = [0;0];
@@ -118,17 +118,41 @@ fig = SYS2_neg.plot(-1,0,0);
 sgtitle('Problem 2 - Negative Van Der Pol Time Simulation')
 saveas(fig,fullfile([pwd '\\' 'HW1' '\\' 'fig'],'pblm2_vs_time_neg.png'))
 
-
 end
 
 
+
+%% Problem 4
+
+% Problem 3.4.2
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 %% Local Functions
-function y = duff_eq(x,u,delta)
+function y = duff_eq(x,u,parms)
     % DUFF_EQ nonlin function with caotic behavior
     arguments
         x (2,1) = [0; 0];
         u (1,1) = 0;
+        parms = false
+    end
+    
+    if parms == false
         delta = 0.05;
+    else
+        delta = parms(1);
     end
     
     % Array sizes
@@ -145,12 +169,18 @@ function y = duff_eq(x,u,delta)
     end
 end
 
-function y = van_der_pol(x,u,a)
+function y = van_der_pol(x,u,parms)
     % VAD_DER_POL nonlin function
     arguments
         x (2,1) = [0; 0];
         u (1,1) = 0;
+        parms = false
+    end
+    
+    if parms == false
         a = 1;
+    else
+        a = parms(1);
     end
     
     % Array sizes
@@ -167,24 +197,24 @@ function y = van_der_pol(x,u,a)
     end
 end
 
-function y = van_der_pol_neg(x,u,a)
-    % VAD_DER_POL nonlin function
-    arguments
-        x (2,1) = [0; 0];
-        u (1,1) = 0;
-        a = -1;
-    end
-    
-    % Array sizes
-    n = 2; % Number of states
-    p = 1; % Number of inputs
-
-    % State Update Equations
-    y(1,1) = x(2);
-    y(2,1) = - a * (x(1)^2 -1) * x(2) - x(1) + u;
-    
-    
-    if nargin ==0
-        y = [n;p];
-    end
-end
+% function y = van_der_pol_neg(x,u,a)
+%     % VAD_DER_POL nonlin function
+%     arguments
+%         x (2,1) = [0; 0];
+%         u (1,1) = 0;
+%         a = -1;
+%     end
+%     
+%     % Array sizes
+%     n = 2; % Number of states
+%     p = 1; % Number of inputs
+% 
+%     % State Update Equations
+%     y(1,1) = x(2);
+%     y(2,1) = - a * (x(1)^2 -1) * x(2) - x(1) + u;
+%     
+%     
+%     if nargin ==0
+%         y = [n;p];
+%     end
+% end
