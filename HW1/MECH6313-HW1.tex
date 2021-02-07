@@ -317,27 +317,79 @@ $I_ss$ is then calculated from \eqref{eq:I_V_ss_rel} and \eqref{eq:V_ss_def}:
 \newpage
 \section{Problem 4 - Bifurcation Examples}
 
+Additional functionality was added to the nlsys class in order to introduce bifurcation plots.
+
 \subsection{Pblm 3.4.2}
 
 \begin{align*}
 	\dot{x} = r x - \sinh(x)
 \end{align*}
 
+As is evident in the bifurcation diagram, the pitchfork diagram is supercritical. $r_c$ was found by differentiating $f(x,r)$, solving for $x_c$, substituting back into $f(x,r)$ and then solving for $r_c = 1$.
+
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=\linewidth]{fig/pblm4_342}
+	\caption{Bifurcation Diagram for problem 3.4.2}
+	\label{fig:pblm4342}
+\end{figure}
 
 
 
 
+\newpage
 \subsection{Pblm 3.4.4}
 
+\begin{align*}
+	\dot{x} = x + \cfrac{r x}{1+x^2}
+\end{align*}
+
+As is evident in the bifurcation diagram, the pitchfork diagram is subcritical. $r_c$ was found by differentiating $f(x,r)$, solving for $x_c$, substituting back into $f(x,r)$ and then solving for $r_c = -1$.
 
 
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=\linewidth]{fig/pblm4_344}
+	\caption{Bifurcation Diagram for problem 3.4.4}
+	\label{fig:pblm4344}
+\end{figure}
 
+\newpage
 \subsection{Pblm 3.4.7}
 
+\begin{align*}
+	\dot{x} = 5 - r e^{-x^2}
+\end{align*}
+
+As is evident in the bifurcation diagram, is a saddle node bifurcation with $r_c = 1$.
 
 
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=\linewidth]{fig/pblm4_347}
+	\caption{Bifurcation Diagram for problem 3.4.7}
+	\label{fig:pblm4347}
+\end{figure}
 
+\newpage
 \subsection{Pblm 3.4.9}
+
+\begin{align*}
+	\dot{x} = x + \tanh(rx)
+\end{align*}
+
+As is evident in the bifurcation diagram, the pitchfork diagram is subcritical. $r_c$ was found by differentiating $f(x,r)$, solving for $x_c$, substituting back into $f(x,r)$ and then solving for $r_c = -1$.
+
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=\linewidth]{fig/pblm4_349}
+	\caption{Bifurcation Diagram for problem 3.4.9}
+	\label{fig:pblm4349}
+\end{figure}
+
+
 
 
 \newpage
