@@ -164,7 +164,7 @@ eigA2_B = subs(eigA2, x2, sqrt((2 - 4 * x1^2)/4))
 syms x1 x2
 A3 = [-x2^2, -2 * x1 * x2; 1, 0]
 eigA3 = eig(A3)
-eigA3_B = subs(eigA3, x2, 1)
+eigA3_B = subs(eigA3, x2, 0)
 
 % Problem 2.20.4
 syms x1 x2

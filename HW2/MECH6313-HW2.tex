@@ -288,45 +288,41 @@ Let the following system be defined
 The divergence of the system can be calculated as:
 \begin{align}
 	\div f  &= \pdv{f_1}{x_1} + \pdv{f_2}{x_2} \nonumber\\
-	&= -x_2 + 1\\
-	&= 1 - x_2
+	&= -x_2 + 0\\
+	&= - x_2
 \end{align}
 
 For the regions defined as
 \begin{equation}
 	\begin{aligned}
-		D_1 &:= \{x \in \real^2 \ | \ x_2 \leq 1\}\\
-		D_2 &:= \{x \in \real^2 \ | \ x_2 \geq 1\}
+		D_1 &:= \{x \in \real^2 \ | \ x_2 \leq 0\}\\
+		D_2 &:= \{x \in \real^2 \ | \ x_2 \geq 0\}
 	\end{aligned}
 \end{equation}
 divergence remains positive and negative for $D_1$ and $D_2$ respectively.\\
 
-From this, this can be said to not contain a periodic obit using the Bendixon's Criterion.
+This is not true for the border region,
+\begin{equation}
+	B = \{x \in \real^2 \ | \ x_2 = 0\}
+\end{equation}
+however the system is unstable for the entire boarder.
 
-%This is not true for the border region,
-%\begin{equation}
-%	B = \{x \in \real^2 \ | \ x_2 = 1\}
-%\end{equation}
-%however the system is unstable for the entire boarder. This can be seen by analyzing the Jacobian with $x_0 \in B$:
-%
-%\begin{align}
-%	\eval{\dv{f}{x}}_{x=x_0} 
-%	&= \eval{\mqty[\pdv{f_1}{x_1} & \pdv{f_1}{x_2}\\
-%		\pdv{f_2}{x_1} & \pdv{f_2}{x_2}]}_{x=x_0}\\
-%	&= \eval{\mqty[-x_2^2 & -2 x_1 x_2\\ 1 & 0]}_{x=x_0}
-%\end{align}
-%The eigenvalues of the Jacobian matrix can be calculated and evaluated for the boarder region $B$.
-%\begin{equation}
-%	\lambda_{1,2} = \frac{-1 \pm \sqrt{1 - 8 x_1}}{2} 
-%\end{equation}
-%
-%NOT SURE WHAT THIS MEANS...... fix it later...
+This can be seen by analyzing the Jacobian with $x_0 \in B$:
 
-%This does not explicitly define instability of across the entire 
-%
-%Due to the unstable pole at $\frac{1}{2}$ this disqualifies a limit cycle from occurring at the boarder.\\
-%
-%Given both the conclusion of the Bendixon Criterion and the unstable boundary, it can be said that no limit cycles exist.
+\begin{align}
+	\eval{\dv{f}{x}}_{x=x_0} 
+	&= \eval{\mqty[\pdv{f_1}{x_1} & \pdv{f_1}{x_2}\\
+		\pdv{f_2}{x_1} & \pdv{f_2}{x_2}]}_{x=x_0}\\
+	&= \eval{\mqty[-x_2^2 & -2 x_1 x_2\\ 1 & 0]}_{x=x_0}
+\end{align}
+The eigenvalues of the Jacobian matrix can be calculated and evaluated for the boarder region $B$.
+\begin{equation}
+	\lambda_{1,2} = 0
+\end{equation}
+
+Due to the unstable pole at $0$ this disqualifies a limit cycle from occurring at the boarder.\\
+
+Given both the conclusion of the Bendixon Criterion and the unstable boundary, it can be said that no limit cycles exist.
 
 
 \newpage
@@ -474,18 +470,19 @@ Fist let the following domains be defined:
 The divergence of the system in $D_1$ can be calculated as:
 \begin{align}
 	\div f  &= \pdv{f_1}{x_1} + \pdv{f_2}{x_2} \nonumber\\
-	&= 0 - (2b - k)a\\
-	&= (k - 2b)a
-\end{align}
-In the case that $k < 2b$, it can be seen that the divergence will always be negative.
-
-Similarly the divergence of the system in $D_2$ can be calculated as:
-\begin{align}
-	\div f  &= \pdv{f_1}{x_1} + \pdv{f_2}{x_2} \nonumber\\
 	&= 0 - (2b - 0)a\\
 	&= - 2ab
 \end{align}
 In this case the divergence will also always be negative.\\
+
+
+Similarly, the divergence of the system in $D2$ can be calculated as:
+\begin{align}
+	\div f  &= \pdv{f_1}{x_1} + \pdv{f_2}{x_2} \nonumber\\
+	&= 0 - (2b - k)a\\
+	&= (k - 2b)a
+\end{align}
+In the case that $k < 2b$, it can be seen that the divergence will always be negative.\\
 
 From this it can be concluded using Bendixson's Criterion that no periodic orbits exist.
 
@@ -496,23 +493,44 @@ Use Poincare-Bendixon Criteron to show that these is a periodic orbit if $k > 2b
 
 \noindent
 \textbf{Solution:}
-Using the same domain and divergence calculations from before, the divergence within $D_1$ is now seen to always be positive while in $D_2$ it remains negative. This does not explictly mean that a periodic orbit exists, but it does disqualify it from meeting the Bendixon Criterion.\\
-
-Let a boundary be defined as the circle of arbitrary radius.The boundary at which the system points purely tangentially can be found by solving for where $r$ causes the following to be equally zero, but we only need to show that it this is a value less then zero.
+The Jacobian for the region $D_1$ is given as
 \begin{align}
-	f(x)^T \cdot \grad(x) &= (f_1)(2 x_1) + (f_2)(2x_1)\\
-	&= (x_2)(2 x_1) + ((k-2b)ax_2 - a^2 x_1)(2 x_1)\\
-	&= 2(1 + ka - 2ab) x_1 x_2 - 2a^2 x_1^2\\
-	\intertext{From the fact $-2 x_1 x_2 \leq x_1^2 + x_2^2$}
-	&\leq -(1 + ka - 2ab) (x_1^2 + x_2^2) -2 a^2 x_1^2\\
-	&\leq -(1 + ka - 2ab) r^2 - 2 a^2 \atan(\theta) r^2\\
-	\intertext{Since $\abs{\atan(\theta)} < 1$,}
-	&\leq -(1 + ka - 2ab - 2a^2)r^2
+	\eval{\dv{f}{x}}_{x=x_0} 
+	&= \eval{\mqty[\pdv{f_1}{x_1} & \pdv{f_1}{x_2}\\
+		\pdv{f_2}{x_1} & \pdv{f_2}{x_2}]}_{x=x_0}\\
+	&= \eval{\mqty[0 & 1\\ -a^2 & -a(2b - k)]}_{x=x_0}
 \end{align}
-From this we know that $\exists r > 0$ such that M is positively invariant. Since no equilibrium points exists within M, this means that the system must contain a periodic orbit.
 
 
+The Jacobian for the region $D_2$ is given as
+\begin{align}
+	\eval{\dv{f}{x}}_{x=x_0} 
+	&= \eval{\mqty[\pdv{f_1}{x_1} & \pdv{f_1}{x_2}\\
+		\pdv{f_2}{x_1} & \pdv{f_2}{x_2}]}_{x=x_0}\\
+	&= \eval{\mqty[0 & 1\\ -a^2 & -a(2b)]}_{x=x_0}
+\end{align}
 
+Looking at a region region around the only equalibrium point:
+\begin{align}
+	M &:= \{x \in \real^2 \ | \ r^2 \leq x_1^2 + x_2^2 \leq R^2\}
+	\intertext{Then the scaler field defined as:}
+	V(x) &= x_1^2 + x_2^2\\
+	\intertext{The gradient is then defined by}
+	\grad{V(x)} &= \mqty[2x_1\\ 2x_2]\\
+	\intertext{The normal component of the system dynamics can then be found with:}
+	F^T(x) \cdot \grad{V(x)} &= \mqty[x_2 & - a(2b - g(x_1))x_2 - a^2 x_1] \mqty[2x_1\\ 2x_2]\\
+	&= 2 x_1 x_2 - 2 a(2b - g(x_1))x_2^2 - 2 a^2 x_1 x_2\\
+	\intertext{When the region $M = D_1$ this becomes:}
+	F^T(x) \cdot \grad{V(x)} &= 2 x_1 x_2 (1 - a^2) - 4ab x_2^2\\
+	\intertext{When the region $M = D_1$ this becomes:}
+	F^T(x) \cdot \grad{V(x)} &= 2 x_1 x_2 (1 - a^2) + (2ak - 4ab) x_2^2
+	\intertext{Since $x_1 \leq 1$, the following must hold:}
+	-4 a b + 2 ak &> 0\\
+	2ak &> 4ab\\
+	k &> 2b
+\end{align}
+
+This means that $M$ is positive invariant for $k > 2b$, therefore from the Poincare-Bendixon Criteron, there must be a periodic orbit.
 
 
 
