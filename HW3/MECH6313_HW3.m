@@ -2,11 +2,11 @@
 clear
 close all
 
-pblm1 = true;
+pblm1 = false;
 pblm2 = false;
 pblm3 = false;
-
-
+pblm4 = false;
+pblm5 = true;
 
 
 if pblm1
@@ -66,87 +66,136 @@ pretty(w_dot)
 w_dot_soln = expand(w_dot);
 w_dot_soln = subs(w_dot_soln, y_sym^4, 0);
 w_dot_soln = subs(w_dot_soln, y_sym^3, 0);
-% w_dot_soln = subs(w_dot_soln, y_sym^2, 0);
-% w_dot_soln = subs(w_dot_soln, y_sym, 0);
+syms y2
+w_dot_soln = subs(w_dot_soln, y_sym^2, y2);
+w_dot_soln = subs(w_dot_soln, y_sym, 0);
 'w_dot_soln'
 pretty(w_dot_soln)
+
+syms h2y2
+w_dot_soln = subs(w_dot_soln, h2*y2, h2y2)
+solve(w_dot_soln == 0,h2y2)
 
 
 end
 
+
+
+if pblm4
+%% Problem 4
+syms x1 x2
+x1_dot = -x1 + (2*x2)/(1 + x2^2);
+x2_dot = -x2 + (2*x1)/(1 + x1^2);
+f = [x1_dot; x2_dot];
+'f'
+pretty(f)
+df = jacobian(f);
+'jacobian'
+pretty(df)
+
+
+
+
+end
+
+
+if pblm5
+%% Problem 5
+syms x1 x2 a b c
+x1_dot = atan(a * x1) - x1 * x2;
+x2_dot = b * x1^2 - c * x2;
+x_dot = [x1_dot; x2_dot];
+'x_dot'
+pretty(x_dot)
+
+x = [x1; x2];
+'x'
+pretty(x)
+
+mu = [a; b; c];
+mu_bar = [1; 0; 1];
+'mu'
+pretty(mu)
+
+
+A_tau = jacobian(x_dot, x)
+B_tau = jacobian(x_dot, mu)
+
+
+sys_func = @pblm5_func;
+
+T = [0,5];
+x_0 = [1, -1, mu_bar',mu_bar']';
+
+[t,y] = ode45(@(t,y) sys_func(t,y,mu_bar,A_tau,B_tau),T,x_0);
+
+y_states = y(:,1:2)
+y_a = y(:,[3,6]);
+y_b = y(:,[4,7]);
+y_c = y(:,[5,8]);
+
+subplot(4,1,1)
+plot(t,y)
+title('States')
+
+subplot(4,1,2)
+plot(t,y_a)
+title('a')
+
+subplot(4,1,3)
+plot(t,y_b)
+title('b')
+
+subplot(4,1,4)
+plot(t,y_c)
+title('c')
+
+end
+
+
+
+
+
 %% Local Functions
-% function dx = pblm1a(t, x, parms)
-%     % pblm1a function
-%     arguments
-%         t (1,1) = 0;
-%         x (2,1) = [0; 0];
-%         parms = false;
-%     end
-%     
-%     if parms == false
-%         alpha = 1;
-%     else
-%         alpha = parms(1);
-%     end
-% 
-%     % State Upadate Eqs
-%     dx(1,1) = alpha * x(1) + x(2);
-%     dx(2,1) = - x(1) + alpha*x(2) - x(1)^2 * x(2);
-% end
-% 
-% function y = pblm1b(t,x,parms)
-%     % pblm1b function
-%     arguments
-%         t (1,1) = 0;
-%         x (2,1) = [0; 0];
-%         parms = false;
-%     end
-%     
-%     if parms == false
-%         alpha = 1;
-%     else
-%         alpha = parms(1);
-%     end
-%     
-%     % State Upadate Eqs
-%     y(1,1) = alpha * x(1) + x(2) - x(1)^3;
-%     y(2,1) = - x(1) + alpha*x(2) + 2 *x(2)^3;
-% end
-% 
-% function y = pblm1c(t,x,parms)
-%     % pblm1c function
-%     arguments
-%         t (1,1) = 0;
-%         x (2,1) = [0; 0];
-%         parms = false;
-%     end
-%     
-%     if parms == false
-%         alpha = 1;
-%     else
-%         alpha = parms(1);
-%     end
-%     % State Upadate Eqs
-%     y(1,1) = alpha * x(1) + x(2) - x(1)^2;
-%     y(2,1) = - x(1) + alpha*x(2) + 2 * x(1)^2;
-% end
-% 
-% function y = pblm2a(x,u)
-%     % pblm2 function
-%     arguments
-%         x (2,1) = [0; 0];
-%         u (1,1) = 0;
-%     end
-%     
-%     % Array Sizes
-%     n = 2;
-%     p = 1;
-%     
-%     % State Upadate Eqs
-%     y(1,1) = x(2) + x(1) * x(2)^2;
-%     y(2,1) = - x(1) + x(1)^2 * x(2);
-%     
-%     if nargin == 0
-%         y = [n;p];
-%     end
-% end
+function dx = pblm5_func(t, x, parms, A, B)
+    % pblm5 function
+    arguments
+        t (1,1) = 0;
+        x (8,1) = zeros(8,1); %state and 6 sensitivities
+        parms = false;
+        A = 0;
+        B = 0;
+    end
+    
+    if parms == false
+        a = 1;
+        b = 0;
+        c = -1;
+    else
+        a = parms(1);
+        b = parms(2);
+        c = parms(3);
+    end
+    
+    % Variable Decode
+    x1 = x(1);
+    x2 = x(2);
+    S = zeros(2,3);%[x(3), x(4), x(5); x(6), x(7), x(8)];
+
+    % State Upadate Eqs
+    x1_dot = atan(a * x1) - x1 * x2;
+    x2_dot = b * x1^2 - c * x2;
+    S_dot = subs(A * S + B);
+    
+    % Variable Encode
+    dx = x;
+    dx(1) = x1_dot;
+    dx(2) = x2_dot;
+    dx(3) = S_dot(1,1);
+    dx(4) = S_dot(1,2);
+    dx(5) = S_dot(1,3);
+    dx(6) = S_dot(2,1);
+    dx(7) = S_dot(2,2);
+    dx(8) = S_dot(2,3);    
+end
+
