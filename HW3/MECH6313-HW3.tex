@@ -31,23 +31,30 @@
 Let
 \begin{equation}
 	\begin{aligned}
-		\dot{x}_1 &= -x + x_2\\
+		\dot{x}_1 &= -x_1 + x_2\\
 		\dot{x}_2 &= \cfrac{x_1^2}{1 + x_1^2} - 0.5 x_2
 	\end{aligned}
 \end{equation}
 
-Define an shifted system, linerize that system, and find the center manifold to analyze the stability properties. Then use numerical simulation to plot the phase portrait of the original coordinates and superimpose the shifted center manifold.
+Define an shifted system, linerize that system, and find the center manifold to analyze the stability properties. Then use numerical simulation to plot the phase portrait of the original coordinates and superimpose the shifted center manifold.\\
 
 \textbf{Solution:}
 \subsection{Part a}
 Let a shifted set of state variables be defined as $\bar{x}_1 = x_1 - 1$ and $\bar{x}_2 = x_2 - 1$. The state variable equation can then be rewritten as
 \begin{equation}
 	\begin{aligned}
-		kkk
+		\dot{\bar{x}}_1 &= -x_1 + x_2\\
+		\dot{\bar{x}}_2 &= \cfrac{(\bar{x}_1+1)^2}{(1 + \bar{x}_1^2)^2} - \frac{\bar{x}_2 + 1}{2}
 	\end{aligned}
 \end{equation}
 
+This system can then be linearized about the origin, resulting in the system matrix
+\begin{equation}
+	A = \mqty[-1 & 1\\ \frac{1}{2} & -\frac{1}{2}]
+\end{equation}
+whose eigenvalues are calculated as $\lambda_{1,2} = 0, -\frac{3}{2}$.
 
+A transformation matrix $$T = \mqty[1&-2\\1&1]$$ can then be constructed with the associated eigenvectors to covert into 
 
 
 
@@ -176,10 +183,53 @@ Let the following system be defined:
 		\dot{x}_2 &= b x_1^2 - c x_2
 	\end{aligned}
 \end{equation}
-Derive the sensitivity equations for the parameters vary from their nominal values of $a_0 = 1$, $b_0 = 0$, and $c_0 = 1$. Then simulate the sensitivity equations and the time dependence for the initial conditions of $(x_1(0), x_2(0)) = (1,-1)$.\\
+Derive the sensitivity equations for the parameters vary from their nominal values of $a_0 = 1$, $b_0 = 0$, and $c_0 = 1$. Then simulate the sensitivity equations and the time dependence for the initial conditions of $x_1(0) = 1$ and $x_2(0) = -1$.\\
 
 \noindent
 \textbf{Solution:}
+\subsection{Part a - Sensitivity Calculation}
+Let the following be defined: $$\mu = \mqty[a \\ b \\ c]$$
+
+Let the trajectory $x(\mu, t)$ be defined with regards to parameter changes as:
+\begin{equation}
+	x(\mu,t) = x(\bar{\mu},t) + \eval{\pdv{x}{\mu}}_{\bar{\mu}} \tilde{\mu}
+\end{equation}
+where $\tilde{\mu} = \mu - \bar{\mu}$.
+
+It can also be defined by its nonlinear definition as:
+\begin{align}
+	x(\mu,t) &= x_0 + \int_0^t \dot{x}(x(\mu,\tau), \mu, \tau) \dd{\tau}
+	\intertext{The sensativity to the parameters can then be formulated}
+	S(t) = \pdv{x}{\mu} &= 0 + \pdv{\mu} \int_0^t f(x(\mu,\tau), \mu, \tau) \dd{\tau}\\
+	&=  \int_0^t \pdv{\mu} f(x(\mu,\tau), \mu, \tau) \dd{\tau}\\
+	&=  \int_0^t \pdv{f}{x}\pdv{x}{\mu} \pdv{f}{\mu} \dd{\tau}
+	\intertext{which can be clculated as jacobians of $f$ resulting in}
+	S(t) &=  \int_0^t A(\tau) S(\tau) + B(\tau) \dd{\tau}
+\end{align}
+where the matrices $A(\tau)$ and $B(\tau)$ are the Jacobians with respect to $x$ and $\mu$ respectively:
+\begin{align}
+	A(\tau) &= \eval{\pdv{f}{x}}_{\bar{\mu}}  &B(\tau) &= \eval{\pdv{f}{\mu}}_{\bar{\mu}}\nonumber\\
+			&= \mqty[-x_2 + \cfrac{x_1}{x_1^2 + 1} 	& - x_1\\
+					 0								&1] &
+			&= \mqty[\cfrac{x_1}{x_1^2 + 1} & 0 	& 0\\
+					 0						& x_1^2 & -x_2]
+\end{align}
+
+Finally, the evolution of sensitivity over time can be found using the Leibnitz Formula, resulting in
+\begin{equation}
+	\dv{s(t)}{t} = A(t) S(t) + B(t)
+\end{equation}
+
+\subsection{Part b - Simulation}
+The MATLAB code in \appendixname \ref{apx:matlab} simulates and plots the states and sensitivities for each of the parameters. These plots can be seen in \figurename \ref{fig:pblm5}.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=\linewidth]{fig/pblm5}
+	\caption{Simulation for Problem 5 with the evolution of sensitivities to parameters.}
+	\label{fig:pblm5}
+\end{figure}
+
 
 
 
@@ -192,7 +242,7 @@ Derive the sensitivity equations for the parameters vary from their nominal valu
 
 \newpage
 \appendix
-\section{MATLAB Code:}
+\section{MATLAB Code:}\label{apx:matlab}
 All code I write in this course can be found on my GitHub repository:\\
 \href{https://github.com/jonaswagner2826/MECH6313}{https://github.com/jonaswagner2826/MECH6313}
 % MECH6313_HW3

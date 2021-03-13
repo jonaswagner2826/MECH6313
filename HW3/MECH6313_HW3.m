@@ -124,31 +124,29 @@ B_tau = jacobian(x_dot, mu)
 
 sys_func = @pblm5_func;
 
-T = [0,5];
-x_0 = [1, -1, mu_bar',mu_bar']';
+T = [0,10];
+x_0 = [1,-1, 0,0,0,0,0,0]';
 
 [t,y] = ode45(@(t,y) sys_func(t,y,mu_bar,A_tau,B_tau),T,x_0);
 
-y_states = y(:,1:2)
+y_states = y(:,[1,2]);
 y_a = y(:,[3,6]);
 y_b = y(:,[4,7]);
 y_c = y(:,[5,8]);
 
-subplot(4,1,1)
-plot(t,y)
+fig = figure('position',[0,0,1500,1200]);
+subplot(3,3,[1:3])
+plot(t,y_states)
 title('States')
 
-subplot(4,1,2)
-plot(t,y_a)
-title('a')
+titles = ["f1 - a", "f1 - b", "f1 - c", "f2 - a", "f2 - b", "f2 - c"];
+for i = 3:8
+    subplot(3,3,i+1)
+    plot(t,y(:,i))
+    title(titles(i-2))
+end
 
-subplot(4,1,3)
-plot(t,y_b)
-title('b')
-
-subplot(4,1,4)
-plot(t,y_c)
-title('c')
+saveas(fig,fullfile([pwd '\\' 'HW3' '\\' 'fig'],'pblm5.png'))
 
 end
 
