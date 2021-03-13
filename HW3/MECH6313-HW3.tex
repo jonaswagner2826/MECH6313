@@ -1,0 +1,61 @@
+\documentclass[letter]{article}
+\renewcommand{\baselinestretch}{1.25}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{physics}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{hyperref}
+
+
+% MATLAB Formating Code
+\usepackage[numbered,framed]{matlab-prettifier}
+\lstset{style=Matlab-editor,columns=fullflexible}
+\renewcommand{\lstlistingname}{Script}
+\newcommand{\scriptname}{\lstlistingname}
+
+\allowdisplaybreaks
+
+%opening
+\title{MECH 6313 - Homework 1}
+\author{Jonas Wagner}
+\date{2021, February 1}
+
+\begin{document}
+
+\maketitle
+
+
+\section{Problem 1}
+\textbf{Problem:}
+Let
+\begin{equation}
+	\begin{aligned}
+		\dot{x}_1 &= -x + x_2\\
+		\dot{x}_2 &= \cfrac{x_1^2}{1 + x_1^2} - 0.5 x_2
+	\end{aligned}
+\end{equation}
+
+Define an shifted system, linerize that system, and find the center manifold to analyze the stability properties. Then use numerical simulation to plot the phase portrait of the original coordinates and superimpose the shifted center manifold.
+
+\textbf{Solution:}
+\subsection{Part a}
+Let a shifted set of state variables be defined as $\bar{x}_1 = x_1 - 1$ and $\bar{x}_2 = x_2 - 1$. The state variable equation can then be rewritten as
+\begin{equation}
+	\begin{aligned}
+		kkk
+	\end{aligned}
+\end{equation}
+
+
+
+\newpage
+\appendix
+\section{MATLAB Code:}
+All code I write in this course can be found on my GitHub repository:\\
+\href{https://github.com/jonaswagner2826/MECH6313}{https://github.com/jonaswagner2826/MECH6313}
+% MECH6313_HW3
+\lstinputlisting[caption={MECH6313\_HW3},label={script:HW1}]{MECH6313_HW3.m}
+
+
+\end{document}
