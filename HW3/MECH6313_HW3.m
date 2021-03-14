@@ -12,8 +12,9 @@ pblm5 = false;
 if pblm1
 %% Problem 1
 syms x_1 x_2
-x_1_dot = -x_1 + x_2
-x_2_dot = (x_1^2)/(1 + x_1^2) - 0.5 * x_2
+x_1_dot = -x_1 + x_2;
+x_2_dot = (x_1^2)/(1 + x_1^2) - 0.5 * x_2;
+x_dot = [x_1_dot; x_2_dot]
 
 % part a
 syms x_1_bar x_2_bar
@@ -64,8 +65,8 @@ dh = diff(h,y_sym);
 w_dot = (subs(w_dot, [h_sym, dh_sym], [h, dh]));
 'w_dot'
 pretty(w_dot)
-
-solve(w_dot,h2)
+'How do I solve this????'
+% solve(w_dot,h2)
 
 % w_dot_soln = expand(w_dot);
 % w_dot_soln = subs(w_dot_soln, y_sym^4, 0);
@@ -79,6 +80,51 @@ solve(w_dot,h2)
 % syms h2y2
 % w_dot_soln = subs(w_dot_soln, h2*y2, h2y2)
 % solve(w_dot_soln == 0,h2y2)
+
+% Part 1d
+'Part 1d'
+'x_dot'
+pretty(x_dot)
+% f definition
+f = matlabFunction(x_dot);
+
+% Quiver Plot
+[X,Y] = meshgrid([-20:2:20]);
+temp = f(X,Y);
+U = temp(1:(size(X,1)),:);
+V = temp((size(X,1)+1):2*size(X,1),:);
+quiver(X,Y,U,V)
+hold on
+
+% Phase Plots
+[X,Y] = meshgrid([-20:5:20]);
+X_0 = [X(:),Y(:)];
+T = [0,10];
+for i = 1:size(X_0,1)
+    x_0 = X_0(i,:);
+    [~,y] = ode45(@(t,y) f(y(1),y(2)),T,x_0);
+    plot(y(:,1),y(:,2),'r')
+end
+
+
+% Z and Y Axes
+T_inv = inv(T1);
+syms x1_sym x2_sym
+y_axis = matlabFunction(solve(0 == T_inv(1,:) * [x1_sym; x2_sym],x2_sym));
+z_axis = matlabFunction(solve(0 == T_inv(2,:) * [x1_sym; x2_sym],x2_sym));
+
+X1 = [-15:0.2:15];
+X2_y = y_axis(X1) + 1; %adjust from xbar to x
+X2_z = z_axis(X1) + 1; %adjust from xbar to x
+X1 = X1 + 1; %adjust from xbar to x
+
+plot(X1,X2_y, 'k', 'LineWidth',3)
+plot(X1,X2_z, 'k', 'LineWidth',3)
+
+hold off
+
+
+
 
 
 end
