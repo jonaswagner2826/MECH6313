@@ -2,11 +2,11 @@
 clear
 close all
 
-pblm1 = false;
+pblm1 = true;
 pblm2 = false;
 pblm3 = false;
 pblm4 = false;
-pblm5 = true;
+pblm5 = false;
 
 
 if pblm1
@@ -18,10 +18,10 @@ x_2_dot = (x_1^2)/(1 + x_1^2) - 0.5 * x_2
 % part a
 syms x_1_bar x_2_bar
 
-x_1_bar_dot = subs(x_1_dot, [x_1, x_2], [x_1_bar + 1, x_2_bar + 1]);
-x_2_bar_dot = subs(x_2_dot, [x_1, x_2], [x_1_bar + 1, x_2_bar + 1]);
+x_1_bar_dot = subs(x_1_dot, [x_1, x_2], [x_1_bar + 1, x_2_bar + 1])
+x_2_bar_dot = subs(x_2_dot, [x_1, x_2], [x_1_bar + 1, x_2_bar + 1])
 
-x_bar = [x_1_bar; x_2_bar];
+x_bar = [x_1_bar; x_2_bar]
 x_bar_dot = [x_1_bar_dot; x_2_bar_dot]
 
 % part b
@@ -33,7 +33,7 @@ A = subs(A_sym, [x_1_bar, x_2_bar], [0,0])
 
 % Transform
 syms y_sym z_sym
-x_bar_sub = [y_sym, z_sym] * T1;
+x_bar_sub = [y_sym, z_sym];
 y_dot = subs(x_1_bar_dot, [x_1_bar, x_2_bar], x_bar_sub);
 z_dot = subs(x_2_bar_dot, [x_1_bar, x_2_bar], x_bar_sub);
 
@@ -51,30 +51,30 @@ A2 = eig_A(2,2);
 
 % w_dot substitution (from definition equation)
 syms h_sym dh_sym
-w_dot = A2 * h_sym + subs(g2,z_sym,h_sym) - dh_sym * (A1 * y_sym + subs(g1,z_sym,h_sym));
+w_dot = A2 * h_sym + subs(g2,z_sym,h_sym) == dh_sym * (A1 * y_sym + subs(g1,z_sym,h_sym));
 
 % Taylor's Series approximation of manifold
-syms h2 h3
-h = h2 * y_sym^2;% + h3 * y_sym^3;
+syms h2
+h = h2 * y_sym^2;
 dh = diff(h,y_sym);
 
 % Attempting to solve for the h2 value...
-w_dot = expand(subs(w_dot, [h_sym, dh_sym], [h, dh]));
+w_dot = subs(w_dot, [h_sym, dh_sym], [h, dh]);
 'w_dot'
 pretty(w_dot)
 
-w_dot_soln = expand(w_dot);
-w_dot_soln = subs(w_dot_soln, y_sym^4, 0);
-w_dot_soln = subs(w_dot_soln, y_sym^3, 0);
-syms y2
-w_dot_soln = subs(w_dot_soln, y_sym^2, y2);
-w_dot_soln = subs(w_dot_soln, y_sym, 0);
-'w_dot_soln'
-pretty(w_dot_soln)
-
-syms h2y2
-w_dot_soln = subs(w_dot_soln, h2*y2, h2y2)
-solve(w_dot_soln == 0,h2y2)
+% w_dot_soln = expand(w_dot);
+% w_dot_soln = subs(w_dot_soln, y_sym^4, 0);
+% w_dot_soln = subs(w_dot_soln, y_sym^3, 0);
+% syms y2
+% w_dot_soln = subs(w_dot_soln, y_sym^2, y2);
+% w_dot_soln = subs(w_dot_soln, y_sym, 0);
+% 'w_dot_soln'
+% pretty(w_dot_soln)
+% 
+% syms h2y2
+% w_dot_soln = subs(w_dot_soln, h2*y2, h2y2)
+% solve(w_dot_soln == 0,h2y2)
 
 
 end
@@ -134,13 +134,12 @@ y_a = y(:,[3,6]);
 y_b = y(:,[4,7]);
 y_c = y(:,[5,8]);
 
-fig = figure('position',[0,0,500,1300]);
+fig = figure('position',[0,0,1500,1200]);
 subplot(3,3,[1:3])
 plot(t,y_states)
 title('States')
 
-
-titles = [["f1 - a"], ["f1 - b"], ["f1 - c"], ["f2 - a"], ['f2 - b'], ['f2 - c']]';
+titles = ["f1 - a", "f1 - b", "f1 - c", "f2 - a", "f2 - b", "f2 - c"];
 for i = 3:8
     subplot(3,3,i+1)
     plot(t,y(:,i))
