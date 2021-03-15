@@ -2,11 +2,15 @@
 clear
 close all
 
-pblm1 = true;
+pblm1 = false;
 pblm2 = false;
-pblm3 = false;
+pblm3 = true;
 pblm4 = false;
 pblm5 = false;
+
+
+r = roots(poly([1 4 3 4]));
+r = r(imag(r)==0);
 
 
 if pblm1
@@ -88,6 +92,9 @@ pretty(x_dot)
 % f definition
 f = matlabFunction(x_dot);
 
+% Fig def
+fig = figure('position',[0,0,1500,1200]);
+
 % Quiver Plot
 [X,Y] = meshgrid([-20:2:20]);
 temp = f(X,Y);
@@ -110,23 +117,84 @@ end
 % Z and Y Axes
 T_inv = inv(T1);
 syms x1_sym x2_sym
-y_axis = matlabFunction(solve([1;1] == T_inv(1,:) * [x1_sym; x2_sym],x2_sym));
+y_axis = matlabFunction(solve(0 == T_inv(1,:) * [x1_sym; x2_sym],x2_sym));
 z_axis = matlabFunction(solve(0 == T_inv(2,:) * [x1_sym; x2_sym],x2_sym));
 
-X1 = [-20:0.2:20];
-X2_y = y_axis(X1);
-X2_z = z_axis(X1);
+X1 = [-15:0.2:15];
+X2_y = y_axis(X1) + 1; %adjust from xbar to x
+X2_z = z_axis(X1) + 1; %adjust from xbar to x
+X1 = X1 + 1; %adjust from xbar to x
+
 
 plot(X1,X2_y, 'k', 'LineWidth',3)
 plot(X1,X2_z, 'k', 'LineWidth',3)
 
+hold off
 
+% Save figure
+saveas(fig,fullfile([pwd '\\' 'HW3' '\\' 'fig'],'pblm1.png'))
 
 
 
 
 end
 
+
+if pblm2
+%% Problem 2
+syms x h
+dx(x,h) = x * (1-x) - h;
+f = matlabFunction(dx);
+
+fig = figure('position',[0,0,1000,1000]);
+
+[X,Y] = meshgrid([0:0.1:1.5],[0:0.05:0.5]);
+U = f(X,Y);
+V = 0 * U;
+q = quiver(X,Y,U,V);
+q.AutoScaleFactor = 2;
+
+title('Vector Field Plot: dx = x(1-x) - h')
+xlabel('x')
+ylabel('h')
+
+saveas(fig,fullfile([pwd '\\' 'HW3' '\\' 'fig'],'pblm2.png'))
+
+end
+
+
+if pblm3
+%% Problem 3
+syms x h a
+dx(x,h,a) = x * (1-x) - h * ((x)/(a+x));
+f = matlabFunction(dx);
+
+
+[X,Y] = meshgrid(0:0.1:1);
+%method of finding num roots:
+realRoots = solve(0==dx(x,0,0),x,'Real',true);
+numRoots = size(realRoots,1);
+
+for i = 1:size(X,1)
+    for j = 1:size(X,2)
+%         a = X(i,j);
+%         h = Y(i,j);
+%         r = roots(poly([1 (a-1) (h-a) 0]));
+%         r = r(imag(r)==0);
+        Z(i,j) = size(solve(0==dx(x,X(i,j),Y(i,j)),x,'Real',true),1);
+    end
+end
+
+%Ploting
+fig = figure('position',[0,0,1000,1000]);
+scatter3(X(:),Y(:),Z(:),[],Z(:),'filled')
+view(2)
+colorbar
+colormap(eye(3))
+
+% saveas(fig,fullfile([pwd '\\' 'HW3' '\\' 'fig'],'pblm3.png'))
+
+end
 
 
 if pblm4
@@ -140,10 +208,6 @@ pretty(f)
 df = jacobian(f);
 'jacobian'
 pretty(df)
-
-
-
-
 end
 
 

@@ -88,6 +88,9 @@ pretty(x_dot)
 % f definition
 f = matlabFunction(x_dot);
 
+% Fig def
+fig = figure('position',[0,0,1500,1200]);
+
 % Quiver Plot
 [X,Y] = meshgrid([-20:2:20]);
 temp = f(X,Y);
@@ -118,17 +121,82 @@ X2_y = y_axis(X1) + 1; %adjust from xbar to x
 X2_z = z_axis(X1) + 1; %adjust from xbar to x
 X1 = X1 + 1; %adjust from xbar to x
 
+
 plot(X1,X2_y, 'k', 'LineWidth',3)
 plot(X1,X2_z, 'k', 'LineWidth',3)
 
 hold off
 
+title('Phase Portrait for Problem 1')
+xlabel('x1')
+ylabel('x2')
+
+% Save figure
+saveas(fig,fullfile([pwd '\\' 'HW3' '\\' 'fig'],'pblm1.png'))
 
 
 
 
 end
 
+
+if pblm2
+%% Problem 2
+syms x h
+dx(x,h) = x * (1-x) - h;
+f = matlabFunction(dx);
+
+fig = figure('position',[0,0,1000,1000]);
+
+[X,Y] = meshgrid([0:0.1:1.5],[0:0.05:0.5]);
+U = f(X,Y);
+V = 0 * U;
+q = quiver(X,Y,U,V);
+q.AutoScaleFactor = 2;
+
+title('Vector Field Plot: dx = x(1-x) - h')
+xlabel('x')
+ylabel('h')
+
+saveas(fig,fullfile([pwd '\\' 'HW3' '\\' 'fig'],'pblm2.png'))
+
+end
+
+
+if pblm3
+%% Problem 3
+syms x h a
+dx(x,h,a) = x * (1-x) - h * ((x)/(a+x));
+f = matlabFunction(dx);
+
+x1 = linspace(0,1,40);
+y1 = linspace(0,1,40);
+[X,Y] = meshgrid(x1,y1);
+%method of finding num roots:
+realRoots = solve(0==dx(x,0,0),x,'Real',true);
+numRoots = size(realRoots,1);
+
+for i = 1:size(X,1)
+    for j = 1:size(X,2)
+        a = X(i,j);
+        h = Y(i,j);
+        Z(i,j) = size(solve(0==f(x,h,a),x,'Real',true),1);
+    end
+end
+
+%Ploting
+fig = figure('position',[0,0,700,700]);
+scatter3(X(:),Y(:),Z(:),[],Z(:),'filled')
+view(2)
+colorbar
+
+title('Stability Diagram - x(1-x) - h (x)/(a+x)')
+xlabel('a')
+ylabel('h')
+
+% saveas(fig,fullfile([pwd '\\' 'HW3' '\\' 'fig'],'pblm3.png'))
+
+end
 
 
 if pblm4
@@ -142,10 +210,6 @@ pretty(f)
 df = jacobian(f);
 'jacobian'
 pretty(df)
-
-
-
-
 end
 
 
