@@ -1,0 +1,226 @@
+\documentclass[letter]{article}
+\renewcommand{\baselinestretch}{1.25}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{physics}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{hyperref}
+
+
+% MATLAB Formating Code
+\usepackage[numbered,framed]{matlab-prettifier}
+\lstset{style=Matlab-editor,columns=fullflexible}
+\renewcommand{\lstlistingname}{Script}
+\newcommand{\scriptname}{\lstlistingname}
+
+\allowdisplaybreaks
+
+%opening
+\title{MECH 6313 - Homework 4}
+\author{Jonas Wagner}
+\date{2021, March 26}
+
+\begin{document}
+
+\maketitle
+
+
+\section{Problem 1}
+
+\subsection{Part a}
+\textbf{Problem:}
+Let the plant $$\frac{1}{s^2}$$ be defined with no input and the following state-space representation: 
+\begin{equation}
+	\begin{aligned}
+		\dot{x}_1 &= x_2\\
+		\dot{x}_2 &= 0
+	\end{aligned}
+\end{equation}
+What can be said about the equilibrium stability of the system?\\
+
+\noindent
+\textbf{Solution:}
+The defined system is a linear system with now input defined with $$A = \mqty[0&1\\0&0]$$
+From this it is clear that their exists a single Jordan block with two poles at $\lambda_{1,2} = 0$.
+
+The system is therefore unstable as the multiplicity of the roots are on the $j\omega$-axis is greater then one which disqualifies the system from marginal stability.
+
+\newpage
+\subsection{Part b}
+\textbf{Problem:}
+Let the magnetically suspended ball system be defined as
+\begin{equation}
+	\begin{aligned}
+		\dot{x}_1 &= x_2\\
+		\dot{x}_2 &= \cfrac{-c \bar{u}^2}{m x_1^2} + g
+	\end{aligned}
+\end{equation}
+with the input $$\bar{u}= \sqrt{\frac{mg}{c}Y}$$ defined as a constant.
+
+What can be said about the stability of the system at it's equilibrium?\\
+
+\noindent
+\textbf{Solution:}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\newpage
+\section{Problem 2}
+An unforced morse oscilator is governed by the following equations:
+\begin{equation}
+	\begin{aligned}
+		\dot{x}_1 &= x_2\\
+		\dot{x}_2 &= - \mu \qty(e^{-x_1} - e^{-2x_1})
+	\end{aligned}
+\end{equation}
+
+\subsection{Part a}
+\textbf{Problem:}
+Find the equalibrium points of the system.
+
+\noindent
+\textbf{Solution:}
+The equilibrium points of the system can be found by solving for the points where the state equations are equal to zero.
+It is clear that all equilibrium points occur when $\dot{x}_2 = 0$.
+
+\begin{align}
+	\dot{x}_2 = 0 &= - \mu \qty(e^{-x_1} - e^{-2x_1})\\
+	-\mu e^{-x_1} &= e -\mu e^{-2x_1}\\
+	-x_1 &= -2x_1\\
+	x_1 &= 0
+\end{align}
+
+Thus, the only equilibrium point occurs at the origin.
+
+\subsection{Part b}
+\textbf{Problem:}
+Assess the stability properties of the equilibrium point.
+
+\noindent
+\textbf{Solution:}
+Linearization of the model around the origin produces the following dynamic matrix:
+\begin{equation}
+	A = \mqty[	0 & 1\\
+				-\mu & 0]
+\end{equation}
+The associated characteristic polynomial is given as $$s^2 - \mu$$ thus the eigenvalues of the system are $$\lambda_{1,2} = \pm \sqrt{\mu}$$
+From this it can be seen the system is unstable due to the pole that exists at $\lambda_2 = \sqrt{\mu}$.
+
+
+\newpage
+\section{Problem 3}
+A nonlinear system is given as
+\begin{equation}
+	\begin{aligned}
+		\dot{x}_1 &= x_2\\
+		\dot{x}_2 &= -g \qty(k_1 x_1 + k_2 x_2), \ k_1, k_2 > 0
+	\end{aligned}
+\end{equation}
+where $g(\cdot)$ is known to satisfy the following
+\begin{equation}
+	\begin{aligned}
+		g(y) y > 0, \ \forall y \neq 0\\
+		\lim_{\abs{y} \to \infty} \int_0^y g(\xi) \dd{\xi}  = + \infty
+	\end{aligned}
+\end{equation}
+
+\subsection{Part a}
+\textbf{Problem:}
+Use an appropriate lyapnov function to show that the equalibrium point at $x=0$ is globally asymptotically stable.
+
+\noindent
+\textbf{Solution:}
+
+
+
+
+
+
+
+
+
+\subsection{Part b}
+\textbf{Problem:}
+Show that the saturation function $$\text{sat}(y) = \text{sign}(y) \min \{1, \abs{y}\}$$ satisfies the above assumptions for $g(\cdot)$.
+
+What is the exact form of your Lyapnov function for this saturation nonlinearity?
+
+\textbf{Solution:}
+
+
+
+
+
+
+
+\newpage
+\subsection{Part c}
+\textbf{Problem:}
+Demonstrate that a double integrator with a saturation actuator, given as
+\begin{equation}
+	\begin{aligned}
+		\dot{x}_1 &= x_2\\
+		\dot{x}_2 &= \text{sat}(u)
+	\end{aligned}
+\end{equation}
+can be saturated with the state-feedback controller $$ u = -k_1 x_1 - k_2 x_2$$ and design $k_1$ and $k_2$ such that the eigenvalues of the linearization are placed at $\lambda_{1,2} = -1 \pm j$.
+
+Simulate the closed loop with and without saturation and compare the resulting trajectories vs time.
+
+\textbf{Solution:}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\newpage
+\section{Problem 4: K4.14}
+A nonlinear system is given as
+\begin{equation}
+	\begin{aligned}
+		\dot{x}_1 &= x_2\\
+		\dot{x}_2 &= -g(x_1) (x_1 + x_2)
+	\end{aligned}
+\end{equation}
+where $g(\cdot)$ is known to be locally Lipschitz continous and satisfies $g(y) \geq 1, \ \forall y \in \real$.
+
+
+
+
+
+
+
+\newpage
+\appendix
+\section{MATLAB Code:}\label{apx:matlab}
+All code I write in this course can be found on my GitHub repository:\\
+\href{https://github.com/jonaswagner2826/MECH6313}{https://github.com/jonaswagner2826/MECH6313}
+% MECH6313_HW3
+%\lstinputlisting[caption={MECH6313\_HW3},label={script:HW1}]{MECH6313_HW3.m}
+
+
+\end{document}

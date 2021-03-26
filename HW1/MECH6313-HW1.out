@@ -1,0 +1,18 @@
+\BOOKMARK [1][-]{section.1}{Problem 1 - Duffing's Equation}{}% 1
+\BOOKMARK [1][-]{section.2}{Problem 2 - Van Der Pol Equations}{}% 2
+\BOOKMARK [2][-]{subsection.2.1}{Van Der Pol Simulation}{section.2}% 3
+\BOOKMARK [3][-]{subsubsection.2.1.1}{Phase Portraits}{subsection.2.1}% 4
+\BOOKMARK [3][-]{subsubsection.2.1.2}{Time Response}{subsection.2.1}% 5
+\BOOKMARK [2][-]{subsection.2.2}{Negative Van Der Pole Equation}{section.2}% 6
+\BOOKMARK [3][-]{subsubsection.2.2.1}{System Stability at the Origin}{subsection.2.2}% 7
+\BOOKMARK [3][-]{subsubsection.2.2.2}{Phase Portraits}{subsection.2.2}% 8
+\BOOKMARK [3][-]{subsubsection.2.2.3}{Time Response}{subsection.2.2}% 9
+\BOOKMARK [1][-]{section.3}{Problem 3 - Magnetic Suspension System}{}% 10
+\BOOKMARK [2][-]{subsection.3.1}{State Space Model}{section.3}% 11
+\BOOKMARK [2][-]{subsection.3.2}{Steady-State Solution}{section.3}% 12
+\BOOKMARK [1][-]{section.4}{Problem 4 - Bifurcation Examples}{}% 13
+\BOOKMARK [2][-]{subsection.4.1}{Pblm 3.4.2}{section.4}% 14
+\BOOKMARK [2][-]{subsection.4.2}{Pblm 3.4.4}{section.4}% 15
+\BOOKMARK [2][-]{subsection.4.3}{Pblm 3.4.7}{section.4}% 16
+\BOOKMARK [2][-]{subsection.4.4}{Pblm 3.4.9}{section.4}% 17
+\BOOKMARK [1][-]{appendix.A}{MATLAB Code:}{}% 18
