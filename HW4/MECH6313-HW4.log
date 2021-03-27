@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.11) (preloaded format=pdflatex 2021.3.6)  26 MAR 2021 13:39
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.11) (preloaded format=pdflatex 2021.3.6)  26 MAR 2021 21:07
 entering extended mode
 **./MECH6313-HW4.tex
 (MECH6313-HW4.tex
@@ -447,25 +447,26 @@ Underfull \hbox (badness 10000) in paragraph at lines 39--41
 
  []
 
-[1
 
-{C:/Users/Jonas/AppData/Local/MiKTeX/pdftex/config/pdftex.map}]
 Underfull \hbox (badness 10000) in paragraph at lines 61--62
 
  []
 
-[2] [3] [4] [5] [6] [7] (MECH6313-HW4.aux)
+[1
+
+{C:/Users/Jonas/AppData/Local/MiKTeX/pdftex/config/pdftex.map}] [2] [3]
+[4] [5] [6] [7] (MECH6313-HW4.aux)
 Package rerunfilecheck Info: File `MECH6313-HW4.out' has not changed.
 (rerunfilecheck)             Checksum: D090B39293EEC97DA7E1060EF83F1845;1142.
  ) 
 Here is how much of TeX's memory you used:
- 11459 strings out of 479337
- 166488 string characters out of 2857148
- 484844 words of memory out of 3000000
+ 11470 strings out of 479337
+ 166631 string characters out of 2857148
+ 494844 words of memory out of 3000000
  28749 multiletter control sequences out of 15000+200000
  408813 words of font info for 46 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 82i,10n,89p,341b,328s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 82i,20n,89p,341b,334s stack positions out of 5000i,500n,10000p,200000b,50000s
 <C:/Users/Jonas/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/
 cmbx10.pfb><C:/Users/Jonas/AppData/Local/Programs/MiKTeX/fonts/type1/public/ams
 fonts/cm/cmbx12.pfb><C:/Users/Jonas/AppData/Local/Programs/MiKTeX/fonts/type1/p
@@ -480,9 +481,9 @@ ppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Users
 .pfb><C:/Users/Jonas/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/
 cm/cmsy10.pfb><C:/Users/Jonas/AppData/Local/Programs/MiKTeX/fonts/type1/public/
 amsfonts/cm/cmsy7.pfb>
-Output written on MECH6313-HW4.pdf (7 pages, 148403 bytes).
+Output written on MECH6313-HW4.pdf (7 pages, 157082 bytes).
 PDF statistics:
- 153 PDF objects out of 1000 (max. 8388607)
- 32 named destinations out of 1000 (max. 500000)
+ 168 PDF objects out of 1000 (max. 8388607)
+ 43 named destinations out of 1000 (max. 500000)
  97 words of extra memory for PDF output out of 10000 (max. 10000000)
 
