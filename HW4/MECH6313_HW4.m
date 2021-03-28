@@ -5,21 +5,6 @@
 clear
 close all
 
-%% Simulink Creation In Code
-% Specify the name of the model to create
-fname = 'MECH6313_HW4_pblm3_model';
-
-% Check if the file already exists and delete it if it does
-if exist(fname,'file') == 4
-    % If it does then check whether it's open
-    if bdIsLoaded(fname)
-        % If it is then close it (without saving!)
-        close_system(fname,0)
-    end
-    % delete the file
-    delete([fname,'.slx']);
-end
-
 
 %% Problem 3
 % Saturation Block
@@ -44,6 +29,20 @@ K = place(A,B, [-1+j,-1-j]);
 A_BK = A - B * K;
 eig_A_BK = eig(A_BK);
 
+%% Simulink Creation In Code
+% Specify the name of the model to create
+fname = 'MECH6313_HW4_pblm3_model';
+
+% Check if the file already exists and delete it if it does
+if exist(fname,'file') == 4
+    % If it does then check whether it's open
+    if bdIsLoaded(fname)
+        % If it is then close it (without saving!)
+        close_system(fname,0)
+    end
+    % delete the file
+    delete([fname,'.slx']);
+end
 
 % Creat Simulink Model
 new_system(fname);
@@ -85,9 +84,10 @@ Simulink.BlockDiagram.arrangeSystem(fname) %Auto Arrange
 
 % Save System
 save_system(fname);
-open(fname);
+% open(fname); % Don't need to open to run
 
-% Simulate System
+
+%% Simulate System
 simConfig.SaveState = 'on';
 simOut = sim(fname, simConfig);
 
