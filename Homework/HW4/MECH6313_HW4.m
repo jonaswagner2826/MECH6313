@@ -5,8 +5,8 @@
 clear
 close all
 
-
 %% Problem 3
+% Part c
 % Saturation Block
 a = -1;
 b = 1;
@@ -28,6 +28,7 @@ x0 = [1;
 K = place(A,B, [-1+j,-1-j]);
 A_BK = A - B * K;
 eig_A_BK = eig(A_BK);
+
 
 %% Simulink Creation In Code
 % Simulink Settings ----------------------
@@ -80,10 +81,11 @@ add_block('cstblocks/LTI System', [gcs, '/LTI_sys'],...
     'IC', 'x0');
 add_line(gcs, 'Saturation/1', 'LTI_sys/1');
 
-% Controller
+% Controller (just a feedback gain)
 add_block('simulink/Commonly Used Blocks/Gain', [gcs, '/Controller'],...
     'Gain', 'K',...
-    'Multiplication', 'Matrix(K*u)');
+    'Multiplication', 'Matrix(K*u)',...
+    'Orientation', 'left');
 add_line(gcs, 'LTI_sys/1', 'Controller/1');
 add_line(gcs, 'Controller/1', 'Sum/2');
 
@@ -95,8 +97,10 @@ add_line(gcs, 'LTI_sys/1', 'Out/1');
 % Auto Arrange
 Simulink.BlockDiagram.arrangeSystem(gcs) %Auto Arrange
 
-% Save System
+
+%% Save and Open System
 save_system(gcs,[subfolder, '/', fname]);
+
 % open(fname); % Don't need to open to run
 
 
@@ -105,7 +109,7 @@ simConfig.SaveState = 'on';
 simOut = sim(fname, simConfig);
 
 % Sim Data
-Xout = simOut.xout{1}.Values.Data;
+Xout = simOut.xout{1}.Values.Data; %Only works by grabbing states of first block (LTI_sys)
 
 
 %% Plot Results
