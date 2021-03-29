@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.11) (preloaded format=pdflatex 2021.3.6)  27 MAR 2021 21:08
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.11) (preloaded format=pdflatex 2021.3.6)  29 MAR 2021 02:11
 entering extended mode
 **./MECH6313-HW4.tex
 (MECH6313-HW4.tex
@@ -455,35 +455,65 @@ Underfull \hbox (badness 10000) in paragraph at lines 61--62
 [1
 
 {C:/Users/Jonas/AppData/Local/MiKTeX/pdftex/config/pdftex.map}] [2] [3]
-[4] [5] [6] [7] (MECH6313-HW4.aux)
+[4]
+<fig/pblm3_c_model.png, id=105, 190.21063pt x 49.18375pt>
+File: fig/pblm3_c_model.png Graphic file (type png)
+<use fig/pblm3_c_model.png>
+Package pdftex.def Info: fig/pblm3_c_model.png  used on input line 231.
+(pdftex.def)             Requested size: 234.8775pt x 60.73503pt.
+<fig/pblm3_c_plot.png, id=108, 421.575pt x 316.0608pt>
+File: fig/pblm3_c_plot.png Graphic file (type png)
+<use fig/pblm3_c_plot.png>
+Package pdftex.def Info: fig/pblm3_c_plot.png  used on input line 238.
+(pdftex.def)             Requested size: 234.8775pt x 176.09099pt.
+ [5 <./fig/pblm3_c_model.png> <./fig/pblm3_c_plot.png (PNG copy)>]
+Underfull \hbox (badness 10000) in paragraph at lines 266--268
+
+ []
+
+[6]
+Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on i
+nput line 289.
+ (MECH6313_HW4.m
+LaTeX Font Info:    Font shape `OT1/cmtt/bx/n' in size <10> not available
+(Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 8.
+LaTeX Font Info:    Trying to load font information for TS1+cmtt on input line 
+36.
+
+(C:\Users\Jonas\AppData\Local\Programs\MiKTeX\tex/latex/base\ts1cmtt.fd
+File: ts1cmtt.fd 2019/12/16 v2.5j Standard LaTeX font definitions
+)
+[7] [8] [9]) [10] (MECH6313-HW4.aux)
 Package rerunfilecheck Info: File `MECH6313-HW4.out' has not changed.
 (rerunfilecheck)             Checksum: D090B39293EEC97DA7E1060EF83F1845;1142.
  ) 
 Here is how much of TeX's memory you used:
- 11470 strings out of 479337
- 166631 string characters out of 2857148
- 494844 words of memory out of 3000000
- 28749 multiletter control sequences out of 15000+200000
- 408813 words of font info for 46 fonts, out of 3000000 for 9000
+ 12007 strings out of 479337
+ 172677 string characters out of 2857148
+ 795041 words of memory out of 3000000
+ 29138 multiletter control sequences out of 15000+200000
+ 409278 words of font info for 48 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 82i,20n,89p,341b,334s stack positions out of 5000i,500n,10000p,200000b,50000s
-<C:/Users/Jonas/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/
-cmbx10.pfb><C:/Users/Jonas/AppData/Local/Programs/MiKTeX/fonts/type1/public/ams
-fonts/cm/cmbx12.pfb><C:/Users/Jonas/AppData/Local/Programs/MiKTeX/fonts/type1/p
-ublic/amsfonts/cm/cmex10.pfb><C:/Users/Jonas/AppData/Local/Programs/MiKTeX/font
-s/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/Jonas/AppData/Local/Programs/Mi
-KTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Users/Jonas/AppData/Local/Pro
-grams/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/Jonas/AppData/L
-ocal/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/Jonas/A
-ppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Users
-/Jonas/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr5.pfb><C
-:/Users/Jonas/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7
-.pfb><C:/Users/Jonas/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/
-cm/cmsy10.pfb><C:/Users/Jonas/AppData/Local/Programs/MiKTeX/fonts/type1/public/
-amsfonts/cm/cmsy7.pfb>
-Output written on MECH6313-HW4.pdf (7 pages, 160158 bytes).
+ 82i,20n,89p,341b,1971s stack positions out of 5000i,500n,10000p,200000b,50000s
+ <C:\Users\Jonas\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tctt
+1000.pk><C:/Users/Jonas/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfon
+ts/cm/cmbx10.pfb><C:/Users/Jonas/AppData/Local/Programs/MiKTeX/fonts/type1/publ
+ic/amsfonts/cm/cmbx12.pfb><C:/Users/Jonas/AppData/Local/Programs/MiKTeX/fonts/t
+ype1/public/amsfonts/cm/cmex10.pfb><C:/Users/Jonas/AppData/Local/Programs/MiKTe
+X/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/Jonas/AppData/Local/Progr
+ams/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Users/Jonas/AppData/Loc
+al/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/Jonas/App
+Data/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/J
+onas/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:
+/Users/Jonas/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr5.
+pfb><C:/Users/Jonas/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/c
+m/cmr7.pfb><C:/Users/Jonas/AppData/Local/Programs/MiKTeX/fonts/type1/public/ams
+fonts/cm/cmsy10.pfb><C:/Users/Jonas/AppData/Local/Programs/MiKTeX/fonts/type1/p
+ublic/amsfonts/cm/cmsy7.pfb><C:/Users/Jonas/AppData/Local/Programs/MiKTeX/fonts
+/type1/public/amsfonts/cm/cmtt10.pfb>
+Output written on MECH6313-HW4.pdf (10 pages, 235931 bytes).
 PDF statistics:
- 168 PDF objects out of 1000 (max. 8388607)
- 43 named destinations out of 1000 (max. 500000)
- 97 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 352 PDF objects out of 1000 (max. 8388607)
+ 178 named destinations out of 1000 (max. 500000)
+ 107 words of extra memory for PDF output out of 10000 (max. 10000000)
 

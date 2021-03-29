@@ -25,7 +25,7 @@ x0 = [1;
 
 
 % Controller Gain
-K = place(A,B, [-1+j,-1-j]);
+K = place(A,B, [-1+j,-1-j])
 A_BK = A - B * K;
 eig_A_BK = eig(A_BK);
 
@@ -57,9 +57,8 @@ if exist(fname,'file') == 4
     delete([fname,'.slx']);
 end
 
-% Creat Simulink Model
+% Create Simulink Model
 new_system; %fname not used... saved later
-
 
 % Create Simiple Input
 add_block('simulink/Sources/In1', [gcs, '/In']);
@@ -97,11 +96,12 @@ add_line(gcs, 'LTI_sys/1', 'Out/1');
 % Auto Arrange
 Simulink.BlockDiagram.arrangeSystem(gcs) %Auto Arrange
 
-
 %% Save and Open System
 save_system(gcs,[subfolder, '/', fname]);
-
+print(['-s', gcs], '-dpng',... % Print model to figure
+    [pwd, '\', subfolder, '\fig\', 'pblm3_c_model.png'])
 % open(fname); % Don't need to open to run
+
 
 
 %% Simulate System
@@ -119,5 +119,7 @@ hold on
 plot(Xout(:,2))
 legend('X_1', 'X_2')
 title('Saturated Double Integration Response while stabalized')
-saveas(fig, [pwd, '\', subfolder, '\fig\', 'pblm3_c.png'])
+saveas(fig, [pwd, '\', subfolder, '\fig\', 'pblm3_c_plot.png'])
+
+close all
 

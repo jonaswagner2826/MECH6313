@@ -137,10 +137,17 @@ Linearization of the model around the origin produces the following dynamic matr
 The associated characteristic polynomial is given as $$s^2 + \mu$$ thus the eigenvalues of the system are $$\lambda_{1,2} = \pm j \sqrt{\mu}$$
 From this it can be said that the linearized system in marginally stable as the roots of the system are purely imaginary. However this does not explicitly provide that the nonlinear system is stable.
 
-
-
-\textbf{lyapnov method written on paper... copy into this... result is the same}
-
+The alternative method of proving this marginal stability is to directly use a Lyapnov Function defined by
+\begin{equation}
+	V(x) = \frac{1}{2} x_2^2 + \int_0^{x_1} \mu \qty(e^{-\xi} + e^{-2\xi}) \dd \xi
+\end{equation}
+and show the negative semi-definess of $\dot{V}(x)$:
+\begin{align}
+	\dot{V}(x) &= x_2 \dot{x}_2 + \mu \qty(e^{-x_1} + e^{-2x_1}) \dot{x}_1\\
+	&= x_2 \qty(- \mu \qty(e^{-x_1} - e^{-2x_1})) + \mu \qty(e^{-x_1} + e^{-2x_1}) \qty(x_2)\\
+	&= 0 \leq 0
+\end{align}
+thus the system is shown to be stable in the sense of lyapnov (marginally stable).
 
 
 
@@ -159,7 +166,7 @@ A nonlinear system is given as
 where $g(\cdot)$ is known to satisfy the following
 \begin{equation}
 	\begin{aligned}
-		g(y) y > 0, \ \forall y \neq 0\\
+		y g(y) > 0, \ \forall y \neq 0\\
 		\lim_{\abs{y} \to \infty} \int_0^y g(\xi) \dd{\xi}  = + \infty
 	\end{aligned}
 \end{equation}
@@ -172,11 +179,6 @@ Use an appropriate lyapnov function to show that the equalibrium point at $x=0$ 
 \textbf{Solution:}
 
 
-
-
-
-
-Look at $int g(xi) d xi$
 
 
 
@@ -215,11 +217,27 @@ Simulate the closed loop with and without saturation and compare the resulting t
 
 \noindent
 \textbf{Solution:}
+MATLAB and Simulink were used to calculate gains as well as simulate the stabilization of the saturated double integrator system.
 
+The negative feedback controller gains to achieve the desired poles was calculated to be:
+\begin{equation}
+	K = \mqty[2 & 2]
+\end{equation}
 
-
-
-
+The simulink model that was used to simulate consisted of an LTI system representing the double integrator, a saturation block, and a gain for feedback. The model can be seen in \figurename \ \ref{fig:pblm3_c_model}. 
+\begin{figure}[h]
+	\centering
+	\label{fig:pblm3_c_model}
+	\includegraphics[width=0.5\textwidth]{fig/pblm3_c_model}
+	\caption{Simulink model used to simulate the saturated double integrator.}
+\end{figure}
+The results for stabilization of the system with initial conditions $x_0 = \mqty[1 &-1]^T$ is shown in \figurename \ \ref{fig:pblm3_c_plot}.
+\begin{figure}[h]
+	\centering
+	\label{fig:pblm3_c_plot}
+	\includegraphics[width=0.5\textwidth]{fig/pblm3_c_plot}
+	\caption{Simulation results of the stabilization of the saturated double integrator.}
+\end{figure}
 
 
 
@@ -246,7 +264,7 @@ Verify that
 \begin{equation}
 	V(x) = \int_0^{x_1} y g(y) \dd{y} + x_1 x_2 + x_2^2
 \end{equation}
-is positive  definite $\forall \ x \in \real^2$ and radially unbounded. Next use $V(x)$ to shown that $x=0$ is globally asymptotically stable.
+is positive  definite $\forall \ x \in \real^2$ and radially unbounded. Next use $V(x)$ to shown that $x=0$ is globally asymptotically stable.\\
 
 \noindent
 \textbf{Solution:}
@@ -268,7 +286,7 @@ is positive  definite $\forall \ x \in \real^2$ and radially unbounded. Next use
 All code I write in this course can be found on my GitHub repository:\\
 \href{https://github.com/jonaswagner2826/MECH6313}{https://github.com/jonaswagner2826/MECH6313}
 % MECH6313_HW3
-%\lstinputlisting[caption={MECH6313\_HW3},label={script:HW1}]{MECH6313_HW3.m}
+\lstinputlisting[caption={MECH6313\_HW4},label={script:HW4}]{MECH6313_HW4.m}
 
 
 \end{document}
