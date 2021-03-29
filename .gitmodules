@@ -1,3 +1,6 @@
 [submodule "nlsys"]
 	path = Homework/nlsys
 	url = https://github.com/jonaswagner2826/nlsys
+[submodule "Homework/nlsys"]
+	path = Homework/nlsys
+	url = https://github.com/jonaswagner2826/nlsys
