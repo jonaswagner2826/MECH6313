@@ -1,0 +1,163 @@
+\documentclass[letter]{article}
+\renewcommand{\baselinestretch}{1.25}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{physics}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{hyperref}
+
+
+% MATLAB Formating Code
+\usepackage[numbered,framed]{matlab-prettifier}
+\lstset{style=Matlab-editor,columns=fullflexible}
+\renewcommand{\lstlistingname}{Script}
+\newcommand{\scriptname}{\lstlistingname}
+
+
+
+% Document Specific
+\newcommand{\sat}{\text{sat}}
+
+
+\allowdisplaybreaks
+
+%opening
+\title{MECH 6313 - Homework5}
+\author{Jonas Wagner}
+\date{2021, April 14}
+
+\begin{document}
+
+\maketitle
+
+\section{Problem 1}
+The standard mass-spring-damper system described by
+\begin{equation}
+	m \ddot{y} + \beta \dot{y} + k y = u
+\end{equation}
+ Then 
+
+\subsection{Part a}
+\textbf{Problem:}
+Design a gradient algorithm to estimate the unknown parameters $m$, $\beta$, and $k$ from known inputs and outputs $u(t)$ and $y(t)$.\\
+
+\noindent
+\textbf{Solution:}
+
+
+
+
+\subsubsection{Part b}
+\textbf{Problem:}
+Simulate the algorithm for $m = 20$, $\beta = 0.1$, and $k = 5$ for different choices of $u(t)$ and resulting parameter convergence properties.\\
+
+\noindent
+\textbf{Solution:}
+
+
+
+
+
+
+
+\newpage
+\section{Problem 2}
+Considering the reference model
+\begin{equation}
+	\dot{y}_m = -a y_m + r(t), \ a>0
+\end{equation}
+and the plant given as
+\begin{equation}
+	\dot{y} = a^*y + b^* u, \ b^* \neq 0
+\end{equation}
+
+\subsection{Part a}
+\textbf{Problem:}
+Show that a controller of form $$u = \theta_1 y + \theta_2 r(t)$$ with gains $\theta^*_1$ and $\theta^*_2$ stabilizes the tracking error $e:= y-y_m$ asymptotically to zero.\\
+
+\noindent
+\textbf{Solution:}
+
+
+
+
+
+\subsubsection{Part b}
+\textbf{Problem:}
+Suppose $a^*$ and $b*$ are unknown but the sign of $b^*$ is known. Show that the adaptive implementation of the controller can achieve tracking when the gains are updated according to the following rule:
+\begin{align}
+	& \dot{\theta}_1 = - \text{sign}(b^*) \gamma_1 y e\\
+	& \dot{\theta}_2 = - \text{sign}(b^*) \gamma_2 r e
+\end{align}
+with $\gamma_1, \gamma_2 > 0$.\\
+
+\noindent
+\textbf{Solution:}
+
+
+
+
+
+\subsubsection{Part c}
+\textbf{Problem:}
+Provide conditions that also guarantee that $\theta_1(t) \to \theta_1^*$ and $\theta_2(t) \to \theta_2^*$ as $t\to\infty$.\\
+
+\noindent
+\textbf{Solution:}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\newpage
+\section{Problem 3}
+A simplified model of an axial compressor, used in jet engine control studies, is given by the following second order system:
+\begin{equation}
+	\begin{aligned}
+		&\dot{\phi} = - \frac{3}{2} \phi^2 - \frac{1}{2} \phi^3 - \psi\\
+		&\dot{\psi} = \frac{1}{\beta^2}(\phi + 1 - u)
+	\end{aligned}
+\end{equation}
+This model captures the main surge instability between the mass flow and the pressure rise. Here, $\phi$ and $\psi$ are deviations of the mass flow and the pressure rise from their set points, the control input $u$ is the ow through the throttle, and $\beta$ is a positive constant.
+
+\subsection{Part a}
+\textbf{Problem:}
+Use backstopping to obtain a control law to stabilize the origin.\\
+
+\noindent
+\textbf{Solution:}
+
+
+
+\subsubsection{Part b}
+\textbf{Problem:}
+Use Sontag's Formula and the Control Lyapunov Function obtained previously to obtain an alternative control law.\\
+
+\noindent
+\textbf{Solution:}
+
+
+
+
+
+\newpage
+\appendix
+\section{MATLAB Code:}\label{apx:matlab}
+All code I write in this course can be found on my GitHub repository:\\
+\href{https://github.com/jonaswagner2826/MECH6313}{https://github.com/jonaswagner2826/MECH6313}
+% MECH6313_HW3
+%\lstinputlisting[caption={MECH6313\_HW4},label={script:HW4}]{MECH6313_HW4.m}
+
+
+\end{document}

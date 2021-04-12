@@ -14,6 +14,12 @@
 \renewcommand{\lstlistingname}{Script}
 \newcommand{\scriptname}{\lstlistingname}
 
+
+
+% Document Specific
+\newcommand{\sat}{\text{sat}}
+
+
 \allowdisplaybreaks
 
 %opening
@@ -173,33 +179,67 @@ where $g(\cdot)$ is known to satisfy the following
 
 \subsection{Part a}
 \textbf{Problem:}
-Use an appropriate lyapnov function to show that the equalibrium point at $x=0$ is globally asymptotically stable.
+Use an appropriate lyapnov function to show that the equilibrium point at $x=0$ is globally asymptotically stable.
 
 \noindent
 \textbf{Solution:}
+Let,
+\begin{equation}
+	V(x) = \int_0^{x_1} g(\xi) \dd \xi + \frac{1}{2} x_2^2
+\end{equation}
+which is a viable Lyapnov function candidate. The derivative can then be found as
+\begin{align}
+	\dot{V}(x) &= g(x_1) \dot{x_1} + x_2 \dot{x}_2\\
+	&= g(x_1) x_2 + x_2 (-g(k_1 x_2 + k_2 x_2))\\
+	\intertext{taking an mild superposition assumption with the stipluation that sign is critical, but magnitudes are still iffy,}
+	&\leq x_2 g(x_1) - x_2 g(k_1 x_2) - x_2 g(k_2 x_2)\\
+	\intertext{from the definition of the $g(\cdot)$ function, the following can also be derived}
+	&\leq - x_2 g(k_2 x_2) < 0
+\end{align}
+Therefore, $\dot{V}(x)$ is strictly negative definite and thus the system is known to be globally asymptotically stable.
 
-
-
-
-
-
+\newpage
 \subsection{Part b}
 \textbf{Problem:}
 Show that the saturation function $$\text{sat}(y) = \text{sign}(y) \min \{1, \abs{y}\}$$ satisfies the above assumptions for $g(\cdot)$.
 
-What is the exact form of your Lyapnov function for this saturation nonlinearity?
+What is the exact form of your Lyapnov function for this saturation nonlinearity?\\
 
 \noindent
 \textbf{Solution:}
+The conditions for $g(y)$ can be satisfied for the positive and negative domains to prove that $\text{sat}(y)$ satisfies the conditions $\forall x \neq 0$.\\
+
+First, for $y > 0$,
+\begin{align}
+	y \sat(y) &= y \ \text{sign} \min{1,\abs{y}}\\
+	&= (+1) \abs{y} (+1) (+K), \ K = \min{1,\abs{y}}\\
+	&> 0, \forall y > 0
+\end{align}
+and the other condition is also easily demonstrated
+\begin{align}
+	\lim_{\abs{y} \to \infty} \int_0^y \sat(\xi) \dd{\xi} 
+	&= \lim_{y \to \infty} \int_0^y (+1) (+ K) \dd{\xi}, \ K = \min{1,\xi}\\
+	&= + \infty
+\end{align}
 
 
+Second, for $y < 0$,
+\begin{align}
+	y \sat(y) &= y \ \text{sign} \min{1,\abs{y}}\\
+	&= (-1) \abs{y} (-1) (+K), \ K = \min{1,\abs{y}}\\
+	&> 0, \forall y > 0
+\end{align}
+and the other condition is also easily demonstrated
+\begin{align}
+	\lim_{\abs{y} \to \infty} \int_0^y \sat(\xi) \dd{\xi} 
+	&=\lim_{y \to - \infty} \int_0^y (-1) (+ K) \dd{\xi}, \ K = \min{1,\xi}\\
+	&= \lim_{y \to - \infty} - \int_y^0 (-1) (+ K) \dd{\xi}, \ K = \min{1,\xi}\\
+	&= + \infty
+\end{align}
 
+Thus, $\sat{y}$ satisfies all the conditions of a $g(\cdot)$ function.
 
-
-
-
-
-
+From this, and the intuition around $g(y)$ functions, we can then conclude that the system (when controlled as stated) the saturated system is globally asymptotically stable. Specifically a Lyapnov function of the form $V(y) = y \sat(y)$ could be used.
 
 \newpage
 \subsection{Part c}
@@ -231,6 +271,7 @@ The simulink model that was used to simulate consisted of an LTI system represen
 	\includegraphics[width=0.5\textwidth]{fig/pblm3_c_model}
 	\caption{Simulink model used to simulate the saturated double integrator.}
 \end{figure}
+
 The results for stabilization of the system with initial conditions $x_0 = \mqty[1 &-1]^T$ is shown in \figurename \ \ref{fig:pblm3_c_plot}.
 \begin{figure}[h]
 	\centering
@@ -250,7 +291,7 @@ The results for stabilization of the system with initial conditions $x_0 = \mqty
 \newpage
 \section{Problem 4: K4.14}
 A nonlinear system is given as
-\begin{equation}
+\begin{equation}\label{eq:pblm4_sys}
 	\begin{aligned}
 		\dot{x}_1 &= x_2\\
 		\dot{x}_2 &= -g(x_1) (x_1 + x_2)
@@ -268,7 +309,47 @@ is positive  definite $\forall \ x \in \real^2$ and radially unbounded. Next use
 
 \noindent
 \textbf{Solution:}
+To prove that (i) $V(x)$ is positive definite, it must be true that $V(0) = 0$ and (ii) $V(x) > 0 \ \forall x \in \{ \real^2 \backslash (0,0)\}$. First, (i) can be shown as:
+\begin{align}
+	\eval{V(x)}_0 = 0
+	&= \eval{\qty(\int_0^{x_1} y g(y) \dd{y} + x_1 x_2 + x_2^2)}_0\\
+	&= \int_0^{0} y g(y) \dd{y} + (0)(0) + (0)^2\\
+	&= 0
+\end{align}
 
+(ii) can then be shown by first demonstrating that since $g(y) \geq 1, \ \forall y \in \real$, the following is true
+\begin{align}
+	\int_0^{x_1} y g(y) \dd{y}
+	&\geq \int_0^{x_1} y (1) \dd{y}\\
+	&\geq \frac{1}{2} x_1^2\\
+	&\geq 0, \ x_1 \neq 0
+\end{align}
+additionally, it is obvious that $$x_2^2 \geq 0, \ x_1 \neq 0$$
+and the following statements are also true
+\begin{align}
+	x_1 x_2 &\geq 0, \ x \in \{x_1, x_2 \geq 0\} \bigcup \{x_1, x_2 \leq 0\}\\
+	\abs{x_1 x_2} &< \frac{1}{2} x_1^2 + x_2^2, \ x \in \{x_1 < 0, x_2 > 0\} \bigcup \{x_1 > 0, \ x_2 < 0\}
+\end{align}
+The following therefore true
+\begin{align}
+	V(x) &\geq \frac{1}{2} x_1^2 + x_1 x_2 + x_2^2 \geq 0
+\end{align}
+Thus $V(x) \succ 0$ and is clearly radially unbounded as the lyapnov function is defined over the entire domain $x \in \real^2$.
+
+\newpage
+The lyapnov function can now be used to demonstrate that \eqref{eq:pblm4_sys} is globally asymptotically stable by the following:
+\begin{align}
+	\dot{V} = \dv{V}{x} \dv{x}{t}
+	&= \qty(x_1 g(x_1) + x_2) \dot{x}_1 + \qty(x_1 + 2 x_2) \dot{x}_2\\
+	&= \qty(x_1 g(x_1) + x_2) \qty(x_2) + \qty(x_1 + 2 x_2) \qty(-g(x_1) \qty(x_1 + x_2))\\
+	&= x_1 x_2 g(x_1) + x_2^2 - x_1^2 g(x_1) - x_1 x_2 g(x_1) -2 x_1 x_2 g(x_1) -2 x_2^2 g(x_1)\\
+	&= x_2^2 -g(x_1) \qty(x_1^2 + 2 x_1 x_2 + 2 x_2^2)
+	\intertext{since $g(y) \geq 1, \ \forall y \in \real$,}
+	&\leq x_2^2 - \qty(x_1^2 + 2 x_1 x_2 + 2 x_2^2)\\
+	&\leq -x_1^2 - 2x_1 x_2 - x_2^2\\
+	&\leq - (x_1 + x_2)^2 < 0, \ x_1, x_2 \neq 0
+\end{align}
+Therefore, $\dot{V}(x) \prec 0$ and the system is globally asymptotically stable.
 
 
 
