@@ -23,7 +23,7 @@
 \allowdisplaybreaks
 
 %opening
-\title{MECH 6313 - Homework5}
+\title{MECH 6313 - Homework 5}
 \author{Jonas Wagner}
 \date{2021, April 14}
 
@@ -36,7 +36,6 @@ The standard mass-spring-damper system described by
 \begin{equation}
 	m \ddot{y} + \beta \dot{y} + k y = u
 \end{equation}
- Then 
 
 \subsection{Part a}
 \textbf{Problem:}
@@ -44,8 +43,76 @@ Design a gradient algorithm to estimate the unknown parameters $m$, $\beta$, and
 
 \noindent
 \textbf{Solution:}
+The system identification problem can be reformatted for a recursive estimator for constant parameters as follows:\\
+
+First he spring-mass-damper dynamics can be rewritten in the following form:
+\begin{align}
+	\ddot{y} &= - \frac{\beta}{m} \dot{y} - \frac{k}{m} y + \frac{1}{m} u\\
+	s^2 Y &= - \frac{\beta}{m} s Y - \frac{k}{m} Y + \frac{1}{m} U
+	\intertext{Letting $\Lambda(s) = s^2 + \lambda_1 s + \lambda_0$ to represent the charectoristic polynomial of a 2nd-order filter,}
+	\frac{s^2 Y}{\Lambda(s)} &= \frac{- \frac{\beta}{m} s Y - \frac{k}{m} Y + \frac{1}{m} U}{\Lambda(s)}
+\end{align}
 
 
+\begin{align}
+	Y(s) &= \qty(\frac{1}{m}) \frac{1}{\Lambda(s)} U - \qty(\frac{\beta}{m} - \lambda_1) \frac{s}{\Lambda(s)} Y - \qty(\frac{k}{m} - \lambda_0) \frac{1}{\Lambda(s)} Y
+\end{align}
+
+Let
+\begin{equation}
+	\theta = \mqty[\frac{1}{m}\\ \frac{\beta}{m} - \lambda_1 \\ \frac{k}{m} - \lambda_0] = \mqty[b_1\\ \bar{a}_1 \\ \bar{a}_0] = \mqty[\theta_1 \\ \theta_2 \\ \theta_3]
+\end{equation}
+
+Known measured and imputed quantities can then be defined as
+\begin{equation}
+	\Psi(s) = \mqty[\psi_1\\ \psi_2 \\ \psi_3]
+	= \mqty[\cfrac{1}{\Lambda(s)} U \\ \cfrac{-s}{\Lambda(s)} Y\\ \cfrac{-1}{\Lambda(s)} Y]
+\end{equation}
+
+which can be used alongside the unknown parameters to define the following standard form parameter estimation problem:
+\begin{equation}
+	Y(s) = \Psi(s)^T \Theta
+\end{equation}
+
+This can then be further developed to define a gradient-based parameter estimator.\\
+
+First, let $\hat{\Theta}$ be defined as the estimate of the parameters $\Theta$ and the estimation error, $\tilde{\Theta}$ of the parameter be defined as $$\tilde{\Theta}(t) = \Theta - \hat{\Theta}(t)$$ and the convergence dynamics should be defined as $$\dot{\tilde{\Theta}}(t) = - \dot{\hat{\Theta}}(t)$$
+
+Subsequently the output error is can be defined in terms of the parameter error by the following:
+\begin{align}
+	e(t)
+	&= y(t) - \hat{y}(t)\\
+	&= \Psi^T(t) \Theta - \Psi^T(t) \hat{\Theta}(t)\\
+	&= \Psi^T(t) \qty[\Theta - \hat{\Theta}(t)]\\
+	&= \Psi^T(t) \tilde{\Theta}(t)
+\end{align}
+
+A simple gradient decent algorithm can then be defined by:
+\begin{align}
+	\frac{1}{2} e^2(t)
+	&= \frac{1}{2} e^T(t) e(t)\\
+	&= \frac{1}{2} \tilde{\Theta}^T(t) \Psi(t) \Psi^T(t) \tilde{\Theta}
+\end{align}
+and since
+\begin{equation}
+	\dot{\tilde{\Theta}} = - \grad_{\tilde{\Theta}} \qty[\frac{1}{2} e^2(t)]\\
+\end{equation}
+an LTV system can be defined as
+\begin{align}
+	\dot{\tilde{\Theta}} &= -\Psi(t) \Psi^T(t) \tilde{\Theta}
+	\intertext{or equivelently, since $e(t) = \Psi^T(t) \tilde{\Theta}(t)$}
+	\dot{\tilde{\Theta}} &= -\Psi(t) \Psi^T(t) e(t)
+\end{align}
+
+This algorithm can then be implemented for this specific system by defining the estimator dynamic matrice as:
+\begin{equation}
+	\begin{aligned}
+		A &= \Psi(t) \Psi^T(t) \hat{\Theta}(t)\\
+		B &= - \Psi(t)
+	\end{aligned}
+\end{equation}
+
+\textbf{This needs to be looked at again... its not really done...}
 
 
 \subsubsection{Part b}
@@ -78,22 +145,87 @@ Show that a controller of form $$u = \theta_1 y + \theta_2 r(t)$$ with gains $\t
 
 \noindent
 \textbf{Solution:}
-
-
-
+A method to achieve the calculate the tracking error is to implement a Model Reference Adaptive Controller (MRAC) that will change the dynamics of the plant into the reference model. In an ideal case, the parameters $a$ and $b$ will be known and a control law, $u = \theta_1^* y + \theta_2^* r(t)$, can be defined directly as follows:
+\begin{align}
+	-a y_m + r(t) = \dot{y}_m = \dot{y}
+	&= a^* y + b^* (\theta_1^* y + \theta_2^* r(t))\\
+	-a y_m + r(t)
+	&= (a^* + b^* \theta_1) y + b^* \theta_2 r(t)
+\end{align}
+Clearly they dynamics are therefore equivalent if the following are true:
+\begin{align}
+	- a &= (a^* + b^* \theta_1^*)\\
+	1	&= b^* \theta_2^*
+\end{align}
+Thus these dynamics would be equivalent dynamics for gains defined as:
+\begin{align}
+	\theta_1^* &= \frac{-(a + a^*)}{b^*}\\
+	\theta_2^* &= \frac{1}{b^*}
+\end{align}
+The error dynamics for $$e(t) = y - y_m$$ can be defined as
+\begin{align}
+	\dot{e}(t) &= \dv{t} (y - y_m)\\
+	&= (a^* + b^* \theta_1^*) y + b^* \theta_2^* r(t) - ( -a y_m + r(t))\\
+	&= (a^* + b^* \frac{-(a + a^*)}{b^*}) y + b^* \frac{1}{b^*} r(t) - ( -a y_m + r(t))\\
+	&= -(a^* - a^* + a)y + r(t) - (-a y_m + r(t))\\
+	&= -a y - a (-y_m) = -a (y-y_m)\\
+	\dot{e} &= - a e
+\end{align}
+which for $a>0$ is clearly GAS.
 
 
 \subsubsection{Part b}
 \textbf{Problem:}
 Suppose $a^*$ and $b*$ are unknown but the sign of $b^*$ is known. Show that the adaptive implementation of the controller can achieve tracking when the gains are updated according to the following rule:
-\begin{align}
-	& \dot{\theta}_1 = - \text{sign}(b^*) \gamma_1 y e\\
-	& \dot{\theta}_2 = - \text{sign}(b^*) \gamma_2 r e
-\end{align}
+\begin{equation} \label{eq:dot_theta}
+	\begin{aligned}
+		& \dot{\theta}_1 = - \text{sign}(b^*) \gamma_1 y e\\
+		& \dot{\theta}_2 = - \text{sign}(b^*) \gamma_2 r e
+	\end{aligned}
+\end{equation}
 with $\gamma_1, \gamma_2 > 0$.\\
 
 \noindent
 \textbf{Solution:}
+Effective tracking occurs when the error, $e = y - y_m$, asymptotically decays to zero. For the MRAC with control law defined as $$u=\theta_1 y + \theta_2 r$$ the asymptotic stability can be demonstrated as follows:
+Let
+\begin{align}
+	\hat{\theta}_1 = \theta_1 - \theta_1^*\\
+	\hat{\theta}_2 = \theta_2 - \theta_2^*
+\end{align}
+then the following equivalent gains
+\begin{align}
+	\theta_1 = \theta_1^* + \hat{\theta}_1\\
+	\theta_2 = \theta_2^* + \hat{\theta}_2
+\end{align}
+can be substituted into the error dynamics
+\begin{align}
+	\dot{e}(t) &= \dv{t} (y - y_m)\\
+	&= (a^* + b^* (\theta_1^* + \hat{\theta}_1)) y + b^* (\theta_2^* + \hat{\theta}_2) r(t) - ( -a y_m + r(t))\\
+	&=(a^* + b^* \theta_1^*) y + b^* \theta_2^* r(t) - ( -a y_m + r(t)) + b^* \hat{\theta}_1 y + b^* \hat{\theta}_2 r(t)\\
+	&= (a^* + b^* \frac{-(a + a^*)}{b^*}) y + b^* \frac{1}{b^*} r(t) - ( -a y_m + r(t)) b^* \hat{\theta}_1 y + b^* \hat{\theta}_2 r(t)\\
+	&= -(a^* - a^* + a)y + r(t) - (-a y_m + r(t)) + b^* \hat{\theta}_1 y + b^* \hat{\theta}_2 r(t)\\
+	&= -a(y-y_m) + b^* (\hat{\theta}_1 y + \hat{\theta}_2 r(t))\\
+	&= -(a)e(t) + b^* (\hat{\theta}_1 y + \hat{\theta}_2 r(t)) \label{eq:dot_e_with_theta}
+\end{align}
+From this it is clear that the error dynamics are the same as the ideal plus the additional terms associated with the gain errors.
+
+Therefore effective tracking can be achieved if the combined system defined as follows by combining \eqref{eq:dot_e_with_theta} with the time derivatives of gain errors (equivalent to \eqref{eq:dot_theta}):
+\begin{equation}\label{eq:addaptive_error_dynamics}
+	\begin{aligned}
+		\dot{e}(t) &= -(a)e + b^* \hat{\theta}_1 y + b^* \hat{\theta}_2 r(t)\\
+		\dot{\hat{\theta}}_1 &= - \text{sign}(b^*) (\gamma_1) (y) (e)\\
+		\dot{\hat{\theta}}_2 &= - \text{sign}(b^*) (\gamma_2) (y) (e)
+	\end{aligned}
+\end{equation}
+
+
+
+
+
+
+
+
 
 
 
@@ -106,6 +238,9 @@ Provide conditions that also guarantee that $\theta_1(t) \to \theta_1^*$ and $\t
 \noindent
 \textbf{Solution:}
 
+From the definition of the ideal control, $u = \theta_1^* y + \theta_2^* r$, it is known that if $\theta_1(t) \to \theta_1^*$ and $\theta_2(t) \to \theta_2^*$ then the MRAC will effectively transform the plant dynamics to that of the reference model.
+
+In the case of the MRAC 
 
 
 
@@ -129,7 +264,8 @@ A simplified model of an axial compressor, used in jet engine control studies, i
 		&\dot{\psi} = \frac{1}{\beta^2}(\phi + 1 - u)
 	\end{aligned}
 \end{equation}
-This model captures the main surge instability between the mass flow and the pressure rise. Here, $\phi$ and $\psi$ are deviations of the mass flow and the pressure rise from their set points, the control input $u$ is the ow through the throttle, and $\beta$ is a positive constant.
+This model captures the main surge instability between the mass flow and the pressure rise. Here, $\phi$ and $\psi$ are deviations of the mass flow and the pressure rise from their set points, the control input $u$ is the 
+ow through the throttle, and $\beta$ is a positive constant.
 
 \subsection{Part a}
 \textbf{Problem:}
