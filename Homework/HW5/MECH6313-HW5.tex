@@ -278,7 +278,7 @@ The stability of these dynamics can be tested for the same marginal stability as
 	+ \theta_1 (- c_1 y(t) e)
 	+ \theta_2 (- c_2 r(t) e)\\
 	&= -a e^2 + (b-c_1) (y(t)) (\theta_1 e) + (b - c_1) (r(t)) (\theta_2 e)\\
-	&= - x^T \mqty[\dmat{a,0,0}] x + (b-c_1) (y(t)) (\theta_1 e) + (b - c_1) (r(t)) (\theta_2 e)
+	&= - x^T \mqty[\dmat{a,0,0}] x + (b-c_1) (y(t)) (\theta_1 e) + (b - c_1) (r(t)) (\theta_2 e)\label{eq:v_dot_result}
 \end{align}
 from this the observation, once again, of marginal stability (at the origin) is obvious. For design of the tracking error itself, the $Q = \mqty[\dmat{a,0,0}]$ matrix can be used to generate an observation matrix $C$.\\
 
@@ -326,7 +326,7 @@ and then calculating
 
 The pair $\qty(A(t) + L(t) C(t), C(t))$ is clearly observable as the output of a system governed by these dynamics would output
 \begin{equation}
-	y = \sqrt{a} b (\theta_1 y(t) + \theta_2 r(t))
+	y = \sqrt{a} \ b \ (\theta_1 y(t) + \theta_2 r(t))
 \end{equation}
 which, assuming $y(t)$ and $r(t)$ is known, can be used to calculate all of the states.
 
@@ -367,9 +367,7 @@ which is clearly true for $y(t)$ and $r(t)$ that are persistently excited.
 From this it can be concluded that the system is UAS. This can then be applied to to the original system noting that $c_i = \text{sign}(b^*) \gamma_i \ \forall i = 1,2$.
 
 
-
-
-
+\newpage
 \subsection{Part c}
 \textbf{Problem:}
 Provide conditions that also guarantee that $\theta_1(t) \to \theta_1^*$ and $\theta_2(t) \to \theta_2^*$ as $t\to\infty$.\\
@@ -379,7 +377,11 @@ Provide conditions that also guarantee that $\theta_1(t) \to \theta_1^*$ and $\t
 
 From the definition of the ideal control, $u = \theta_1^* y + \theta_2^* r$, it is known that if $\theta_1(t) \to \theta_1^*$ and $\theta_2(t) \to \theta_2^*$ then the MRAC will effectively transform the plant dynamics to that of the reference model.
 
-For the dynamics 
+For the dynamics of the gains, it can be seen from \eqref{eq:v_dot_result} that for GAS, the following must be true:
+\begin{align}
+	\dot{V} &= -a e^2 + (b-\text{sign}(b^*) \gamma_1) (y(t)) (\tilde{\theta}_1 e) + (b - \text{sign}(b^*) \gamma_2) (r(t)) (\tilde{\theta}_2 e) \prec 0
+\end{align}
+Originally the terms that were not obviously $\preceq 0$ were ignored as they will at a minimum remain bounded. In order to also insure $\theta_1(t) \to \theta_1^*$ and $\theta_2(t) \to \theta_2^*$, the two other terms must be $\prec 0$.
 
 
 
