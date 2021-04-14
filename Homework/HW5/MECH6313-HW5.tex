@@ -169,12 +169,12 @@ The error dynamics for $$e(t) = y - y_m$$ can be defined as
 	&= (a^* + b^* \frac{-(a + a^*)}{b^*}) y + b^* \frac{1}{b^*} r(t) - ( -a y_m + r(t))\\
 	&= -(a^* - a^* + a)y + r(t) - (-a y_m + r(t))\\
 	&= -a y - a (-y_m) = -a (y-y_m)\\
-	\dot{e} &= - a e
+	\dot{e} &= - a e\label{eq:dot_e}
 \end{align}
 which for $a>0$ is clearly GAS.
 
 
-\subsubsection{Part b}
+\subsection{Part b}
 \textbf{Problem:}
 Suppose $a^*$ and $b*$ are unknown but the sign of $b^*$ is known. Show that the adaptive implementation of the controller can achieve tracking when the gains are updated according to the following rule:
 \begin{equation} \label{eq:dot_theta}
@@ -190,48 +190,187 @@ with $\gamma_1, \gamma_2 > 0$.\\
 Effective tracking occurs when the error, $e = y - y_m$, asymptotically decays to zero. For the MRAC with control law defined as $$u=\theta_1 y + \theta_2 r$$ the asymptotic stability can be demonstrated as follows:
 Let
 \begin{align}
-	\hat{\theta}_1 = \theta_1 - \theta_1^*\\
-	\hat{\theta}_2 = \theta_2 - \theta_2^*
+	\tilde{\theta}_1 = \theta_1 - \theta_1^*\\
+	\tilde{\theta}_2 = \theta_2 - \theta_2^*
 \end{align}
 then the following equivalent gains
 \begin{align}
-	\theta_1 = \theta_1^* + \hat{\theta}_1\\
-	\theta_2 = \theta_2^* + \hat{\theta}_2
+	\theta_1 = \theta_1^* + \tilde{\theta}_1\\
+	\theta_2 = \theta_2^* + \tilde{\theta}_2
 \end{align}
 can be substituted into the error dynamics
 \begin{align}
 	\dot{e}(t) &= \dv{t} (y - y_m)\\
-	&= (a^* + b^* (\theta_1^* + \hat{\theta}_1)) y + b^* (\theta_2^* + \hat{\theta}_2) r(t) - ( -a y_m + r(t))\\
-	&=(a^* + b^* \theta_1^*) y + b^* \theta_2^* r(t) - ( -a y_m + r(t)) + b^* \hat{\theta}_1 y + b^* \hat{\theta}_2 r(t)\\
-	&= (a^* + b^* \frac{-(a + a^*)}{b^*}) y + b^* \frac{1}{b^*} r(t) - ( -a y_m + r(t)) b^* \hat{\theta}_1 y + b^* \hat{\theta}_2 r(t)\\
-	&= -(a^* - a^* + a)y + r(t) - (-a y_m + r(t)) + b^* \hat{\theta}_1 y + b^* \hat{\theta}_2 r(t)\\
-	&= -a(y-y_m) + b^* (\hat{\theta}_1 y + \hat{\theta}_2 r(t))\\
-	&= -(a)e(t) + b^* (\hat{\theta}_1 y + \hat{\theta}_2 r(t)) \label{eq:dot_e_with_theta}
+	&= (a^* + b^* \theta_1) y + b^* \theta_2 r(t) - ( -a y_m + r(t))\\
+	&= (a^* + b^* (\theta_1^* + \tilde{\theta}_1)) y + b^* (\theta_2^* + \tilde{\theta}_2) r(t) - ( -a y_m + r(t))\\
+	&=(a^* + b^* \theta_1^*) y + b^* \theta_2^* r(t) - ( -a y_m + r(t)) + b^* \tilde{\theta}_1 y + b^* \tilde{\theta}_2 r(t)\\
+	&= (a^* + b^* \frac{-(a + a^*)}{b^*}) y + b^* \frac{1}{b^*} r(t) - ( -a y_m + r(t)) b^* \tilde{\theta}_1 y + b^* \tilde{\theta}_2 r(t)\\
+	&= -(a^* - a^* + a)y + r(t) - (-a y_m + r(t)) + b^* \tilde{\theta}_1 y + b^* \tilde{\theta}_2 r(t)\\
+	&= -a(y-y_m) + b^* (\tilde{\theta}_1 y + \tilde{\theta}_2 r(t))\\
+	&= -(a)e(t) + b^* (\tilde{\theta}_1 y + \tilde{\theta}_2 r(t)) \label{eq:dot_e_with_theta}
 \end{align}
 From this it is clear that the error dynamics are the same as the ideal plus the additional terms associated with the gain errors.
 
 Therefore effective tracking can be achieved if the combined system defined as follows by combining \eqref{eq:dot_e_with_theta} with the time derivatives of gain errors (equivalent to \eqref{eq:dot_theta}):
 \begin{equation}\label{eq:addaptive_error_dynamics}
 	\begin{aligned}
-		\dot{e}(t) &= -(a)e + b^* \hat{\theta}_1 y + b^* \hat{\theta}_2 r(t)\\
-		\dot{\hat{\theta}}_1 &= - \text{sign}(b^*) (\gamma_1) (y) (e)\\
-		\dot{\hat{\theta}}_2 &= - \text{sign}(b^*) (\gamma_2) (y) (e)
+		\dot{e}(t) &= -(a)e + b^* (\tilde{\theta}_1 y + \tilde{\theta}_2 r(t))\\
+		\dot{\tilde{\theta}}_1 &= - \tilde{\gamma}_1 \ y \ e\\
+		\dot{\tilde{\theta}}_2 &= - \tilde{\gamma}_2 \ r \ e
 	\end{aligned}
+\end{equation}
+where $\text{sign}(\tilde{\gamma}_i) = \text{sign}(b^*)$ and $\abs{\tilde{\gamma}_i} = \abs{\gamma_i}$ for $i=1,2$.
+
+\subsubsection{Error Dynamics Origin Stability}
+Upon analysis of \eqref{eq:addaptive_error_dynamics}, it is clear that there is an equilibrium point when $$e = \dot{\tilde{\theta}}_1 = \dot{\tilde{\theta}}_2 = 0$$ and since an effective tracker exists at that equilibrium point, if the error dynamics are GAS about that point then it is an effective tracker.
+
+The linearized system matrices about the equivalent origin is given as
+\begin{equation}
+	\begin{aligned}
+		A &= \eval{\mqty[-a &b^* y &b^* r\\
+				  - \tilde{\gamma}_1 \ y & 0 &0\\
+				  - \tilde{\gamma}_2 \ r & 0 & 0]
+			  	  }_{y=r=0}
+		   = \mqty[-a & &\\&0&\\&&0]\\
+%		B &= \eval{\mqty[ b^* \tilde{\theta}_1 & b^* \tilde{\theta}_2\\
+%				  -\tilde{\gamma}_1 e & 0\\ 
+%				  -\tilde{\gamma}_2 e & 0]}_{\tilde{\theta}_1 = \tilde{\theta}_2= y = r = 0}
+%		   = \vb{0}_{3\cross2}
+	\end{aligned}
+\end{equation}
+with $x = \mqty[e\\ \tilde{\theta}_1 \\ \tilde{\theta}_2]$ and time-varying parameters $y$ and $r(t)$.
+
+It is clear the linearzed system is at least marginally zero so any tracking errors caused will at least be bounded locally. It is also clear that if the dynamic gain component is ignored, the error will asymptotically approach zero as demonstrated by \eqref{eq:dot_e}.This isn't enough to demonstrate GAS though.
+
+
+\subsubsection{Error Lyapnov Equation}
+Using a lyapnov function $$x^T P x$$ for $P = \frac{1}{2} I_3$ the error dynamics at the origin can be better analyzed.
+
+In this case the a similarly structured time varying system system will be defined as
+\begin{equation}
+	\begin{aligned}
+		\dot{e} 
+		&= -a e + b y(t) \theta_1 + b r(t) \theta_2\\
+		\dot{\theta_1}	&= - c_1 y(t) e\\
+		\dot{\theta_2}	&= - c_2 r(t) e
+	\end{aligned}
+\end{equation}
+with time varying parameters being the signals $y(t)$ and $r(t)$, along with scaler constants $a, b, c_1, c_2$.
+
+For a state vector $x = \mqty[e \\ \theta_1 \\ \theta_2]$, the LTV state-space dynamics can be defined by:
+\begin{equation}
+	A = \mqty[-a & b y(t) & b r(t)\\
+			  -c_1 y(t) & 0 &0\\
+			  -c_2 r(t) & 0 &0]
+\end{equation}
+
+The stability of these dynamics can be tested for the same marginal stability as shown previously by applying Lyopnov methods with $P=\frac{1}{2} I_3$.
+
+\begin{align}
+	V(e, \theta_1, \theta_2) = x^T P x
+	&= \frac{1}{2} e^2 + \frac{1}{2} \theta_1^2 + \frac{1}{2} \theta_2^2\\
+	\dot{V}(e, \theta_1, \theta_2) = 2 P x^T \dot{x}
+	&= e \dot{e} + \theta_1 \dot{\theta_1} + \theta_2 \dot{\theta_2}\\
+\end{align}
+\begin{align}
+	\dot{V} = x^T (2 \qty(\frac{1}{2}) I_3)\dot{x}
+	&= e \qty(-a e + b y(t) \theta_1 + b r(t) \theta_2)
+	+ \theta_1 (- c_1 y(t) e)
+	+ \theta_2 (- c_2 r(t) e)\\
+	&= -a e^2 + (b-c_1) (y(t)) (\theta_1 e) + (b - c_1) (r(t)) (\theta_2 e)\\
+	&= - x^T \mqty[\dmat{a,0,0}] x + (b-c_1) (y(t)) (\theta_1 e) + (b - c_1) (r(t)) (\theta_2 e)
+\end{align}
+from this the observation, once again, of marginal stability (at the origin) is obvious. For design of the tracking error itself, the $Q = \mqty[\dmat{a,0,0}]$ matrix can be used to generate an observation matrix $C$.\\
+
+Since $\dot{V} = -x^T Q x = -x^T C^T C x$, $C$ can be found as
+\begin{align}
+	Q &= C^T C\\
+	\mqty[\dmat{a,0,0}] &= \mqty[\sqrt{a}\\0\\0] \mqty[\sqrt{a}&0&0]
+\end{align}
+therefore,
+\begin{equation}
+	C = \mqty[\sqrt{a} & 0 & 0]
 \end{equation}
 
 
+\subsubsection{Universal Observability of (A+LC,C)}
+Uniform observability (UO) of the pair $$\qty(A(t), C(t))$$ can then be assured by first confirming UO of $$A(t) + L(t) C(t), C(t)$$ by defining
+\begin{equation}
+	L(t) = \mqty[\sqrt{a}\\
+				 \qty(\cfrac{1}{\sqrt{a}})y(t)\\
+				 \qty(\cfrac{1}{\sqrt{a}})r(t)]
+\end{equation}
+and then calculating
+\begin{align}
+	A(t) + L(t) C(t)
+	&= \mqty[-a & b y(t) & b r(t)\\
+			-c_1 y(t) & 0 &0\\
+			-c_2 r(t) & 0 &0]
+	+ \mqty[\sqrt{a}\\
+			\qty(\cfrac{c_1}{\sqrt{a}})y(t)\\
+			\qty(\cfrac{c_2}{\sqrt{a}})r(t)]
+	  \mqty[\sqrt{a} & 0 & 0]\\
+	&= \mqty[-a & b y(t) & b r(t)\\
+			-c_1 y(t) & 0 &0\\
+			-c_2 r(t) & 0 &0]
+	+  \mqty[a & 0 & 0\\
+			c_1 y(t) & 0 &0\\
+			c_2 r(t) & 0 &0]
+\end{align}
+\begin{align}
+	A(t) + L(t) C(t)
+	&= \mqty[0 & b y(t) & b r(t)\\
+			0 & 0 &0\\
+			0 & 0 &0]
+\end{align}
+
+The pair $\qty(A(t) + L(t) C(t), C(t))$ is clearly observable as the output of a system governed by these dynamics would output
+\begin{equation}
+	y = \sqrt{a} b (\theta_1 y(t) + \theta_2 r(t))
+\end{equation}
+which, assuming $y(t)$ and $r(t)$ is known, can be used to calculate all of the states.
+
+This uniform stability can be confirmed for the pair $\qty(A(t) + L(t) C(t), C(t))$ by recognizing that UO for the system:
+\begin{equation}
+	\begin{aligned}
+		\dot{x}
+		&= (A(t) + L(t) C(t))
+		= \mqty[0 & b y(t) & b r(t)\\
+				0 & 0 &0\\
+				0 & 0 &0] x\\
+		\hat{y}
+		&= C x = \mqty[\sqrt{a} & 0 & 0] x
+	\end{aligned}
+\end{equation}
+is the same as stating UO of the system:
+\begin{equation}
+	\begin{aligned}
+		\dot{x}_{2,3}
+		&= \vb{0}_2 x\\
+		\hat{y}_{2,3}
+		&= \sqrt{a} b \mqty[y(t) & r(t)] x_{2,3}
+	\end{aligned}
+\end{equation}
+and this single $C$ matrix can be used to prove UO.\\
+
+UO (and UAS) if $\exists \delta, \ \alpha > 0$ s.t.
+\begin{align}
+	\int_{t_0}^{t_0+\delta} C C^T \dd{t}
+	&\geq \alpha \vb{I}_2 \ \forall t_0\\
+	\int_{t_0}^{t_0+\delta} (\sqrt{a} b)^2 \mqty[y(t) & r(t)] \mqty[y(t) \\ r(t)]  \dd{t}
+	&\geq \alpha \vb{I}_2 \ \forall t_0\\
+	(\sqrt{a} b)^2 \int_{t_0}^{t_0+\delta} (y(t))^2 + (r(t))^2 \dd{t}
+	&\geq \alpha \vb{I}_2 \ \forall t_0
+\end{align}
+which is clearly true for $y(t)$ and $r(t)$ that are persistently excited.
+
+From this it can be concluded that the system is UAS. This can then be applied to to the original system noting that $c_i = \text{sign}(b^*) \gamma_i \ \forall i = 1,2$.
 
 
 
 
 
-
-
-
-
-
-
-\subsubsection{Part c}
+\subsection{Part c}
 \textbf{Problem:}
 Provide conditions that also guarantee that $\theta_1(t) \to \theta_1^*$ and $\theta_2(t) \to \theta_2^*$ as $t\to\infty$.\\
 
@@ -240,11 +379,7 @@ Provide conditions that also guarantee that $\theta_1(t) \to \theta_1^*$ and $\t
 
 From the definition of the ideal control, $u = \theta_1^* y + \theta_2^* r$, it is known that if $\theta_1(t) \to \theta_1^*$ and $\theta_2(t) \to \theta_2^*$ then the MRAC will effectively transform the plant dynamics to that of the reference model.
 
-In the case of the MRAC 
-
-
-
-
+For the dynamics 
 
 
 

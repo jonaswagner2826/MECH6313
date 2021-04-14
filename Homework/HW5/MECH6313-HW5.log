@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.11) (preloaded format=pdflatex 2021.3.6)  13 APR 2021 16:01
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.11) (preloaded format=pdflatex 2021.3.6)  13 APR 2021 22:25
 entering extended mode
 **./MECH6313-HW5.tex
 (MECH6313-HW5.tex
@@ -474,33 +474,50 @@ Underfull \hbox (badness 10000) in paragraph at lines 185--187
 
  []
 
+[4]
+\matrixtoks=\toks26
+\matrixtoks=\toks27
+ [5]
+\matrixtoks=\toks28
 
-Underfull \hbox (badness 10000) in paragraph at lines 235--237
-
- []
-
-[4] [5]
-Underfull \hbox (badness 10000) in paragraph at lines 271--273
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 280--282
+Underfull \hbox (badness 10000) in paragraph at lines 282--284
 
  []
 
-[6] [7] (MECH6313-HW5.aux)
+\matrixtoks=\toks29
+\matrixtoks=\toks30
+[6]
+Underfull \hbox (badness 10000) in paragraph at lines 353--355
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 374--376
+
+ []
+
+[7]
+Underfull \hbox (badness 10000) in paragraph at lines 406--408
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 415--417
+
+ []
+
+[8] [9] (MECH6313-HW5.aux)
 Package rerunfilecheck Info: File `MECH6313-HW5.out' has not changed.
-(rerunfilecheck)             Checksum: 2DF45C071AB391B759E769915B8025B3;1052.
+(rerunfilecheck)             Checksum: D021EE7FE10E86A08BA8A63E44F7CD6E;1706.
  ) 
 Here is how much of TeX's memory you used:
- 11511 strings out of 479337
- 167179 string characters out of 2857148
- 494963 words of memory out of 3000000
- 28760 multiletter control sequences out of 15000+200000
+ 11543 strings out of 479337
+ 167600 string characters out of 2857148
+ 498997 words of memory out of 3000000
+ 28764 multiletter control sequences out of 15000+200000
  411262 words of font info for 54 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 82i,12n,89p,356b,342s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 82i,22n,89p,368b,357s stack positions out of 5000i,500n,10000p,200000b,50000s
 <C:/Users/Jonas/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/
 cmbsy10.pfb><C:/Users/Jonas/AppData/Local/Programs/MiKTeX/fonts/type1/public/am
 sfonts/cm/cmbx10.pfb><C:/Users/Jonas/AppData/Local/Programs/MiKTeX/fonts/type1/
@@ -512,12 +529,13 @@ rograms/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Users/Jonas/AppData
 /AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Use
 rs/Jonas/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr17.pfb
 ><C:/Users/Jonas/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/c
-mr7.pfb><C:/Users/Jonas/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfon
-ts/cm/cmsy10.pfb><C:/Users/Jonas/AppData/Local/Programs/MiKTeX/fonts/type1/publ
-ic/amsfonts/cm/cmsy7.pfb>
-Output written on MECH6313-HW5.pdf (7 pages, 162700 bytes).
+mr5.pfb><C:/Users/Jonas/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfon
+ts/cm/cmr7.pfb><C:/Users/Jonas/AppData/Local/Programs/MiKTeX/fonts/type1/public
+/amsfonts/cm/cmsy10.pfb><C:/Users/Jonas/AppData/Local/Programs/MiKTeX/fonts/typ
+e1/public/amsfonts/cm/cmsy7.pfb>
+Output written on MECH6313-HW5.pdf (9 pages, 192712 bytes).
 PDF statistics:
- 192 PDF objects out of 1000 (max. 8388607)
- 65 named destinations out of 1000 (max. 500000)
- 89 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 247 PDF objects out of 1000 (max. 8388607)
+ 93 named destinations out of 1000 (max. 500000)
+ 113 words of extra memory for PDF output out of 10000 (max. 10000000)
 
