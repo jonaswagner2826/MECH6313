@@ -31,6 +31,10 @@
 
 \maketitle
 
+\tableofcontents
+
+\newpage
+
 \section{Problem 1}
 The standard mass-spring-damper system described by
 \begin{equation}
@@ -107,26 +111,36 @@ an LTV system can be defined as
 This algorithm can then be implemented for this specific system by defining the estimator dynamic matrice as:
 \begin{equation}
 	\begin{aligned}
-		A &= \Psi(t) \Psi^T(t) \hat{\Theta}(t)\\
+		A &= \Psi(t) \Psi^T(t)\\
 		B &= - \Psi(t)
 	\end{aligned}
 \end{equation}
 
-\textbf{This needs to be looked at again... its not really done...}
-
-
+\newpage
 \subsubsection{Part b}
 \textbf{Problem:}
 Simulate the algorithm for $m = 20$, $\beta = 0.1$, and $k = 5$ for different choices of $u(t)$ and resulting parameter convergence properties.\\
 
 \noindent
 \textbf{Solution:}
+This was simulated in MATLAB using Simulink. The code can be found in \appendixname \ref{apx:matlab}. The simulink model can be seen in \figurename \ \ref{fig:pblm1b_model}.
 
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=\linewidth]{fig/sim_model_pblm1b}
+	\caption{Simulink Model used to simulate the parameter estimation}
+	\label{fig:pblm1b_model}
+\end{figure}
 
+\newpage
+The simulation results can be seen in \figurename \ \ref{fig:pblm1b_results}
 
-
-
-
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=\linewidth]{fig/pblm1b_results}
+	\caption{Simulink Results}
+	\label{fig:pblm1b_results}
+\end{figure}
 
 \newpage
 \section{Problem 2}
@@ -359,8 +373,8 @@ UO (and UAS) if $\exists \delta, \ \alpha > 0$ s.t.
 	&\geq \alpha \vb{I}_2 \ \forall t_0\\
 	\int_{t_0}^{t_0+\delta} (\sqrt{a} b)^2 \mqty[y(t) & r(t)] \mqty[y(t) \\ r(t)]  \dd{t}
 	&\geq \alpha \vb{I}_2 \ \forall t_0\\
-	(\sqrt{a} b)^2 \int_{t_0}^{t_0+\delta} (y(t))^2 + (r(t))^2 \dd{t}
-	&\geq \alpha \vb{I}_2 \ \forall t_0
+	a b^2 \int_{t_0}^{t_0+\delta} (y(t))^2 + (r(t))^2 \dd{t}
+	&\geq \alpha \vb{I}_2 \ \forall t_0\label{eq:obsv_gram}
 \end{align}
 which is clearly true for $y(t)$ and $r(t)$ that are persistently excited.
 
@@ -383,13 +397,7 @@ For the dynamics of the gains, it can be seen from \eqref{eq:v_dot_result} that 
 \end{align}
 Originally the terms that were not obviously $\preceq 0$ were ignored as they will at a minimum remain bounded. In order to also insure $\theta_1(t) \to \theta_1^*$ and $\theta_2(t) \to \theta_2^*$, the two other terms must be $\prec 0$.
 
-
-
-
-
-
-
-
+From \eqref{eq:obsv_gram} it is known that the system is UO and therefore UAS regardless of the system parameters or tun-able $\gamma$ constants, but this is guaranteed when it is known $y(t)$ and $r(t)$ are persistently excited.
 
 
 \newpage
@@ -401,8 +409,7 @@ A simplified model of an axial compressor, used in jet engine control studies, i
 		&\dot{\psi} = \frac{1}{\beta^2}(\phi + 1 - u)
 	\end{aligned}
 \end{equation}
-This model captures the main surge instability between the mass flow and the pressure rise. Here, $\phi$ and $\psi$ are deviations of the mass flow and the pressure rise from their set points, the control input $u$ is the 
-ow through the throttle, and $\beta$ is a positive constant.
+This model captures the main surge instability between the mass flow and the pressure rise. Here, $\phi$ and $\psi$ are deviations of the mass flow and the pressure rise from their set points, the control input $u$ is the flow through the throttle, and $\beta$ is a positive constant.
 
 \subsection{Part a}
 \textbf{Problem:}
@@ -410,19 +417,121 @@ Use backstopping to obtain a control law to stabilize the origin.\\
 
 \noindent
 \textbf{Solution:}
+This problem can be written in a more standard form of
+\begin{align}\label{eq:backstep_original}
+	\dot{x_1} &= f(x_1) + g(x_1) x_2\nonumber\\
+	\dot{x_2} &= f_a(x_1,x_2) + g_a(x_1,x_2) u
+\end{align}
+where
+\begin{align}
+	f(x_1) &= -\frac{3}{2} x_1^2 - \frac{1}{2} x_1^3\\
+	&g(x_1) = -1\nonumber \\
+	f_a(x_1,x_2) &= \frac{1}{\beta^2} \qty(x_1 + 1)\\
+	&g_a(x_1,x_2) = -1\nonumber
+\end{align}
+and the state variables and inputs are defined such that $x_1 = \phi$, $x_2 = \psi$, and $u = u$.
 
+First looking at the $x_1$ state equation independently and considering the $x_2$ state as an input, $z_1$, a proposed lyapnov equation $$V_1(x_1) = \frac{1}{2} x_1^2$$ can be used to develop a virtual control signal $\alpha(x_1)$.
+\begin{align}
+	\dot{V}(x_1)
+	&= \dv{V}{x_1} \dot{x_1}\\
+	&= x_1 \qty(f(x_1) + g(x_1) \alpha(x_1))\\
+	&= x_1 \qty(-\frac{3}{2} x_1^2 - \frac{1}{2} x_1^3 - \alpha(x_1))\\
+	&= -\frac{3}{2} x_1^3 - \frac{1}{2} x_1^4 - x_1 \alpha(x_1)
+\end{align}
+Since $-\frac{3}{2} x_1^3$ is not negative definite, $\alpha(x_1)$ can be defined as $$\alpha(x_1) = -\frac{3}{2} x_1^2 + K_1 x_1, \ K_1 > 0$$ and substituted in to cancel it out and add an additional asymptotically decreasing term
+\begin{align}
+	\dot{V}(x_1)
+	&= -\frac{3}{2} x_1^3 - \frac{1}{2} x_1^4 - x_1 \qty(-\frac{3}{2} x_1^3 + K x_1)\\
+	&= -\frac{3}{2} x_1^3 - \frac{1}{2} x_1^4  + \frac{3}{2} x_1^3 - K_1 x_1^2, \ K_1 >0\\
+	&= -\frac{1}{2} x_1^4 - K_1 x_1^2 \leq -W_1(x_1) < 0, \ K_1 > 0
+\end{align}
+Clearly this is negative definite, so the virtual control signal of $\alpha(x_1) = -\frac{3}{2} x_1^2 + K_1 x_1$ is acceptable.\\
 
+Next, define the additional state equation
+\begin{align}
+	z_2
+	&= x_2 - \alpha(x_1)\\
+	\dot{z_2}
+	&= \dot{x_2} - \dot{\alpha}\\
+%	&= f_a(x_1,x_2) + g(x_1,x_2) u - \dv{\alpha}{x_1} \dot{x_1}\\
+%	&= \frac{1}{\beta^2} \qty(x_1 + 1 - u) - \dv{\alpha}{x_1} \qty[f(x_1) + g(x_1)z]\\
+%	&= \frac{1}{\beta^2} \qty(x_1 + 1 - u) u - \dv{\alpha}{x_1} \qty[-\frac{3}{2} x_1^2 - \frac{1}{2} x_1^3 - x_2]
+%	\intertext{Next, $z_2 + \alpha(x_1)$ can be substituted into $x_2$ after defining $z_2 = x_2 - \alpha(x_1)$}
+%	&= \frac{1}{\beta^2} \qty(x_1 + 1 - u) - \dv{\alpha}{x_1} \qty[-\frac{3}{2} x_1^2 - \frac{1}{2} x_1^3 - z_2 - \alpha(x_1)]
+\end{align}
 
+Next, an augmented Lyapnov function:
+\begin{align}
+	V_a(x_1,z_2)
+	&= V_1 (x_1) + \frac{1}{2} z_2^2\\
+	&= \frac{1}{2} x_1^2 + \frac{1}{2} z_2^2
+\end{align}
+stability can then be guaranteed as follows:
+\begin{align}
+	\dot{V}_a(x_1,z_2)
+	&= \dot{V}_1 + z_2 \dot{z_2}\\
+	&= \dot{V}_1 + z_2 (\dot{x_2} - \dot{\alpha})\\
+	&= \dot{V}_1 + z_2 ((\frac{1}{\beta^2} \qty(x_1 + 1 - u)) - \dot{\alpha})
+\end{align}
+since $\dot{V}_1 \leq -W_1(x_1)$ this component is not problematic. Thus, setting
+$$u = -x_1 - \dot{\alpha} + \beta^2 k_2 z_2, \ k_2 > 0$$
+can be used to generate the following
+\begin{align}
+	\dot{V}_a &= \dot{v_1} - z_2(-k_2 z_2)\\
+	&= - W_1(x_1) - k_2 z_2^2 < 0
+\end{align}
+Which means a control signal of
+\begin{equation}
+	u =  -x_1 - \dot{\alpha} + \beta^2 k_2 \qty(x_2 - \alpha(x_1)), \ k_2 > 0
+\end{equation}
+can be implemented in a static nonlinear controller to ensure GAS at the origin.
+
+\newpage
 \subsubsection{Part b}
 \textbf{Problem:}
 Use Sontag's Formula and the Control Lyapunov Function obtained previously to obtain an alternative control law.\\
 
 \noindent
 \textbf{Solution:}
+The Control Lyapunov Function (CLF) that comes from the previous problem was calculated as
+\begin{align}
+	\dv{V}{x} f(x) + \dv{V}{x} g(x) \alpha(x) &< 0\\
+	(-\frac{3}{2} x_1^3 - \frac{1}{2} x_1^4) + (- x_1 \alpha(x_1)) &< 0
+\end{align}
+since $$\dv{V}{x} f(x) + \dv{V}{x} g(x) \alpha(x) = L_f V(x) + L_g V(x) \alpha < 0$$
+the CLF components are given as
+\begin{align}
+	L_f V(x) &= -\frac{3}{2} x_1^3 - \frac{1}{2} x_1^4\\
+	L_g V(x) &= - x_1
+\end{align}
 
+This can then be entered into Sontag's Formula to attain a virtual control function of
+\begin{align}
+	\alpha(x) 
+	&=
+	\begin{cases}
+		0,	& L_g V(x) = 0\\
+		-\cfrac{L_f V(x) + \sqrt{(L_f V(x))^2 + (L_g V(x))^2}}{L_g V(x)}, &\text{otherwise}
+	\end{cases}\\
+	&=
+	\begin{cases}
+		0,	& - x_1 = 0\\
+		-\cfrac{(-\frac{3}{2} x_1^3 - \frac{1}{2} x_1^4) + \sqrt{(-\frac{3}{2} x_1^3 - \frac{1}{2} x_1^4)^2 + (- x_1)^2}}{- x_1}, &\text{otherwise}
+	\end{cases}
+\end{align}
+This therefore provides that while the system is not stabalized at the origin, the virtual control signal $\alpha(x_1)$ is given as:
+\begin{align}
+	\alpha(x_1) 
+	&= \cfrac{(-\frac{3}{2} x_1^3 - \frac{1}{2} x_1^4) + \sqrt{(-\frac{3}{2} x_1^3 - \frac{1}{2} x_1^4)^2 + (x_1)^2}}{x_1}\\
+	&= \cfrac{(-\frac{3}{2} x_1^3 - \frac{1}{2} x_1^4) + \sqrt{\frac{9}{2} x_1^6 + \frac{6}{4} x_1^5 + \frac{1}{4} x_1^8 + x_1^2}}{x_1}\\
+	&= -\frac{3}{2} x_1^2 - \frac{1}{2} x_1^3 + \sqrt{\frac{9}{2} x_1^4 + \frac{6}{4} x_1^3 + \frac{1}{4} x_1^6 + 1}
+\end{align}
 
-
-
+This can then also be implemented into the control signal derived in the previous problem as
+\begin{equation}
+	u = -x_1 - \dot{\alpha} + \beta^2 k_2 \qty(x_2 - \alpha(x_1)), \ k_2 > 0
+\end{equation}
 
 \newpage
 \appendix
@@ -430,7 +539,7 @@ Use Sontag's Formula and the Control Lyapunov Function obtained previously to ob
 All code I write in this course can be found on my GitHub repository:\\
 \href{https://github.com/jonaswagner2826/MECH6313}{https://github.com/jonaswagner2826/MECH6313}
 % MECH6313_HW3
-%\lstinputlisting[caption={MECH6313\_HW4},label={script:HW4}]{MECH6313_HW4.m}
+\lstinputlisting[caption={MECH6313\_HW5},label={script:HW5}]{MECH6313_HW5.m}
 
 
 \end{document}
