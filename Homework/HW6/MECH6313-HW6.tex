@@ -193,13 +193,45 @@ with $\tau_i, \alpha_i, \beta_i > 0$ and $x_i$ represents a voltage for $i = 1,2
 
 \subsection{Part a}
 \textbf{Problem:}
-Suppose $\alpha_1 \beta_1 = \alpha_2 \beta_2 = \alpha_3 \beta_3 = \mu$, prove the origin is GAS when $\mu < 2$.
+Suppose $\alpha_1 \beta_1 = \alpha_2 \beta_2 = \alpha_3 \beta_3 = \mu$, prove the origin is GAS when $\mu < 2$.\\
 
+\noindent
 \textbf{Solution:}
-
-
-idk what system this is refering to..
-
+The 3-stage ring oscillator can be rewritten in a coupling feedback system $H$ and $K$ defined as:
+\begin{align}
+	H &= \mqty[\dmat{H_1}{H_2}{H_3}], \hspace{0.25in}
+	H_i
+	=\begin{cases}
+		\dot{x}_i = f(x_i) + g(x_i) u_i\\
+		y_i = h(x_i)
+	\end{cases}\\
+	K &= \mqty[	 0 	& 0 &-1\\
+				-1 	& 0 & 0\\
+				0 	&-1 & 0]
+\end{align}
+where $K$ is the coupling matrix of the individual nonlinear subsystems with the following specific definitions:
+\begin{align}
+	H_1 &=\begin{cases}
+		\dot{x}_1 = \cfrac{-x_1 - u_1}{\tau_1}\\
+		y_1 = \alpha_2 \tanh(\beta_2 x_1)
+	\end{cases}\\
+	H_2 &=\begin{cases}
+		\dot{x}_2 = \cfrac{-x_2 - u_2}{\tau_2}\\
+		y_2 = \alpha_3 \tanh(\beta_3 x_2)
+	\end{cases}\\
+	H_3 &=\begin{cases}
+		\dot{x}_3 = \cfrac{-x_3 - u_3}{\tau_3}\\
+		y_3 = \alpha_1 \tanh(\beta_1 x_3)
+	\end{cases}
+\end{align}
+From this model a storage function can be defined for each of the coupled systems as
+\begin{align}
+	V_i(x_i) &= \tau_i \int_0^{x_i} h_i(\eta) \dd{\eta}\\
+	\intertext{and each individual subsystem storage functions are given as:}
+	V_1(x_1) &= \tau_1 \int_0^{x_1} \alpha_2 \tanh(\beta_2 x_1)\\
+	V_2(x_2) &= \tau_2 \int_0^{x_2} \alpha_3 \tanh(\beta_3 x_2)\\
+	V_3(x_3) &= \tau_3 \int_0^{x_3} \alpha_1 \tanh(\beta_1 x_3)
+\end{align}
 
 
 \subsection{Part b}
