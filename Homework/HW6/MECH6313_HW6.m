@@ -7,7 +7,8 @@ clear
 close all
 
 pblm1 = false;
-pblm2 = true;
+pblm2 = false;
+pblm3 = true;
 
 
 if pblm1
@@ -95,8 +96,18 @@ syms p11 p12 p22
 P = [p11, p12; p12, p22]
 A'*P + P * A
 P * B - C'
+end
 
 end
 
 
+if pblm3
+%% Problem 3
+
+mu = 1;
+MECH6313_HW6_pblm3
+
 end
+
+
+
