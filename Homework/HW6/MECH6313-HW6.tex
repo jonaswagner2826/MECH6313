@@ -465,35 +465,33 @@ From this and the definition of $d_i > 0$, these inequalities can be equated to
 \end{align}
 
 
-Returning to the identity of $$\epsilon_i = \frac{1}{\delta_i} \leq \frac{1}{\mu}$$
+Returning to the identity of $$\epsilon_i = \frac{1}{\delta_i} \leq \frac{1}{\mu}$$ and the knowledge that $\mu < 2$,
+it is possible to demonstrate that $\exists \epsilon_i, \ \text{s.t.}$ the inequalities are satisfied.
+
+
+%
+%\begin{align}
+%	\frac{1}{\mu}\geq \epsilon_1&>0\\
+%	4 \frac{1}{\mu} \frac{1}{\mu} -1 \geq 4 \epsilon_1 \epsilon_2 -1&>0\\
+%	4 \frac{1}{\mu} \frac{1}{\mu} \frac{1}{\mu}  \geq 4 \epsilon_1 \epsilon_2 \epsilon_3 &> \epsilon_1 + \epsilon_2 + \epsilon_3  \geq \frac{1}{\mu} + \frac{1}{\mu} + \frac{1}{\mu}
+%\end{align}
+%
+%\begin{align}
+%	\frac{1}{2} > \frac{1}{\mu}\geq \epsilon_1&>0\\
+%	\frac{4}{2^2} = 1 -1> 4 \frac{1}{\mu^2} -1\geq 4 \epsilon_1 \epsilon_2 -1&>0?????????????????
+%\end{align}
 
 
 
-\newpage
 \subsection{Part b}
 \textbf{Problem:}
 Show that if $\tau_1 = \tau_2 = \tau_3 = \tau$, then $\mu <2$ is necessary for asymptotic stability. What type of bifurcation occurs at $\mu = 2$?\\
 
 \noindent
 \textbf{Solution:}
-In the case that  $\tau_1 = \tau_2 = \tau_3 = \tau$, 
+In the case that  $\tau_1 = \tau_2 = \tau_3 = \tau$, the subsystems can be directly related and the inequality $A^T P + P A < 0$ no longer is true when $\mu \geq 2$ as this results in the inequality to be only stable until eventually a limit cycle is generated. This limit cycle occurance at the biforcation point of $\mu = 2$ indicates that a super-critical hopf-bifurcation occurs
 
 
-
-
-
-
-\textbf{IDK... what are we supposed to be doing here????}
-
-
-
-
-
-
-
-
-
-\newpage
 \subsection{Part c}
 \textbf{Problem:}
 Investigate the dynamic behavior of this system for $\mu > 2$ with numerical simulations.
@@ -501,16 +499,16 @@ Investigate the dynamic behavior of this system for $\mu > 2$ with numerical sim
 
 \noindent
 \textbf{Solution:}
-The system was modeled in Simulink using the models show in \figurename \ \ref{fig:simmodelhw6pblm3} \ and \figurename \ \ref{fig:simmodelhw6pblm3subsystem}. This was tested for many values of of $\mu$ using the MATLAB scripts in \appendixname \ \ref{apx:matlab} \ and \ref{apx:matlabpbml3}.
+The system was modeled in Simulink using the models show in \figurename \ \ref{fig:simmodelhw6pblm3} \ and \figurename \ \ref{fig:simmodelhw6pblm3subsystem}. This was tested for many values of of $\mu$ using the MATLAB scripts in \appendixname \ \ref{apx:matlab} \ and \ref{apx:matlabpblm3}.
 
-\begin{figure}[h]
+\begin{figure}[p]
 	\centering
 	\includegraphics[width=0.7\linewidth]{fig/sim_model_HW6_pblm3}
 	\caption{Simulink Model of the feedback system composed of individual nonlinear subsystems}
 	\label{fig:simmodelhw6pblm3}
 \end{figure}
 
-\begin{figure}[h]
+\begin{figure}[p]
 	\centering
 	\includegraphics[width=0.7\linewidth]{fig/sim_model_HW6_pblm3_subsystem}
 	\caption{Simulink Model of an individual nonlinear subsystem}
@@ -566,6 +564,7 @@ The results for various values of $\mu$ can be seen in \figurename \  \ref{fig:p
 
 
 
+\newpage
 \newpage
 \newpage
 \section{Problem 4}
