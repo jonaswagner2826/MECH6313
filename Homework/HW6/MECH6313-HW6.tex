@@ -559,32 +559,31 @@ Investigate when $\exists \ D$ s.t. the inequality is satisfied for $$K = \mqty[
 
 \noindent
 \textbf{Solution:}
-do this too...
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+The inequality from the previous problem can be used to asses what conditions must be met for $D$ to exist.
+Let, $$D = \mqty[\dmat{d_1}{d_2}]$$ and $$\Gamma = \mqty[\dmat{\gamma_1}{\gamma_2}]$$
+These $n=2$ matrices can then be plugged into the inequality as follows
+\begin{align}
+	\qty(- I + K^T \Gamma^T \Gamma K)^T D + D\qty(- I + K^T \Gamma^T \Gamma K) &< 0
+\end{align}
+\begin{align}
+	\qty(- \mqty[\dmat{1}{1}] + \mqty[0&1\\1&0]^T \mqty[\dmat{\gamma_1}{\gamma_2}]^T \mqty[\dmat{\gamma_1}{\gamma_2}] \mqty[0&1\\1&0])^T \mqty[\dmat{d_1}{d_2}]\hspace{0.25in}\nonumber\\ + \mqty[\dmat{d_1}{d_2}]\qty(- \mqty[\dmat{1}{1}] + \mqty[0&1\\1&0]^T \mqty[\dmat{\gamma_1}{\gamma_2}]^T \mqty[\dmat{\gamma_1}{\gamma_2}] \mqty[0&1\\1&0]) &< 0
+\end{align}
+\begin{align}
+	\qty(-\mqty[\dmat{1}] + \mqty[\dmat{\gamma_1^2}{\gamma_2^2}])^T\mqty[\dmat{d_1}{d_2}] + \mqty[\dmat{d_1}{d_2}]\qty(-\mqty[\dmat{1}{1}] + \mqty[\dmat{\gamma_1^2}{\gamma_2^2}]) &<0\\
+	\mqty[\dmat{\gamma_1^2-1}{\gamma_2^2-1}]^T \mqty[\dmat{d_1}{d_2}] + \mqty[\dmat{d_1}{d_2}] \mqty[\dmat{\gamma_1^2-1}{\gamma_2^2-1}] &<0
+\end{align}
+which (due to communicability of diagonal matrices) can be rewritten as
+\begin{align}
+	2 \mqty[\dmat{d_1(\gamma_1^2-1)}{d_2(\gamma_2^2-1)}] &< 0
+\end{align}
+or by analyzing the diagonal values themselves, we have
+\begin{align}
+	\begin{cases}
+		d_1(\gamma_1^2 - 1) < 0\\
+		d_2(\gamma_2^2 - 1) < 0
+	\end{cases}
+\end{align}
+in other word, $d_1$ and $d_2$ (and therefore $D$) is possible iff $$\gamma_1^2 < 1 \text{ and } \gamma_2^2 < 1$$
 
 \newpage
 \appendix

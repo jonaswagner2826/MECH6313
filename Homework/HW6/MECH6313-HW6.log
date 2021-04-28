@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.11) (preloaded format=pdflatex 2021.3.6)  28 APR 2021 05:51
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.11) (preloaded format=pdflatex 2021.3.6)  28 APR 2021 06:18
 entering extended mode
 **./MECH6313-HW6.tex
 (MECH6313-HW6.tex
@@ -608,9 +608,50 @@ Underfull \hbox (badness 10000) in paragraph at lines 525--526
 
  []
 
-[20] [21]
+[20]
+\matrixtoks=\toks34
+\matrixtoks=\toks35
+\matrixtoks=\toks36
+\matrixtoks=\toks37
+\matrixtoks=\toks38
+\matrixtoks=\toks39
+\matrixtoks=\toks40
+\matrixtoks=\toks41
+\matrixtoks=\toks42
+\matrixtoks=\toks43
+\matrixtoks=\toks44
+\matrixtoks=\toks45
+\matrixtoks=\toks46
+\matrixtoks=\toks47
+\matrixtoks=\toks48
+\matrixtoks=\toks49
+\matrixtoks=\toks50
+\matrixtoks=\toks51
+\matrixtoks=\toks52
+\matrixtoks=\toks53
+\matrixtoks=\toks54
+\matrixtoks=\toks55
+\matrixtoks=\toks56
+\matrixtoks=\toks57
+\matrixtoks=\toks58
+\matrixtoks=\toks59
+\matrixtoks=\toks60
+\matrixtoks=\toks61
+\matrixtoks=\toks62
+\matrixtoks=\toks63
+\matrixtoks=\toks64
+\matrixtoks=\toks65
+\matrixtoks=\toks66
+\matrixtoks=\toks67
+\matrixtoks=\toks68
+\matrixtoks=\toks69
+\matrixtoks=\toks70
+\matrixtoks=\toks71
+\matrixtoks=\toks72
+\matrixtoks=\toks73
+ [21]
 Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on i
-nput line 595.
+nput line 594.
  (MECH6313_HW6.m
 LaTeX Font Info:    Font shape `OT1/cmtt/bx/n' in size <10> not available
 (Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 15.
@@ -629,13 +670,13 @@ Package rerunfilecheck Info: File `MECH6313-HW6.out' has not changed.
 (rerunfilecheck)             Checksum: 6276EAD92E51DCD78E24F6ADB18BB698;2050.
  ) 
 Here is how much of TeX's memory you used:
- 12880 strings out of 479337
- 184176 string characters out of 2857148
- 734800 words of memory out of 3000000
+ 12886 strings out of 479337
+ 184259 string characters out of 2857148
+ 735641 words of memory out of 3000000
  29778 multiletter control sequences out of 15000+200000
  414207 words of font info for 68 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 82i,22n,89p,724b,1971s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 82i,24n,89p,724b,1971s stack positions out of 5000i,500n,10000p,200000b,50000s
  <C:\Users\Jonas\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tctt
 1000.pk><C:/Users/Jonas/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfon
 ts/cmextra/cmbsy7.pfb><C:/Users/Jonas/AppData/Local/Programs/MiKTeX/fonts/type1
@@ -654,9 +695,9 @@ ype1/public/amsfonts/cm/cmr7.pfb><C:/Users/Jonas/AppData/Local/Programs/MiKTeX/
 fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/Jonas/AppData/Local/Program
 s/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt10.pfb><C:/Users/Jonas/AppData/Loca
 l/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msam10.pfb>
-Output written on MECH6313-HW6.pdf (28 pages, 645555 bytes).
+Output written on MECH6313-HW6.pdf (28 pages, 648515 bytes).
 PDF statistics:
- 702 PDF objects out of 1000 (max. 8388607)
- 368 named destinations out of 1000 (max. 500000)
+ 709 PDF objects out of 1000 (max. 8388607)
+ 374 named destinations out of 1000 (max. 500000)
  192 words of extra memory for PDF output out of 10000 (max. 10000000)
 
