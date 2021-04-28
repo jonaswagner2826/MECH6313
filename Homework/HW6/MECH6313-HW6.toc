@@ -10,8 +10,8 @@
 \contentsline {subsection}{\numberline {3.2}Part b}{14}{subsection.3.2}%
 \contentsline {subsection}{\numberline {3.3}Part c}{15}{subsection.3.3}%
 \contentsline {section}{\numberline {4}Problem 4}{19}{section.4}%
-\contentsline {subsection}{\numberline {4.1}Part a}{19}{subsection.4.1}%
-\contentsline {subsection}{\numberline {4.2}Part b}{19}{subsection.4.2}%
-\contentsline {subsection}{\numberline {4.3}Part c}{20}{subsection.4.3}%
-\contentsline {section}{\numberline {A}MATLAB Code:}{21}{appendix.A}%
-\contentsline {section}{\numberline {B}MATLAB Code for Problem 3:}{25}{appendix.B}%
+\contentsline {subsection}{\numberline {4.1}Part a (Extra note)}{19}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.2}Part b}{20}{subsection.4.2}%
+\contentsline {subsection}{\numberline {4.3}Part c}{21}{subsection.4.3}%
+\contentsline {section}{\numberline {A}MATLAB Code:}{22}{appendix.A}%
+\contentsline {section}{\numberline {B}MATLAB Code for Problem 3:}{26}{appendix.B}%
