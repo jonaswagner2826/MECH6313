@@ -356,7 +356,7 @@ by definition, $\alpha, \beta > 0$ and $\delta \geq 0$, and thus the following i
 	\end{cases}
 \end{align}
 therefore, when $$\abs{\alpha \tanh(\beta x)} \leq \abs{\delta x}$$ the input passivity equality holds.
-This occurs whenever $\alpha \beta = \mu \leq \delta$, so $\delta$ is the limiting factor that is restricted by the storage function calculation.\\
+This occurs whenever $$\alpha \beta = \mu \leq \delta$$, so $\delta$ is the limiting factor that is restricted by the storage function calculation.\\
 
 In the case that input passivity is satisfied by $h_i(x_i)$, a $\delta_i$ will exist s.t.,
 \begin{align}
@@ -371,7 +371,7 @@ clearly, $x_i h_i(x_i)$ can then be bounded from below by: % since \abs{h_i} \le
 	-x_i h_i (x) \geq -\frac{1}{\delta_i} y_i^2(x_i)
 \end{align}
 
-\newpage
+%\newpage
 Therefore, this demonstrates Output Strict Passivity:
 \begin{align}
 	\dot{V}_i &\leq -\frac{1}{\delta_i} y_i^2 + y_i u_i\\
@@ -380,7 +380,7 @@ Therefore, this demonstrates Output Strict Passivity:
 \end{align}
 and the passivity theorem can then be applied.
 
-Let $$\epsilon_i = \frac{1}{\delta_i}$$ and then define
+Let $$\epsilon_i = \frac{1}{\delta_i} \leq \frac{1}{\mu}$$ and then define
 \begin{align}
 	A &= - \text{diag}\{\epsilon_i\} + K\\
 	P &= \text{diag}\{d_i\}
@@ -396,15 +396,78 @@ which for this $3^{rd}$-order system can be written as
 
 From this, appropriate values for A and P can be found using CVX to prove stability of the full feedback interconnection by solving the feasibility problem of
 \begin{align}
-	A^T P + P A &\leq 0\\
-	PB - C^T &= 0
+	A^T P + P A &\leq 0
 \end{align}
+with $C$ defined as the output matrix associated with the actual state-space representation.
 
 This can then be further developed to prove Global Asymptotic Stability by making it a strict inequality like so:
 \begin{align}
-	A^T P + P A &< 0\\
-	PB - C^T &= 0
+	A^T P + P A &< 0
 \end{align}
+Which can be expanded with the actual matrices as
+\begin{align}
+	\mqty[-\epsilon_1 & 0 &-1\\
+	-1 &-\epsilon_2 &0\\
+	0	&-1	&-\epsilon_3]^T
+	\mqty[\dmat{d_1}{d_2}{d_3}] +
+	\mqty[\dmat{d_1}{d_2}{d_3}]
+	\mqty[-\epsilon_1 & 0 &-1\\
+	-1 &-\epsilon_2 &0\\
+	0	&-1	&-\epsilon_3]
+	&< 0
+\end{align}
+
+\begin{align}
+	\mqty[-d_1\epsilon_1 & -d_1 &0\\
+		0 &-d_2\epsilon_2 &-d_2\\
+		-d_3	&0	&-d_3\epsilon_3]+
+	\mqty[-d_2\epsilon_1 & 0 &-d_1\\
+	-d_2 &-d_2\epsilon_2 &0\\
+	0	&-d_3	&-d_3\epsilon_3]
+	&< 0
+\end{align}
+
+\begin{align}
+	\mqty[-2 d_1\epsilon_1 & -d_1 &-d_1\\
+	-d_2 &-2 d_2\epsilon_2 &-d_2\\
+	-d_3	&-d_3	&-2 d_3\epsilon_3]
+	&< 0
+\end{align}
+or equivalently
+\begin{align}
+	\mqty[2 d_1\epsilon_1 & d_1 &d_1\\
+	d_2 &2 d_2\epsilon_2 &d_2\\
+	d_3	&d_3	&2 d_3\epsilon_3]
+	&> 0
+\end{align}
+The positive definess can be determined by
+\begin{align}
+	2 d_1 \epsilon_1 &>0\\
+	\mqty|2 d_1\epsilon_1 & d_1\\
+	d_2 &2 d_2\epsilon_2| = d_1 d_2 (4 \epsilon_1 \epsilon_2 - 1) &> 0\\
+	\mqty|2 d_1\epsilon_1 & d_1 &d_1\\
+	d_2 &2 d_2\epsilon_2 &d_2\\
+	d_3	&d_3	&2 d_3\epsilon_3|
+	= d_1 d_2 d_3  (8 \epsilon_1 \epsilon_2 \epsilon_3 - 2 \epsilon_1)\nonumber\\
+	- d_1 d_2 d_3(2 \epsilon_3 - 1)
+	+ d_1 d_2 d_3 (1 - 2\epsilon_2)\nonumber\\
+	= d_1 d_2 d_3 (8 \epsilon_1 \epsilon_2 \epsilon_3 
+	- 2 \epsilon_1
+	- 2 \epsilon_2
+	- 2 \epsilon_3)
+	&>0
+\end{align}
+From this and the definition of $d_i > 0$, these inequalities can be equated to
+\begin{align}
+	\epsilon_1&>0\\
+	4 \epsilon_1 \epsilon_2 -1 &>0\\
+	4 \epsilon_1 \epsilon_2 \epsilon_3 - \epsilon_1 - \epsilon_2 - \epsilon_3 &> 0	
+\end{align}
+
+
+Returning to the identity of $$\epsilon_i = \frac{1}{\delta_i} \leq \frac{1}{\mu}$$
+
+
 
 \newpage
 \subsection{Part b}
@@ -413,7 +476,11 @@ Show that if $\tau_1 = \tau_2 = \tau_3 = \tau$, then $\mu <2$ is necessary for a
 
 \noindent
 \textbf{Solution:}
-For the specific case when 
+In the case that  $\tau_1 = \tau_2 = \tau_3 = \tau$, 
+
+
+
+
 
 
 \textbf{IDK... what are we supposed to be doing here????}
@@ -545,7 +612,7 @@ Since this exists as an upper bound on $\dot{V}$, the following inequalities are
 	\intertext{since D is a diagonal matrix (and thus communtable with other matrices), this can be further reformulated}
 	D \qty(- I + K^T \Gamma^T \Gamma K) &< 0
 \end{align}
-which is equivalent to 
+which is equivalent to\footnote{This probably wasn't necessary and lead to the more difficult solution on the next page...}
 \begin{align}
 	\frac{1}{2} \qty{\qty(- I + K^T \Gamma^T \Gamma K)^T D + D\qty(- I + K^T \Gamma^T \Gamma K)} &< 0
 	\intertext{or}
