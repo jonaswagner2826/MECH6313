@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.11) (preloaded format=pdflatex 2021.3.6)  27 APR 2021 16:58
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.11) (preloaded format=pdflatex 2021.3.6)  27 APR 2021 22:31
 entering extended mode
 **./MECH6313-HW6.tex
 (MECH6313-HW6.tex
@@ -486,44 +486,60 @@ File: fig/pblm2_H1.png Graphic file (type png)
 <use fig/pblm2_H1.png>
 Package pdftex.def Info: fig/pblm2_H1.png  used on input line 136.
 (pdftex.def)             Requested size: 328.82707pt x 246.53125pt.
-File: fig/pblm2_H1.png Graphic file (type png)
-<use fig/pblm2_H1.png>
-Package pdftex.def Info: fig/pblm2_H1.png  used on input line 144.
+<fig/pblm2_H2.png, id=122, 421.575pt x 316.0608pt>
+File: fig/pblm2_H2.png Graphic file (type png)
+<use fig/pblm2_H2.png>
+Package pdftex.def Info: fig/pblm2_H2.png  used on input line 144.
 (pdftex.def)             Requested size: 328.82707pt x 246.53125pt.
-[5] [6 <./fig/pblm2_H1.png (PNG copy)>]
+[5] [6 <./fig/pblm2_H1.png (PNG copy)> <./fig/pblm2_H2.png (PNG copy)>]
 Underfull \hbox (badness 10000) in paragraph at lines 153--155
 
  []
 
-[7]
-Underfull \hbox (badness 10000) in paragraph at lines 195--197
+[7] [8pdfTeX warning (ext4): destination with the same identifier (name{equatio
+n.2.28}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  
+l.238 \newpage
+              ] [9pdfTeX warning (ext4): destination with the same identifier (
+name{equation.2.44}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  
+l.280 \newpage
+              ]
+Underfull \hbox (badness 10000) in paragraph at lines 291--293
 
  []
 
 \matrixtoks=\toks26
 \matrixtoks=\toks27
-[8] [9] [10]
+[10] [11] [12]
+\matrixtoks=\toks28
+\matrixtoks=\toks29
+\matrixtoks=\toks30
+\matrixtoks=\toks31
+ [13] [14]
 Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on i
-nput line 299.
+nput line 469.
  (MECH6313_HW6.m
 LaTeX Font Info:    Font shape `OT1/cmtt/bx/n' in size <10> not available
 (Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 14.
- [11]
+ [15]
 LaTeX Font Info:    Trying to load font information for TS1+cmtt on input line 
 40.
 
 (C:\Users\Jonas\AppData\Local\Programs\MiKTeX\tex/latex/base\ts1cmtt.fd
 File: ts1cmtt.fd 2019/12/16 v2.5j Standard LaTeX font definitions
 )
-[12]) [13] (MECH6313-HW6.aux)
+[16]) [17] (MECH6313-HW6.aux)
 Package rerunfilecheck Info: File `MECH6313-HW6.out' has not changed.
 (rerunfilecheck)             Checksum: D3C697E663AF76FBE97E613E23F4788F;1513.
  ) 
 Here is how much of TeX's memory you used:
- 12482 strings out of 479337
- 177668 string characters out of 2857148
- 696516 words of memory out of 3000000
- 29616 multiletter control sequences out of 15000+200000
+ 12569 strings out of 479337
+ 178764 string characters out of 2857148
+ 691584 words of memory out of 3000000
+ 29635 multiletter control sequences out of 15000+200000
  411758 words of font info for 60 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  82i,22n,89p,458b,1971s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -544,9 +560,9 @@ sfonts/cm/cmr7.pfb><C:/Users/Jonas/AppData/Local/Programs/MiKTeX/fonts/type1/pu
 blic/amsfonts/cm/cmsy10.pfb><C:/Users/Jonas/AppData/Local/Programs/MiKTeX/fonts
 /type1/public/amsfonts/cm/cmtt10.pfb><C:/Users/Jonas/AppData/Local/Programs/MiK
 TeX/fonts/type1/public/amsfonts/symbols/msam10.pfb>
-Output written on MECH6313-HW6.pdf (13 pages, 240552 bytes).
+Output written on MECH6313-HW6.pdf (17 pages, 292108 bytes).
 PDF statistics:
- 353 PDF objects out of 1000 (max. 8388607)
- 154 named destinations out of 1000 (max. 500000)
- 110 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 450 PDF objects out of 1000 (max. 8388607)
+ 221 named destinations out of 1000 (max. 500000)
+ 115 words of extra memory for PDF output out of 10000 (max. 10000000)
 

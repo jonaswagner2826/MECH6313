@@ -141,7 +141,7 @@ The nyquist plots, generated with the MATLAB code seen in \appendixname \ \ref{a
 
 \begin{figure}[p]
 	\centering
-	\includegraphics[width=0.7\linewidth]{fig/pblm2_H1}
+	\includegraphics[width=0.7\linewidth]{fig/pblm2_H2}
 	\caption{Nyquist Plot for the $H_2(s)$ transfer function.}
 	\label{fig:pblm2h2}
 \end{figure}
@@ -164,22 +164,118 @@ Given a second order transfer function $$\cfrac{s + b_0}{s^2 + a_1 s + a_0}$$ a 
 \end{equation}
 
 This can be applied to the systems and results in the state space representations of $H_1$ as:
-\begin{equation}
+\begin{equation}\label{eq:H_1}
 	\begin{aligned}
 		&A = \mqty[0 &1\\ -1 &-1] \hspace{0.5in} &&B = \mqty[0\\ 1]\\
 		&C = \mqty[1 & 1] \hspace{0.5in} &&D = 0
 	\end{aligned}
 \end{equation}
 and $H_2$ as
-\begin{equation}
+\begin{equation}\label{eq:H_2}
 	\begin{aligned}
 		&A = \mqty[0 &1\\ -1 &-1] \hspace{0.5in} &&B = \mqty[0\\ 1]\\
 		&C = \mqty[-1 & 1] \hspace{0.5in} &&D = 0
 	\end{aligned}
 \end{equation}
 
-The 
+Each of these systems can be tested for passivity by solving for a $P=P^T>0$ s.t.
+\begin{align}
+	A^T P + P A < 0\\
+	PB = C^T
+\end{align}
 
+Additionally, let $$P = \mqty[p_{11} & p_{12}\\ p_{12} & p_{22}]$$
+
+\newpage
+%H_1 --------------------------------------------------------
+$H_1(s)$ was found in \eqref{eq:H_1}to be
+\begin{equation}\nonumber
+	\begin{aligned}
+		&A = \mqty[0 &1\\ -1 &-1] \hspace{0.5in} &&B = \mqty[0\\ 1]\\
+		&C = \mqty[1 & 1] \hspace{0.5in} &&D = 0
+	\end{aligned}
+\end{equation}
+and can be proven to be passive by solving the following LMI:
+\begin{align}
+	A^T P + P A &\leq 0\\
+	P B - C^T &= 0
+\end{align}
+\begin{align}
+	\mqty[0 &1\\ -1 &-1]^T \mqty[p_{11} & p_{12}\\ p_{12} & p_{22}] + \mqty[p_{11} & p_{12}\\ p_{12} & p_{22}] \mqty[0 &1\\ -1 &-1] &\leq 0\\
+	\mqty[p_{11} & p_{12}\\ p_{12} & p_{22}] \mqty[0\\ 1] - \mqty[1 & 1]^T &= 0
+\end{align}
+
+\begin{align}
+	\mqty[-2p_{12} & p_{11} - p_{12} - p_{22}\\ p_{11} - p_{12} - p_{22} & 2 p_{12} - 2 p_{22}] &\leq 0\\
+	p_{12} - 1 &= 0\\
+	p_{22} - 1 &= 0
+\end{align}
+Two coefficients can then clearly be defined resulting
+
+\begin{align}
+	p_{12} &= 1\\
+	p_{22} &= 1\\
+	\mqty[-2(1) & p_{11} - (1) - (1)\\ p_{11} - (1) - (1) & 2 (1) - 2 (1)] &\leq 0
+\end{align}
+
+\begin{align}
+	\mqty[-2 & p_{11} - 2\\ p_{11} - 2 & 0] \leq 0
+\end{align}
+Which is equivalent to the standard PSD equation: 
+\begin{align}
+	\mqty[2 & 2 - p_{11}\\ 2 - p_{11} & 0] \geq 0
+\end{align}
+
+And to ensure this is PSD, the principle minors can be analyzed:
+\begin{align}
+	a = 2 &> 0\\
+	\det\mqty[2 & 2 - p_{11}\\ 2 - p_{11} & 0] &\geq 0\\
+	-(2-p_{11})(2-p_{11}) &\geq 0\\
+	-4 +2 p_{11} - p_{11}^2 &\geq 0
+\end{align}
+it is clear that a solution of $p_{11} = 0$ results in a PSD matrix and thus a Positive Real and passive system.
+
+\newpage
+% H_2 -----------------------------------------------------------
+$H_2(s)$ was found in \eqref{eq:H_2} to be
+\begin{equation}\nonumber
+	\begin{aligned}
+		&A = \mqty[0 &1\\ -1 &-1] \hspace{0.5in} &&B = \mqty[0\\ 1]\\
+		&C = \mqty[-1 & 1] \hspace{0.5in} &&D = 0
+	\end{aligned}
+\end{equation}
+and can be proven to be passive by solving the following LMI
+\begin{align}
+	A^T P + P A &\leq 0\\
+	P B - C^T &= 0
+\end{align}
+\begin{align}
+	\mqty[0 &1\\ -1 &-1]^T \mqty[p_{11} & p_{12}\\ p_{12} & p_{22}] + \mqty[p_{11} & p_{12}\\ p_{12} & p_{22}] \mqty[0 &1\\ -1 &-1] &\leq 0\\
+	\mqty[p_{11} & p_{12}\\ p_{12} & p_{22}] \mqty[0\\ 1] - \mqty[-1 & 1]^T &= 0
+\end{align}
+
+\begin{align}
+	\mqty[-2p_{12} & p_{11} - p_{12} - p_{22}\\ p_{11} - p_{12} - p_{22} & 2 p_{12} - 2 p_{22}] &\leq 0\\
+	p_{12} + 1 &= 0\\
+	p_{22} - 1 &= 0
+\end{align}
+Two coefficients can then clearly be defined resulting
+
+\begin{align}
+	p_{12} &= -1\\
+	p_{22} &= 1\\
+	\mqty[-2(-1) & p_{11} - (-1) - (1)\\ p_{11} - (-1) - (1) & 2 (-1) - 2 (1)] &\leq 0
+\end{align}
+
+\begin{align}
+	\mqty[2 & p_{11}\\ p_{11}& -4] \leq 0
+\end{align}
+Which is equivalent to the standard PSD equation: 
+\begin{align}
+	\mqty[-2 & -p_{11}\\ -p_{11}& 4] \geq 0
+\end{align}
+
+And this is clearly not capable of being PSD due to the first principle minor being negative. Therefore, the system is not Positive Real and cannot be passive.
 
 \newpage
 \section{Problem 3}
@@ -211,19 +307,25 @@ The 3-stage ring oscillator can be rewritten in a coupling feedback system $H$ a
 \end{align}
 where $K$ is the coupling matrix of the individual nonlinear subsystems with the following specific definitions:
 \begin{align}
+	H_i &=\begin{cases}
+		\dot{x}_i = \cfrac{-x_i + u_i}{\tau_i}\\
+		y_i = \alpha_j \tanh(\beta_j x_i)
+	\end{cases}\\
+	\intertext{with $j$ being defined as either $i+1$ or $1$ if $i=n$, resulting in}
 	H_1 &=\begin{cases}
-		\dot{x}_1 = \cfrac{-x_1 - u_1}{\tau_1}\\
+		\dot{x}_1 = \cfrac{-x_1 + u_1}{\tau_1}\\
 		y_1 = \alpha_2 \tanh(\beta_2 x_1)
 	\end{cases}\\
 	H_2 &=\begin{cases}
-		\dot{x}_2 = \cfrac{-x_2 - u_2}{\tau_2}\\
+		\dot{x}_2 = \cfrac{-x_2 + u_2}{\tau_2}\\
 		y_2 = \alpha_3 \tanh(\beta_3 x_2)
 	\end{cases}\\
 	H_3 &=\begin{cases}
-		\dot{x}_3 = \cfrac{-x_3 - u_3}{\tau_3}\\
+		\dot{x}_3 = \cfrac{-x_3 + u_3}{\tau_3}\\
 		y_3 = \alpha_1 \tanh(\beta_1 x_3)
 	\end{cases}
 \end{align}
+\newpage
 From this model a storage function can be defined for each of the coupled systems as
 \begin{align}
 	V_i(x_i) &= \tau_i \int_0^{x_i} h_i(\eta) \dd{\eta}\\
@@ -233,12 +335,80 @@ From this model a storage function can be defined for each of the coupled system
 	V_3(x_3) &= \tau_3 \int_0^{x_3} \alpha_1 \tanh(\beta_1 x_3)
 \end{align}
 
+Taking a look at the change of the storage function over time, the output strict passivity can be proven by:
+\begin{align}
+	\dot{V}_i (x_i) &= \dv{V_i}{x_i} \dot{x}_i\\
+	&= \dv{x_i} \tau_i \int_0^{x_i} h_i(\eta) \dd{\eta} \dot{x}_i\\
+	&= \tau_i h_i(x_i) \dot{x}_i
+	\intertext{taking the definition for $\dot{x}_i$ and relating $h_i(x_i) = y_i$,}
+	&= \tau_i h_i(x_i) \frac{-x_i + u_i}{\tau_i}\\
+	&= -x_i h_i(x_i) + u_i y_i
+\end{align}
+
+\newpage
+In order to guarantee Input passivity, the system must satisfy the following inequality:
+\begin{align}
+	x h_i(x) \leq \delta_i x^2
+\end{align}
+
+
+
+
+
+
+In the case that input passivity is satisfied by $h_i(x_i)$, a $\delta_i$ will exist s.t.,
+\begin{align}
+	x_i h_i(x_i) &\leq \delta_i x^2\\
+	x_i (h_i(x_i) - \delta_i x_i) &\leq 0
+\end{align}
+clearly, $x_i h_i(x_i)$ can then be bounded from below by: % since \abs{h_i} \leq \abs{\delta_i x} \forall x
+\begin{align}
+	x_i h_i (x) \geq \frac{1}{\delta_i} h_i^2(x_i)\\
+	-x_i h_i (x) \geq -\frac{1}{\delta_i} h_i^2(x_i)\\
+	\intertext{since $y_i = h_i(x_i)$,}
+	-x_i h_i (x) \geq -\frac{1}{\delta_i} y_i^2(x_i)
+\end{align}
+
+\newpage
+Therefore, this demonstrates Output Strict Passivity:
+\begin{align}
+	\dot{V}_i &\leq -\frac{1}{\delta_i} y_i^2 + y_i u_i\\
+	\intertext{or with $d_i = \frac{1}{\delta_i}$ and }
+	\dot{V}_i &\leq d_i y_i^2 + y_i u_i
+\end{align}
+and the passivity theorem can then be applied.
+
+Let $$\epsilon_i = \frac{1}{\delta_i}$$ and then define
+\begin{align}
+	A &= - \text{diag}\{\epsilon_i\} + K\\
+	P &= \text{diag}\{d_i\}
+\end{align}
+which for this $3^{rd}$-order system can be written as
+\begin{align}
+	A &= -\mqty[\dmat{\epsilon_1}{\epsilon_2}{\epsilon_3}] + \mqty[0 & 0 &-1\\ -1 & 0 & 0\\ 0 &-1 & 0] 
+	= \mqty[\epsilon_1 & 0 &-1\\
+			 -1 &\epsilon_2 &0\\
+			 0	&-1	&\epsilon_3]\\
+	P &= \mqty[\dmat{d_1}{d_2}{d_3}]
+\end{align}
+
+From this, appropriate values for A and P can be found using CVX to prove stability of the full feedback interconnection.
+
 
 \subsection{Part b}
 \textbf{Problem:}
 Show that if $\tau_1 = \tau_2 = \tau_3 = \tau$, then $\mu <2$ is necessary for asymptotic stability. What type of bifurcation occurs at $\mu = 2$?
 
 \textbf{Solution:}
+
+
+
+
+
+
+
+
+
 
 
 

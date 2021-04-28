@@ -31,7 +31,7 @@ end
 if pblm2
 %% Problem 2
 pblm2a = false;
-pblm2b = true;
+pblm2b = false;
 pblm2c = true;
 
 if pblm2a
@@ -79,8 +79,23 @@ saveas(gcf, [pwd, '\Homework\HW6\fig\pblm2_H2.png'])
 end
 
 if pblm2c
+% Part c
+H1_sys = ss([0, 1; -1, -1], [0; 1], [1 1], 0)
+tf (H1_sys)
+[A,B,C,D] = ssdata(H1_sys)
+syms p11 p12 p22
+P = [p11, p12; p12, p22]
+A'*P + P * A
+P * B - C'
+
 H2_sys = ss([0, 1; -1, -1], [0; 1], [-1 1], 0)
-tf (H2_sys)
+tf(H2_sys)
+[A,B,C,D] = ssdata(H2_sys)
+syms p11 p12 p22
+P = [p11, p12; p12, p22]
+A'*P + P * A
+P * B - C'
+
 end
 
 
