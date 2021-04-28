@@ -353,9 +353,6 @@ In order to guarantee Input passivity, the system must satisfy the following ine
 
 
 
-
-
-
 In the case that input passivity is satisfied by $h_i(x_i)$, a $\delta_i$ will exist s.t.,
 \begin{align}
 	x_i h_i(x_i) &\leq \delta_i x^2\\
@@ -386,15 +383,19 @@ Let $$\epsilon_i = \frac{1}{\delta_i}$$ and then define
 which for this $3^{rd}$-order system can be written as
 \begin{align}
 	A &= -\mqty[\dmat{\epsilon_1}{\epsilon_2}{\epsilon_3}] + \mqty[0 & 0 &-1\\ -1 & 0 & 0\\ 0 &-1 & 0] 
-	= \mqty[\epsilon_1 & 0 &-1\\
-			 -1 &\epsilon_2 &0\\
-			 0	&-1	&\epsilon_3]\\
+	= \mqty[-\epsilon_1 & 0 &-1\\
+			 -1 &-\epsilon_2 &0\\
+			 0	&-1	&-\epsilon_3]\\
 	P &= \mqty[\dmat{d_1}{d_2}{d_3}]
 \end{align}
 
 From this, appropriate values for A and P can be found using CVX to prove stability of the full feedback interconnection.
 
 
+
+
+
+\newpage
 \subsection{Part b}
 \textbf{Problem:}
 Show that if $\tau_1 = \tau_2 = \tau_3 = \tau$, then $\mu <2$ is necessary for asymptotic stability. What type of bifurcation occurs at $\mu = 2$?
@@ -412,28 +413,123 @@ Show that if $\tau_1 = \tau_2 = \tau_3 = \tau$, then $\mu <2$ is necessary for a
 
 
 
+
+\newpage
 \subsection{Part c}
 \textbf{Problem:}
 Investigate the dynamic behavior of this system for $\mu > 2$ with numerical simulations.
 %Take $\tau = 1$ and note that $\tau$ is just a time-scaling variable s.t. if $x(t)$ is the solution for $\tau = 1$ then $x(t/\tau)$ is the solution for other $\tau$ values
 
+\noindent
 \textbf{Solution:}
+The system was modeled in Simulink using the models show in \figurename \ \ref{fig:simmodelhw6pblm3} \ and \figurename \ \ref{fig:simmodelhw6pblm3subsystem}. This was tested for many values of of $\mu$ using the MATLAB scripts in \appendixname \ \ref{apx:matlab} \ and \ref{apx:matlabpbml3}.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.7\linewidth]{fig/sim_model_HW6_pblm3}
+	\caption{Simulink Model of the feedback system composed of individual nonlinear subsystems}
+	\label{fig:simmodelhw6pblm3}
+\end{figure}
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.7\linewidth]{fig/sim_model_HW6_pblm3_subsystem}
+	\caption{Simulink Model of an individual nonlinear subsystem}
+	\label{fig:simmodelhw6pblm3subsystem}
+\end{figure}
 
 
+The results for various values of $\mu$ can be seen in \figurename \  \ref{fig:pblm3_mu1}, \figurename \ \ref{fig:pblm3_mu15}, \figurename \ \ref{fig:pblm3_mu2}, \figurename \ \ref{fig:pblm3_mu3}, and \figurename \ \ref{fig:pblm3_mu5}. It is apparent that Asymptotic stability is lost and a limit cycle is gained, in other words, a super-critical hopf-bifurcation occurs. The limit cycle appears to maintain a similar frequency, but as $\mu$ grows (which really means $\beta$ increases based on my code) the magnitude of the limit cycle seems to grow. When it reaches a point where the theoretical magnitude is above the initial conditions it is then truncated (i.e. clipping occurs).
 
 
+\begin{figure}[p]
+	\centering
+	\includegraphics[width=0.7\linewidth]{fig/HW6_pblm3_results_mu_1}
+	\caption{Results for the outputs of the 3-stage ring oscillator with mu = 1}
+	\label{fig:pblm3_mu1}
+\end{figure}
 
+\begin{figure}[p]
+	\centering
+	\includegraphics[width=0.7\linewidth]{fig/HW6_pblm3_results_mu_1.5}
+	\caption{Results for the outputs of the 3-stage ring oscillator with mu = 1.5}
+	\label{fig:pblm3_mu15}
+\end{figure}
 
+\begin{figure}[p]
+	\centering
+	\includegraphics[width=0.7\linewidth]{fig/HW6_pblm3_results_mu_2}
+	\caption{Results for the outputs of the 3-stage ring oscillator with mu = 2}
+	\label{fig:pblm3_mu2}
+\end{figure}
+
+\begin{figure}[p]
+	\centering
+	\includegraphics[width=0.7\linewidth]{fig/HW6_pblm3_results_mu_2.5}
+	\caption{Results for the outputs of the 3-stage ring oscillator with mu = 2.5}
+	\label{fig:pblm3_mu25}
+\end{figure}
+
+\begin{figure}[p]
+	\centering
+	\includegraphics[width=0.7\linewidth]{fig/HW6_pblm3_results_mu_3}
+	\caption{Results for the outputs of the 3-stage ring oscillator with mu = 3}
+	\label{fig:pblm3_mu3}
+\end{figure}
+
+\begin{figure}[p]
+	\centering
+	\includegraphics[width=0.7\linewidth]{fig/HW6_pblm3_results_mu_5}
+	\caption{Results for the outputs of the 3-stage ring oscillator with mu = 5}
+	\label{fig:pblm3_mu5}
+\end{figure}
 
 
 
 
 \newpage
+\newpage
 \section{Problem 4}
+Consider a set of systems, $H_i (i=1,\dots,n)$, who are coupled together in a feedback given by
+$$\mqty[u_1\\ \vdots \\ u_n] = K \mqty[y_1\\ \vdots \\ y_n]$$
+for inputs $u_i$ and outputs $y_i$, with feedback matrix $K \in \real^{n\cross n}$.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.5\linewidth]{fig/pblm4_given_fig}
+	\label{fig:pblm4givenfig}
+\end{figure}
+
+\subsection{Part a}
+\textbf{Problem:}
+Suppose each $H_i$ satisfies the dissipation inequality:
+$$\dot{V}_i(x_i) \leq -y_i^2 + \gamma_i^2 u_i^2$$
+for a Positive Definite function,$V_i(x_i)$, of $x_i$.\\
+
+\noindent
+\textbf{Solution:}
+??? this isn't a question...
+
+
+\subsection{Part b}
+\textbf{Problem:}
+Determine a matrix inequality that restrict the matrices
+$$D := \mqty[\dmat{d_1}{\ddots}{d_n}], \ \Gamma := \mqty[\dmat{\gamma_1}{\ddots}{\gamma_n}]$$
+and $K$, such that $$V(x) = \sum_{i=1}^{n} d_i V_i(x_i)$$ is a Lyapunov function for the interconnected system.\\
+
+\noindent
+\textbf{Solution:}
+do this..................
 
 
 
+\subsection{Part c}
+\textbf{Problem:}
+Investigate when $\exists \ D$ s.t. the inequality is satisfied for $$K = \mqty[0&1\\1&0]$$
 
+\noindent
+\textbf{Solution:}
+do this too...
 
 
 
@@ -467,6 +563,11 @@ All code I write in this course can be found on my GitHub repository:\\
 \href{https://github.com/jonaswagner2826/MECH6313}{https://github.com/jonaswagner2826/MECH6313}
 % MECH6313_HW6
 \lstinputlisting[caption={MECH6313\_HW6},label={script:HW6}]{MECH6313_HW6.m}
+
+\newpage
+\section{MATLAB Code for Problem 3:}\label{apx:matlabpblm3}
+% MECH6313_HW6_pblm3
+\lstinputlisting[caption={MECH6313\_HW6\_pblm3},label={script:HW6_pblm3}]{MECH6313_HW6_pblm3.m}
 
 
 \end{document}

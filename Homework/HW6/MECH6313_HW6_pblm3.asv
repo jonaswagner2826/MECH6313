@@ -49,13 +49,17 @@ K = toeplitz([0, -1, 0],[0, 0, -1]);
 
 if openModel
     open(fname); % Don't need to open to run
+  
 end
 
 % Auto Arrange
 Simulink.BlockDiagram.arrangeSystem(gcs) %Auto Arrange
 print(['-s', gcs], '-dpng',... % Print model to figure
     [cfolder, '\' subfolder, 'fig\', 'sim_model_', fname, '.png'])
-
+% The subsystem model
+% Simulink.BlockDiagram.arrangeSystem(ring_ocillator_stage) %Auto Arrange
+print(['-s', ring_ocillator_stage], '-dpng',... % Print model to figure
+    [cfolder, '\' subfolder, 'fig\', 'sim_model_', ring_ocillator_stage, '.png'])
 
 if simulateModel
 %% Simulate System
@@ -78,7 +82,7 @@ plot(Y_out.Data(:,3))
 title(['3-Stage Oscillator with \mu = ', string(mu)])
 legend('y_1','y_2','y_3')
 
-mu_str = string(round(mu));
-saveas(fig, string([cfolder, '\',subfolder, 'fig\', fname, '_results','mu', mu_str('.png']))
+mu_str = string(1*(mu));
+saveas(fig, string([cfolder, '\',subfolder, 'fig\', fname, '_results','_mu_',num2str(mu),'.png']))
 % close all
 end

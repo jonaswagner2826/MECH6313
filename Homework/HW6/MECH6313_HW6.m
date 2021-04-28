@@ -107,6 +107,22 @@ if pblm3
 mu = 1;
 MECH6313_HW6_pblm3
 
+mu = 1.5;
+MECH6313_HW6_pblm3
+
+mu = 2;
+MECH6313_HW6_pblm3
+
+mu = 2.5;
+MECH6313_HW6_pblm3
+
+mu = 3;
+MECH6313_HW6_pblm3
+
+mu = 5;
+MECH6313_HW6_pblm3
+
+
 end
 
 

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.11) (preloaded format=pdflatex 2021.3.6)  27 APR 2021 22:31
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.11) (preloaded format=pdflatex 2021.3.6)  28 APR 2021 01:16
 entering extended mode
 **./MECH6313-HW6.tex
 (MECH6313-HW6.tex
@@ -481,12 +481,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 121--123
 
  []
 
-<fig/pblm2_H1.png, id=121, 421.575pt x 316.0608pt>
+<fig/pblm2_H1.png, id=141, 421.575pt x 316.0608pt>
 File: fig/pblm2_H1.png Graphic file (type png)
 <use fig/pblm2_H1.png>
 Package pdftex.def Info: fig/pblm2_H1.png  used on input line 136.
 (pdftex.def)             Requested size: 328.82707pt x 246.53125pt.
-<fig/pblm2_H2.png, id=122, 421.575pt x 316.0608pt>
+<fig/pblm2_H2.png, id=142, 421.575pt x 316.0608pt>
 File: fig/pblm2_H2.png Graphic file (type png)
 <use fig/pblm2_H2.png>
 Package pdftex.def Info: fig/pblm2_H2.png  used on input line 144.
@@ -519,50 +519,128 @@ Underfull \hbox (badness 10000) in paragraph at lines 291--293
 \matrixtoks=\toks30
 \matrixtoks=\toks31
  [13] [14]
+
+LaTeX Warning: Reference `apx:matlabpbml3' on page 15 undefined on input line 4
+25.
+
+<fig/sim_model_HW6_pblm3.png, id=258, 184.18813pt x 134.00063pt>
+File: fig/sim_model_HW6_pblm3.png Graphic file (type png)
+<use fig/sim_model_HW6_pblm3.png>
+Package pdftex.def Info: fig/sim_model_HW6_pblm3.png  used on input line 429.
+(pdftex.def)             Requested size: 328.82707pt x 239.22778pt.
+<fig/sim_model_HW6_pblm3_subsystem.png, id=260, 678.535pt x 142.5325pt>
+File: fig/sim_model_HW6_pblm3_subsystem.png Graphic file (type png)
+<use fig/sim_model_HW6_pblm3_subsystem.png>
+Package pdftex.def Info: fig/sim_model_HW6_pblm3_subsystem.png  used on input l
+ine 436.
+(pdftex.def)             Requested size: 328.82707pt x 69.07162pt.
+<fig/HW6_pblm3_results_mu_1.png, id=266, 421.575pt x 316.0608pt>
+File: fig/HW6_pblm3_results_mu_1.png Graphic file (type png)
+<use fig/HW6_pblm3_results_mu_1.png>
+Package pdftex.def Info: fig/HW6_pblm3_results_mu_1.png  used on input line 447
+.
+(pdftex.def)             Requested size: 328.82707pt x 246.53125pt.
+<fig/HW6_pblm3_results_mu_1.5.png, id=267, 421.575pt x 316.0608pt>
+File: fig/HW6_pblm3_results_mu_1.5.png Graphic file (type png)
+<use fig/HW6_pblm3_results_mu_1.5.png>
+Package pdftex.def Info: fig/HW6_pblm3_results_mu_1.5.png  used on input line 4
+54.
+(pdftex.def)             Requested size: 328.82707pt x 246.53125pt.
+<fig/HW6_pblm3_results_mu_2.png, id=268, 421.575pt x 316.0608pt>
+File: fig/HW6_pblm3_results_mu_2.png Graphic file (type png)
+<use fig/HW6_pblm3_results_mu_2.png>
+Package pdftex.def Info: fig/HW6_pblm3_results_mu_2.png  used on input line 461
+.
+(pdftex.def)             Requested size: 328.82707pt x 246.53125pt.
+<fig/HW6_pblm3_results_mu_2.5.png, id=269, 421.575pt x 316.0608pt>
+File: fig/HW6_pblm3_results_mu_2.5.png Graphic file (type png)
+<use fig/HW6_pblm3_results_mu_2.5.png>
+Package pdftex.def Info: fig/HW6_pblm3_results_mu_2.5.png  used on input line 4
+68.
+(pdftex.def)             Requested size: 328.82707pt x 246.53125pt.
+<fig/HW6_pblm3_results_mu_3.png, id=270, 421.575pt x 316.0608pt>
+File: fig/HW6_pblm3_results_mu_3.png Graphic file (type png)
+<use fig/HW6_pblm3_results_mu_3.png>
+Package pdftex.def Info: fig/HW6_pblm3_results_mu_3.png  used on input line 475
+.
+(pdftex.def)             Requested size: 328.82707pt x 246.53125pt.
+<fig/HW6_pblm3_results_mu_5.png, id=271, 421.575pt x 316.0608pt>
+File: fig/HW6_pblm3_results_mu_5.png Graphic file (type png)
+<use fig/HW6_pblm3_results_mu_5.png>
+Package pdftex.def Info: fig/HW6_pblm3_results_mu_5.png  used on input line 482
+.
+(pdftex.def)             Requested size: 328.82707pt x 246.53125pt.
+[15 <./fig/sim_model_HW6_pblm3.png> <./fig/sim_model_HW6_pblm3_subsystem.png>]
+[16 <./fig/HW6_pblm3_results_mu_1.png (PNG copy)> <./fig/HW6_pblm3_results_mu_1
+.5.png (PNG copy)>] [17 <./fig/HW6_pblm3_results_mu_2.png (PNG copy)> <./fig/HW
+6_pblm3_results_mu_2.5.png (PNG copy)>] [18 <./fig/HW6_pblm3_results_mu_3.png (
+PNG copy)> <./fig/HW6_pblm3_results_mu_5.png (PNG copy)>]
+<fig/pblm4_given_fig.png, id=298, 481.29813pt x 317.68687pt>
+File: fig/pblm4_given_fig.png Graphic file (type png)
+<use fig/pblm4_given_fig.png>
+Package pdftex.def Info: fig/pblm4_given_fig.png  used on input line 499.
+(pdftex.def)             Requested size: 234.8775pt x 155.0329pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 506--508
+
+ []
+
+\matrixtoks=\toks32
+\matrixtoks=\toks33
+
+Underfull \hbox (badness 10000) in paragraph at lines 518--519
+
+ []
+
+[19 <./fig/pblm4_given_fig.png>] [20]
 Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on i
-nput line 469.
+nput line 565.
  (MECH6313_HW6.m
 LaTeX Font Info:    Font shape `OT1/cmtt/bx/n' in size <10> not available
-(Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 14.
- [15]
+(Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 15.
+ [21]
 LaTeX Font Info:    Trying to load font information for TS1+cmtt on input line 
-40.
+41.
 
 (C:\Users\Jonas\AppData\Local\Programs\MiKTeX\tex/latex/base\ts1cmtt.fd
 File: ts1cmtt.fd 2019/12/16 v2.5j Standard LaTeX font definitions
 )
-[16]) [17] (MECH6313-HW6.aux)
+[22] [23]) [24] (MECH6313_HW6_pblm3.m [25] [26]) [27] (MECH6313-HW6.aux)
+
+LaTeX Warning: There were undefined references.
+
 Package rerunfilecheck Info: File `MECH6313-HW6.out' has not changed.
-(rerunfilecheck)             Checksum: D3C697E663AF76FBE97E613E23F4788F;1513.
+(rerunfilecheck)             Checksum: 154A8656613D994F0EF67A4CE60E77DC;1973.
  ) 
 Here is how much of TeX's memory you used:
- 12569 strings out of 479337
- 178764 string characters out of 2857148
- 691584 words of memory out of 3000000
- 29635 multiletter control sequences out of 15000+200000
- 411758 words of font info for 60 fonts, out of 3000000 for 9000
+ 12863 strings out of 479337
+ 183961 string characters out of 2857148
+ 734809 words of memory out of 3000000
+ 29778 multiletter control sequences out of 15000+200000
+ 414207 words of font info for 68 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 82i,22n,89p,458b,1971s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 82i,22n,89p,724b,1971s stack positions out of 5000i,500n,10000p,200000b,50000s
  <C:\Users\Jonas\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tctt
 1000.pk><C:/Users/Jonas/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfon
-ts/cm/cmbx10.pfb><C:/Users/Jonas/AppData/Local/Programs/MiKTeX/fonts/type1/publ
-ic/amsfonts/cm/cmbx12.pfb><C:/Users/Jonas/AppData/Local/Programs/MiKTeX/fonts/t
-ype1/public/amsfonts/cm/cmex10.pfb><C:/Users/Jonas/AppData/Local/Programs/MiKTe
-X/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/Jonas/AppData/Local/Progr
-ams/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi5.pfb><C:/Users/Jonas/AppData/Loc
-al/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Users/Jonas/App
-Data/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/J
-onas/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:
-/Users/Jonas/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr17
-.pfb><C:/Users/Jonas/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/
-cm/cmr5.pfb><C:/Users/Jonas/AppData/Local/Programs/MiKTeX/fonts/type1/public/am
-sfonts/cm/cmr7.pfb><C:/Users/Jonas/AppData/Local/Programs/MiKTeX/fonts/type1/pu
-blic/amsfonts/cm/cmsy10.pfb><C:/Users/Jonas/AppData/Local/Programs/MiKTeX/fonts
-/type1/public/amsfonts/cm/cmtt10.pfb><C:/Users/Jonas/AppData/Local/Programs/MiK
-TeX/fonts/type1/public/amsfonts/symbols/msam10.pfb>
-Output written on MECH6313-HW6.pdf (17 pages, 292108 bytes).
+ts/cmextra/cmbsy7.pfb><C:/Users/Jonas/AppData/Local/Programs/MiKTeX/fonts/type1
+/public/amsfonts/cm/cmbx10.pfb><C:/Users/Jonas/AppData/Local/Programs/MiKTeX/fo
+nts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/Jonas/AppData/Local/Programs/
+MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/Jonas/AppData/Local/
+Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/Jonas/AppDa
+ta/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi5.pfb><C:/Users/Jon
+as/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/U
+sers/Jonas/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.p
+fb><C:/Users/Jonas/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm
+/cmr12.pfb><C:/Users/Jonas/AppData/Local/Programs/MiKTeX/fonts/type1/public/ams
+fonts/cm/cmr17.pfb><C:/Users/Jonas/AppData/Local/Programs/MiKTeX/fonts/type1/pu
+blic/amsfonts/cm/cmr5.pfb><C:/Users/Jonas/AppData/Local/Programs/MiKTeX/fonts/t
+ype1/public/amsfonts/cm/cmr7.pfb><C:/Users/Jonas/AppData/Local/Programs/MiKTeX/
+fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/Jonas/AppData/Local/Program
+s/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt10.pfb><C:/Users/Jonas/AppData/Loca
+l/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msam10.pfb>
+Output written on MECH6313-HW6.pdf (27 pages, 636772 bytes).
 PDF statistics:
- 450 PDF objects out of 1000 (max. 8388607)
- 221 named destinations out of 1000 (max. 500000)
- 115 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 678 PDF objects out of 1000 (max. 8388607)
+ 351 named destinations out of 1000 (max. 500000)
+ 192 words of extra memory for PDF output out of 10000 (max. 10000000)
 

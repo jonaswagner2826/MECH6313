@@ -15,7 +15,7 @@ plotResults = true;
 [cfolder,~,~] = fileparts(mfilename('fullpath'));
 subfolder = ''; %include '/' at end of subfolder name
 fname = 'HW6_pblm3';
-simTime = '25';
+simTime = '20';
 
 
 %% System Definitions
@@ -55,7 +55,6 @@ end
 Simulink.BlockDiagram.arrangeSystem(gcs) %Auto Arrange
 print(['-s', gcs], '-dpng',... % Print model to figure
     [cfolder, '\' subfolder, 'fig\', 'sim_model_', fname, '.png'])
-
 
 if simulateModel
 %% Simulate System
