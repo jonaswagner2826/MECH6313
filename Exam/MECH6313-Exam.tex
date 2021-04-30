@@ -4,6 +4,7 @@
 \usepackage[margin=1in]{geometry}
 \usepackage{physics}
 \usepackage{amsmath, mathtools}
+\numberwithin{equation}{section}
 \usepackage{amssymb}
 \usepackage{graphicx}
 \usepackage{hyperref}
@@ -75,8 +76,8 @@ This results in the equilibrium points being defined in terms of $\mu$ as:
 \end{empheq}
 
 \newpage
-\subsubsection{Stability of Equilibrium Points}
-The stability around an equalibrium point can be evaluated by looking at the linearized model, which can be found as follows:\\
+\subsubsection{System Linearization}
+The stability around an equilibrium point can be evaluated by looking at the linearized model, which can be found as follows:\\
 
 Let the state-variables be defined as:
 $$X = \mqty[x\\ y]$$
@@ -91,17 +92,68 @@ Then the equilibrium point is described as
 $$X_{eq} = \mqty[-\mu\\ \frac{1}{3} \mu^3 - \mu]$$
 and the jacobian can be computed as:
 \begin{align}
-	A = \dv{f}{X} &= \mqty[\dv{f_1}{x_1} &\dv{f_1}{x_2}\\ \dv{f_2}{x_1} & \dv{f_2}{x_2}]
+	J_x = \dv{f}{X} &= \mqty[\dv{f_1}{x_1} &\dv{f_1}{x_2}\\ \dv{f_2}{x_1} & \dv{f_2}{x_2}]\\
+	&= \mqty[\cfrac{1 - x_1^2}{\tau} & -1\\
+			 1 & 0]
 \end{align}
 
-
+The state dynamics around the equilibrium are described by this Jacobian evaluated at $X = X_{eq}$:
 \begin{align}
-	jj
+	A = \eval{J_x}_{X = X_{eq}}
+	&= \eval{\mqty[\cfrac{1 - x_1^2}{\tau} & -1\\ 1 & 0]}_{x_1 = -\mu, x_2 = \frac{1}{3} \mu^3 - \mu}\\
+	&= \mqty[\cfrac{1 - (-\mu)^2}{\tau} & -1\\ 1 & 0]\\
+	&= \mqty[\frac{1}{\tau} - \frac{\mu^2}{\tau} &-1\\ 1 &0]
 \end{align}
 
+The dynamics of this linearized system are described by the characteristic polynomial calculated as:
+\begin{align}
+	\Delta(s) = \det(sI - A)
+	&= \det\mqty[s-\qty(\frac{1}{\tau} - \frac{\mu^2}{\tau}) &1\\ -1 &s]\\
+	&= s \qty(s-\qty(\frac{1}{\tau} - \frac{\mu^2}{\tau})) - (1)(-1)\\
+	\Aboxed{\Delta(s) &= s^2 - \qty(\frac{1}{\tau} - \frac{\mu^2}{\tau}) s + 1}
+\end{align}
 
+\newpage
+\subsubsection{Linearized Model Stability}
+The roots of $\Delta(s)$ are the eigenvalues of the linearization and are dependent on $\mu$ and $\tau$ calculated as:
+\begin{align}
+	\Lambda(A) = \lambda_{1,2} &= \cfrac{\qty(\frac{1}{\tau} - \frac{\mu^2}{\tau}) \pm \sqrt{\qty(\frac{1}{\tau} - \frac{\mu^2}{\tau})^2 - 4(1)(1)}}{2 (1)}\\
+	&= \frac{1}{2}\qty(\frac{1}{\tau} - \frac{\mu^2}{\tau}) \pm \frac{1}{2}\sqrt{\qty(\frac{1}{\tau} - \frac{\mu^2}{\tau})^2 - 4}\\
+\intertext{or in a factored form:}
+	&= \frac{1}{2\tau}\qty(1 - \mu^2) \pm \frac{1}{2\tau}\sqrt{\qty(1 - \mu^2)^2 - 4\tau^2}\\
+	&= \frac{1}{2\tau}\qty(\qty(1 - \mu^2) \pm \sqrt{\mu^4 -2 \mu^2 +1 - 4\tau^2})\\
+\intertext{or in a fully factored form:}
+	&= \frac{1-\mu^2}{2\tau}\qty(1 \pm \sqrt{1 - \frac{4\tau^2}{\qty(1 - \mu^2)^2}})
+\intertext{or in condenced form:}
+	&= \qty(\frac{1}{2\tau} - \frac{\mu^2}{2\tau}) \pm \sqrt{\qty(\frac{1}{2\tau} - \frac{\mu^2}{2\tau})^2 - 1}
+\end{align}
 
+The roots are entirely \textbf{real} when:
+\begin{align}
+	\qty(1 - \mu^2)^2 - 4\tau^2 &> 0\\
+	\qty(1 - \mu^2)^2 &> 4\tau^2\\
+	1 - \mu^2 &> 2 \tau\\
+	\mu^2 + 2\tau &> 1
+\end{align}
+in which case, the linearized system is \textbf{stable} only when:
+\begin{align}
+	0 > \real(\lambda_{1}) &= \frac{1}{2\tau}\qty(\qty(1 - \mu^2) + \sqrt{\qty(1 - \mu^2)^2 - 4\tau^2})\\
+	\Aboxed{\real(\lambda_{1})&= 1 - \mu^2 + \sqrt{\qty(1 - \mu^2)^2 - 4\tau^2} < 0}
+\end{align}
 
+The system has \textbf{complex roots} when :
+\begin{align}
+	\qty(1 - \mu^2)^2 - 4\tau^2 &< 0\\
+	\qty(1 - \mu^2)^2 &< 4\tau^2\\
+	1 - \mu^2 &< 2 \tau\\
+	\mu^2 + 2\tau &< 1
+\end{align}
+in which case, the linearized system is only \textbf{stable} when 
+\begin{align}
+	0 > \real(\lambda_{1,2}) &= \frac{1}{2\tau}\qty(1 - \mu^2)\\
+	&= 1 - \mu^2\\
+	\Aboxed{\mu^2 &> 1}
+\end{align}
 
 
 \newpage
@@ -111,6 +163,45 @@ At which value of $\mu$ does a bifurcation occur and what type of bifurcation is
 
 \noindent
 \textbf{Solution:}
+The stability properties of the linearized system indicate that a hopf bifurcation occur when $$\mu = 1$$ and the system condenses the system into a single equalibrium point at the (parameter dependent) equalibrium point of $$X_{eq} = \mqty[-\mu\\\frac{1}{3}\mu^3 - \mu]$$.
+
+
+\subsection{Part c}
+\textbf{Problem:}
+Assume $\tau << 1$ and sketch the phase portrait for two values of $\mu$, one just below and one just above the bifurcation value.\\
+
+\textbf{Solution:}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\newpage
+\section{Problem 2:}
+Consider the system:
+\begin{equation}
+	\begin{aligned}
+		\dot{x}_1 &= -\frac{1}{2} \tan(\frac{\pi x_1}{2}) + x_2\\
+		\dot{x}_2 &= x_1 -\frac{1}{2} \tan(\frac{\pi x_2}{2})
+	\end{aligned}
+\end{equation}
+
+
+
+
+
+
+
+
 
 
 
