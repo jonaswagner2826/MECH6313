@@ -18,6 +18,7 @@
 
 % Document Specific
 \newcommand{\sat}{\text{sat}}
+\newcommand{\sign}{\text{sign}}
 
 \allowdisplaybreaks
 
@@ -32,6 +33,7 @@
 
 \tableofcontents
 
+%----------------------------------------------------------------------------
 \newpage
 \section{Problem 1}
 Consider the system:
@@ -170,6 +172,7 @@ The stability properties of the linearized system indicate that a hopf bifurcati
 \textbf{Problem:}
 Assume $\tau << 1$ and sketch the phase portrait for two values of $\mu$, one just below and one just above the bifurcation value.\\
 
+\noindent
 \textbf{Solution:}
 
 
@@ -184,7 +187,7 @@ Assume $\tau << 1$ and sketch the phase portrait for two values of $\mu$, one ju
 
 
 
-
+%----------------------------------------------------------------------------
 \newpage
 \section{Problem 2:}
 Consider the system:
@@ -194,6 +197,428 @@ Consider the system:
 		\dot{x}_2 &= x_1 -\frac{1}{2} \tan(\frac{\pi x_2}{2})
 	\end{aligned}
 \end{equation}
+
+
+\subsection{Part a}
+\textbf{Problem:}
+Find all equilibrium points of this system.\\
+
+\noindent
+\textbf{Solution:}
+The equilibrium points exist whenever $\dot{X} = \mqty[\dot{x}_1\\ \dot{x}_2] = 0$ and can be identified as follows:
+\begin{align}
+	&\begin{aligned}
+		\qty(0) &= -\frac{1}{2} \tan(\frac{\pi x_1}{2}) + x_2\\
+		\qty(0) &= x_1 -\frac{1}{2} \tan(\frac{\pi x_2}{2})
+	\end{aligned}\\
+	\intertext{which becomes:}
+	&\begin{aligned}
+		x_2 &= \frac{1}{2} \tan(\frac{\pi x_1}{2})\\
+		x_1 &= \frac{1}{2} \tan(\frac{\pi x_2}{2})
+	\end{aligned}
+\end{align}
+There are an infinite number of solutions to this set of equations, each of which are equilibrium points.
+
+At each asymptote, there are unstable equilibrium points
+\begin{empheq}[innerbox = \fbox]{equation}\label{eq:pblm2a_asm}
+	X_{eq} = \mqty[1\\1] + i \mqty[2\\0] + j \mqty[0\\2]
+\end{empheq}
+with $i = \dots, -1, 0, 1, \dots$ and $j = \dots, -1, 0, 1, \dots$
+
+In addition, any time the each subsequent tangent function intersect with each other another another equilibrium point exists, including, but not exhausted:
+\begin{empheq}[innerbox = \fbox]{equation}\label{eq:pblm2a_eqv}
+	x = \frac{1}{2} \tan(\frac{\pi x}{2})
+	\text{ or }
+	x = -\frac{1}{2} \tan(\frac{\pi x}{2})
+\end{empheq}
+
+Additionally, within the region around the origin $x \in [-1, 1]$ and $y \in [-1,1]$, 3 distinct equilibrium points exist:
+\begin{empheq}[innerbox = \fbox]{equation}\label{eq:pblm2a_origin}
+	\begin{aligned}
+		X_{eq} &= \mqty[0\\0]\\
+		X_{eq} &= \mqty[0.5\\ 0.5]\\
+		X_{eq} &= \mqty[-0.5\\ -0.5]
+	\end{aligned}
+\end{empheq}
+
+\newpage
+\subsection{Part b}
+\textbf{Problem:}
+Use linearization to study the stability of each equilibrium point.\\
+
+\noindent
+\textbf{Solution:}
+The linearization around individual equilibrium points is given by evaluating the Jacobian matrix which is calculated as:
+\begin{align}
+	A &= \eval{J_x}_{X = X_{eq}}
+	= \eval{\mqty[\dv{f_1}{x_1}&\dv{f_1}{x_2}\\\dv{f_2}{x_1}&\dv{f_2}{x_2}]}_{X=X_{eq}}\\
+	&= \eval{\mqty[-\frac{\pi}{4}\qty(\tan[2](\frac{\pi x_1}{2}) + 1)&1\\ 1 &-\frac{\pi}{4}\qty(\tan[2](\frac{\pi x_2}{2}) + 1)]}_{X=X_{eq}}
+\end{align}
+
+Using the nlsys class I developed in MATLAB, see \appendixname \ \ref{apx:matlab}, multiple Equilibrium points were linearized and stability was analyzed.
+
+It was determined based on the eigenvalues of the linear systems that all the "equilibrium points" occurring at asymtopes \eqref{eq:pblm2a_asm} were all unstable, the asymptopes (that were checked) satisfying \eqref{eq:pblm2a_eqv} were asymptotically stable, and the analysis of the 3 important equilibrium points \eqref{eq:pblm2a_origin} are addressed below:
+
+The origin itself was determined to be unstable given the dynamics matrix and eigenvalues:
+\begin{empheq}[innerbox = \fbox]{equation}\label{eq:pblm2b_origin}
+	\begin{aligned}
+		&X_{eq} = \mqty[00\\ 0]
+		&A = \mqty[-0.7854 & 1\\ 1 & -0.7854]
+		&&\begin{aligned}
+			\lambda_{1} &= -1.7854\\
+			\lambda_{2} &= \ \ 0.2146
+		\end{aligned}
+	\end{aligned}
+\end{empheq}
+
+The quadrant 1 and 3 systems were determined to be asymptotically stable given the dynamics matrix and eigenvalues:
+\begin{empheq}[innerbox = \fbox]{equation}\label{eq:pblm2b_quad1}
+	\begin{aligned}
+		&X_{eq} = \mqty[0.5\\ 0.5]
+		&A = \mqty[-1.5708 & 1\\ 1 & -1.5708]
+		&&\begin{aligned}
+			\lambda_{1} &= -2.5708\\
+			\lambda_{2} &= -0.5708
+		\end{aligned}
+	\end{aligned}
+\end{empheq}
+\begin{empheq}[innerbox = \fbox]{equation}\label{eq:pblm2b_quad3}
+	\begin{aligned}
+		&X_{eq} = \mqty[-0.5\\ -0.5]
+		&A = \mqty[-1.5708 & 1\\ 1 & -1.5708]
+		&&\begin{aligned}
+			\lambda_{1} &= -2.5708\\
+			\lambda_{2} &= -0.5708
+		\end{aligned}
+	\end{aligned}
+\end{empheq}
+
+\newpage
+\subsection{Part c}
+\textbf{Problem:}
+Using quadratic Lyapunov functions, estimate the region of attraction of each asymptotically stable equilibrium point.
+% Try to make your estimates as large as possible
+\\
+
+\noindent
+\textbf{Solution:}
+
+
+
+
+
+
+\newpage
+\subsubsection{Part d}
+\textbf{Problem:}
+Plot the phase portrait of the system and show on it the exact regions of attraction as well as your estimates.\\
+
+\noindent
+\textbf{Solution:}
+
+
+
+
+
+%----------------------------------------------------------------------------
+\newpage
+\section{Problem 3}
+\textbf{Problem:}
+Prove that the origin is the globally asymptotically stable equilibrium point of the system
+\begin{equation}
+	\begin{aligned}
+		\dot{x}_1 &= -x_1 - \sat(x_3)\\
+		\dot{x}_1 &= -x_2 - \sat(x_1)\\
+		\dot{x}_1 &= -x_3 - \sat(x_2)
+	\end{aligned}
+\end{equation}
+where
+\begin{equation}
+	\sat(x) := \sign(x) \min\{1,\abs{x}\}
+\end{equation}
+
+\noindent
+\textbf{Solution:}
+% this is one of the feedback problems like in the last hmk
+\subsection{System and Storage Function Definition}
+This system can be rewritten in a coupling feedback system $H$ and $K$ defined as:
+\begin{align}
+	H &= \mqty[\dmat{H_1}{H_2}{H_3}], \hspace{0.25in}
+	H_i
+	=\begin{cases}
+		\dot{x}_i = f(x_i) + g(x_i) u_i\\
+		y_i = h(x_i)
+	\end{cases}\\
+	K &= \mqty[	 0 	& 0 &-1\\
+	-1 	& 0 & 0\\
+	0 	&-1 & 0]
+\end{align}
+where $K$ is the coupling matrix of the individual nonlinear subsystems with the following specific definitions:
+\begin{equation}
+	H_i =
+	\begin{cases}
+		\dot{x}_i = -x_i + u_i\\
+		y_i = h_i(x_i)
+	\end{cases}
+\end{equation}
+where $h_i(x_i) = \sat(x_i)$.
+
+A storage function for each of the individual subsystems can be defined as:
+\begin{equation}
+	V_i(x_i) = \int_{0}^{x_i} h_i(\eta) \dd \eta
+\end{equation}
+
+Taking a look at the change of the storage function over time, the output strict passivity can be proven by:
+\begin{align}
+	\dot{V}_i (x_i) &= \dv{V_i}{x_i} \dot{x}_i\\
+	&= \dv{x_i} \int_0^{x_i} h_i(\eta) \dd{\eta} \dot{x}_i\\
+	&= h_i(x_i) \dot{x}_i
+	\intertext{taking the definition for $\dot{x}_i$ and relating $h_i(x_i) = y_i$,}
+	&= h_i(x_i) (-x_i + u_i)\\
+	&= -x_i h_i(x_i) + u_i y_i
+\end{align}
+
+\newpage
+\subsection{Probing Input/Output Passivity}
+In order to guarantee Input passivity, the system must satisfy the following inequality:
+\begin{align}
+	x h(x) &\leq \delta_i x^2\\
+	x (\sat(x)) &\leq \delta x^2
+\end{align}
+by definition, $\sat(x) := \sign(x) \min\{1,\abs{x}\}$, thus the following inequalities apply:
+\begin{align}
+	\begin{cases}
+		\sat(x) > 0, &x>0\\
+		\sat(x) < 0, &x<0
+	\end{cases}
+\end{align}
+therefore, the input passivity equality holds.
+
+Since the input passivity holds, a $\delta_i$ will exist s.t.,
+\begin{align}
+	x_i h_i(x_i) &\leq \delta_i x^2\\
+	x_i (h_i(x_i) - \delta_i x_i) &\leq 0
+\end{align}
+clearly, $x_i h_i(x_i)$ can then be bounded from below by: % since \abs{h_i} \leq \abs{\delta_i x} \forall x
+\begin{align}
+	x_i h_i (x) \geq \frac{1}{\delta_i} h_i^2(x_i)\\
+	-x_i h_i (x) \geq -\frac{1}{\delta_i} h_i^2(x_i)\\
+	\intertext{since $y_i = h_i(x_i)$,}
+	-x_i h_i (x) \geq -\frac{1}{\delta_i} y_i^2(x_i)
+\end{align}\\
+
+Therefore, this demonstrates Output Strict Passivity:
+\begin{align}
+	\dot{V}_i &\leq -\frac{1}{\delta_i} y_i^2 + y_i u_i\\
+	\intertext{or with $d_i = \frac{1}{\delta_i}$ and }
+	\dot{V}_i &\leq d_i y_i^2 + y_i u_i
+\end{align}
+and the passivity theorem can then be applied.\\
+
+\newpage
+\subsection{Applying Passivity Theorem}
+Let $$\epsilon_i = \frac{1}{\delta_i}$$ and then define
+\begin{align}
+	A &= - \text{diag}\{\epsilon_i\} + K\\
+	P &= \text{diag}\{d_i\}
+\end{align}
+which for this $3^{rd}$-order system can be written as
+\begin{align}
+	A &= -\mqty[\dmat{\epsilon_1}{\epsilon_2}{\epsilon_3}] + \mqty[0 & 0 &-1\\ -1 & 0 & 0\\ 0 &-1 & 0] 
+	= \mqty[-\epsilon_1 & 0 &-1\\
+	-1 &-\epsilon_2 &0\\
+	0	&-1	&-\epsilon_3]\\
+	P &= \mqty[\dmat{d_1}{d_2}{d_3}]
+\end{align}
+
+Appropriate values for A and P can be found to prove stability of the full feedback interconnection using the following inequality:
+\begin{align}
+	A^T P + P A &\leq 0
+\end{align}
+
+This can then be further developed to prove Global Asymptotic Stability by making it a strict inequality like so:
+\begin{align}
+	A^T P + P A &< 0
+\end{align}
+
+This can be written with the actual matrices as
+\begin{align}
+	\mqty[-\epsilon_1 & 0 &-1\\
+	-1 &-\epsilon_2 &0\\
+	0	&-1	&-\epsilon_3]^T
+	\mqty[\dmat{d_1}{d_2}{d_3}] +
+	\mqty[\dmat{d_1}{d_2}{d_3}]
+	\mqty[-\epsilon_1 & 0 &-1\\
+	-1 &-\epsilon_2 &0\\
+	0	&-1	&-\epsilon_3]
+	&< 0
+\end{align}
+
+\begin{align}
+	\mqty[-d_1\epsilon_1 & -d_1 &0\\
+	0 &-d_2\epsilon_2 &-d_2\\
+	-d_3	&0	&-d_3\epsilon_3]+
+	\mqty[-d_2\epsilon_1 & 0 &-d_1\\
+	-d_2 &-d_2\epsilon_2 &0\\
+	0	&-d_3	&-d_3\epsilon_3]
+	&< 0
+\end{align}
+
+\begin{align}
+	\mqty[-2 d_1\epsilon_1 & -d_1 &-d_1\\
+	-d_2 &-2 d_2\epsilon_2 &-d_2\\
+	-d_3	&-d_3	&-2 d_3\epsilon_3]
+	&< 0
+\end{align}
+or equivalently
+\begin{align}
+	\mqty[2 d_1\epsilon_1 & d_1 &d_1\\
+	d_2 &2 d_2\epsilon_2 &d_2\\
+	d_3	&d_3	&2 d_3\epsilon_3]
+	&> 0
+\end{align}
+
+\newpage
+The positive definiteness can be determined by
+\begin{align}
+	2 d_1 \epsilon_1 &>0\\
+	\mqty|2 d_1\epsilon_1 & d_1\\
+	d_2 &2 d_2\epsilon_2| = d_1 d_2 (4 \epsilon_1 \epsilon_2 - 1) &> 0\\
+	\mqty|2 d_1\epsilon_1 & d_1 &d_1\\
+	d_2 &2 d_2\epsilon_2 &d_2\\
+	d_3	&d_3	&2 d_3\epsilon_3|
+	= d_1 d_2 d_3  (8 \epsilon_1 \epsilon_2 \epsilon_3 - 2 \epsilon_1)\nonumber\\
+	- d_1 d_2 d_3(2 \epsilon_3 - 1)
+	+ d_1 d_2 d_3 (1 - 2\epsilon_2)\nonumber\\
+	= d_1 d_2 d_3 (8 \epsilon_1 \epsilon_2 \epsilon_3 
+	- 2 \epsilon_1
+	- 2 \epsilon_2
+	- 2 \epsilon_3)
+	&>0
+\end{align}
+From this and the definition of $d_i > 0$, these inequalities can be equated to
+\begin{align}
+	\epsilon_1&>0\\
+	4 \epsilon_1 \epsilon_2 -1 &>0\\
+	4 \epsilon_1 \epsilon_2 \epsilon_3 - \epsilon_1 - \epsilon_2 - \epsilon_3 &> 0	
+\end{align}
+Returning to the original definition of $\epsilon_i = \frac{1}{\delta_i}$ and the limitation of $x \sat(x) \leq \delta_i x^2$,
+it can be seen that a selection of $\delta_i = 1 \ \forall i=1,2,3$ is valid and thus $$\epsilon_1 = \epsilon_2 = \epsilon_3 = 1$$
+which can be used to satisfy the inequalities:
+\begin{align}
+	(1) = 1&>0\\
+	4 (1) (1) -1 = 3 &>0\\
+	4 (1) (1) (1) - (1) - (1) - (1) = 1 &> 0	
+\end{align}
+
+Therefore, it can be seen said that the origin for the coupled feedback system is Globally Asymptotically Stable.
+
+
+%----------------------------------------------------------------------------
+\newpage
+\section{Problem 4}
+\textbf{Problem:}
+Comment on the existence/uniqueness of solutions for the systems below. Provide
+your reasons.\\
+
+\subsection{Part a}
+\begin{equation}
+	\dot{x} = x^2
+\end{equation}
+\noindent
+\textbf{Solution:}
+Assuming that the system is defined for $x\in \real$, existence and uniqueness can be guaranteed by ensuring certain continuity conditions exist.\\
+Since the function $f(x) = x^2$ is a continuous function $\forall x \in \real$, it can be said that a solution does exist.\\
+Additionally, since $f(x)$ is locally Lipschitz continuous, i.e. $\dv{f}{x} = 2 x$ is continuous, it can be said that a unique solution exists for $t \in [0,t_f)$.\\
+However, $f(x)$ is not globally Lipschitz continous, since $\norm{\dv{f}{x}} = \norm{2x} \nleq L \forall x \in \real^n$, (which can be more rigorously proven as this was only a sufficient condition) the uniqueness of a solution cannot be garunteed for $t \in [0,\infty)$.
+
+\subsection{Part b}
+\begin{equation}
+	\dot{x} = \sqrt{x}
+\end{equation}
+\noindent
+\textbf{Solution:}
+Assuming that the system is defined for $x \geq 0$, existence and uniqueness can be guaranteed by ensuring certain continuity conditions exist.\\
+Since the function $f(x) = x^2$ is a continuous function $\forall x \geq 0$, it can be said that a solution does exist.\\
+However, a unique solution cannot be guaranteed as the function is not Liptchitz continuous directly around $x=0$ as the slope becomes infinite and cannot be bounded by a Liptchitz constant.
+
+\subsection{Part c}
+\begin{equation}
+	\dot{x} = 1 + \cfrac{1 + x^3}{1 + x^4}
+\end{equation}
+\noindent
+\textbf{Solution:}
+Assuming that the system is defined for $x\in \real$, existence and uniqueness can be guaranteed by ensuring certain continuity conditions exist.\\
+Since the function $f(x)$ is a continuous function $\forall x \in \real$, it can be said that a solution does exist.\\
+Additionally, the system is also continuously differentiable:
+$$\dv{f}{x} = \dv{x} \qty(1 + \cfrac{1 + x^3}{1 + x^4}) = \frac{-x^2(x^4 - 2x - 3)}{(1+x^4)^2}$$
+and its derivative is bounded
+$$\norm{\frac{-x^2(x^4 - 2x - 3)}{(1+x^4)^2}} \leq L$$
+by the positive constant $L < \infty$. This implys that the system is globally Lipshitz continuous and therefore a unique solution is guaranteed to exists for $t \in [0,\infty)$.
+
+%----------------------------------------------------------------------------
+\newpage
+\section{Problem 5}
+\textbf{Problem:}
+Show that the following system contains no closed orbits.
+\begin{equation}
+	\begin{aligned}
+		\dot{x}_1 &= -x_1 + x_2^3 + 1\\
+		\dot{x}_2 &= -4x^2 + 3 x_2
+	\end{aligned}
+\end{equation}
+
+\noindent
+\textbf{Solution:}
+
+
+
+
+
+
+
+
+%----------------------------------------------------------------------------
+\newpage
+\section{Problem 6}
+\textbf{Problem:}
+Prove that the origin is the globally asymptotically stable equilibrium of the following system.
+\begin{equation}
+	\begin{aligned}
+		\dot{x}_1 &= x_2\\
+		\dot{x}_2 &= -(\sin(x_1) + 2)(x_1 + x_2)
+	\end{aligned}
+\end{equation}
+
+\noindent
+\textbf{Solution:}
+The linearization around individual equilibrium points is given by evaluating the Jacobian matrix which is calculated as:
+\begin{align}
+	A &= \eval{J_x}_{X = X_{eq}}
+	= \eval{\mqty[\dv{f_1}{x_1}&\dv{f_1}{x_2}\\\dv{f_2}{x_1}&\dv{f_2}{x_2}]}_{X=X_{eq}}\\
+	&= \eval{\mqty[0 & 1\\
+		-(\sin(x_1) + x_1 \cos(x_1) + 2 + x_2 \cos(x_1)) & -(\sin(x_1) + 2)
+		]}_{x_1 = x_2 = 0}\\
+	&= \mqty[0&1\\-2 &-2]
+\end{align}
+
+The dynamics of this linearized system are described by the characteristic polynomial calculated as:
+\begin{align}
+	\Delta(s) = \det(sI - A)
+	&= \det\mqty[s &-1\\ 2 &s+2]\\
+	&= s(s+2) - (-1) (2)\\
+	\Aboxed{\Delta(s) &= s^2 + 2s + 2}
+\end{align}
+
+The roots of this polynomial are then calculated as the eigenvalues:
+\begin{align}
+	\Aboxed{\lambda_{1,2} &= -1 \pm j 1}
+\end{align}
+
+From this it is apparent that, locally, there exists a stable focus around the origin.
+
+
+
 
 
 
@@ -212,7 +637,7 @@ Consider the system:
 All code I write in this course can be found on my GitHub repository:\\
 \href{https://github.com/jonaswagner2826/MECH6313}{https://github.com/jonaswagner2826/MECH6313}
 % MECH6313_HW6
-%\lstinputlisting[caption={MECH6313\_Exam\_main},label={script:Exam\_main}]{MECH6313_Exam_main.m}
+\lstinputlisting[caption={MECH6313\_Exam},label={script:Exam}]{MECH6313_Exam.m}
 
 
 \end{document}
