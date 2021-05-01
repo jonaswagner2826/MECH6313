@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.11) (preloaded format=pdflatex 2021.3.6)  1 MAY 2021 07:46
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.11) (preloaded format=pdflatex 2021.3.6)  1 MAY 2021 10:51
 entering extended mode
 **./MECH6313-Exam.tex
 (MECH6313-Exam.tex
@@ -538,45 +538,74 @@ Underfull \hbox (badness 10000) in paragraph at lines 163--165
 
  []
 
-
+[5]
 Underfull \hbox (badness 10000) in paragraph at lines 172--174
 
  []
 
-[5]
-Underfull \hbox (badness 10000) in paragraph at lines 203--205
-
- []
-
-[6]
-Underfull \hbox (badness 10000) in paragraph at lines 246--248
-
- []
-
-[7]
-Underfull \hbox (badness 10000) in paragraph at lines 298--302
+<fig/pblm1_phaseplot_mu01.png, id=199, 903.375pt x 753.0534pt>
+File: fig/pblm1_phaseplot_mu01.png Graphic file (type png)
+<use fig/pblm1_phaseplot_mu01.png>
+Package pdftex.def Info: fig/pblm1_phaseplot_mu01.png  used on input line 181.
+(pdftex.def)             Requested size: 469.75502pt x 391.59003pt.
+<fig/pblm1_phaseplot_mu2.png, id=200, 903.375pt x 753.0534pt>
+File: fig/pblm1_phaseplot_mu2.png Graphic file (type png)
+<use fig/pblm1_phaseplot_mu2.png>
+Package pdftex.def Info: fig/pblm1_phaseplot_mu2.png  used on input line 189.
+(pdftex.def)             Requested size: 469.75502pt x 391.59003pt.
+[6 <./fig/pblm1_phaseplot_mu01.png (PNG copy)>] [7 <./fig/pblm1_phaseplot_mu2.p
+ng (PNG copy)>]
+Underfull \hbox (badness 10000) in paragraph at lines 207--209
 
  []
 
 [8]
-Underfull \hbox (badness 10000) in paragraph at lines 333--335
+Underfull \hbox (badness 10000) in paragraph at lines 250--252
 
  []
 
 [9]
+Underfull \hbox (badness 10000) in paragraph at lines 302--306
+
+ []
+
+[10]
+Underfull \hbox (badness 10000) in paragraph at lines 350--352
+
+ []
+
+<fig/pblm2_phaseplot.png, id=256, 903.375pt x 753.0534pt>
+File: fig/pblm2_phaseplot.png Graphic file (type png)
+<use fig/pblm2_phaseplot.png>
+Package pdftex.def Info: fig/pblm2_phaseplot.png  used on input line 360.
+(pdftex.def)             Requested size: 469.75502pt x 391.59003pt.
+<fig/pblm2_phaseplot_zoomOut.png, id=257, 903.375pt x 753.0534pt>
+File: fig/pblm2_phaseplot_zoomOut.png Graphic file (type png)
+<use fig/pblm2_phaseplot_zoomOut.png>
+Package pdftex.def Info: fig/pblm2_phaseplot_zoomOut.png  used on input line 36
+7.
+(pdftex.def)             Requested size: 469.75502pt x 391.59003pt.
+<fig/pblm2_phaseplot_origin.png, id=258, 903.375pt x 753.0534pt>
+File: fig/pblm2_phaseplot_origin.png Graphic file (type png)
+<use fig/pblm2_phaseplot_origin.png>
+Package pdftex.def Info: fig/pblm2_phaseplot_origin.png  used on input line 375
+.
+(pdftex.def)             Requested size: 469.75502pt x 391.59003pt.
+[11 <./fig/pblm2_phaseplot.png (PNG copy)>] [12 <./fig/pblm2_phaseplot_zoomOut.
+png (PNG copy)>] [13 <./fig/pblm2_phaseplot_origin.png (PNG copy)>]
 \matrixtoks=\toks26
 \matrixtoks=\toks27
- [10]
-Underfull \hbox (badness 10000) in paragraph at lines 428--429
+ [14]
+Underfull \hbox (badness 10000) in paragraph at lines 465--466
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 435--437
+Underfull \hbox (badness 10000) in paragraph at lines 472--474
 
  []
 
-[11]
+[15]
 \matrixtoks=\toks28
 \matrixtoks=\toks29
 \matrixtoks=\toks30
@@ -585,36 +614,35 @@ Underfull \hbox (badness 10000) in paragraph at lines 435--437
 \matrixtoks=\toks33
 \matrixtoks=\toks34
 \matrixtoks=\toks35
- [12] [13]
-Underfull \hbox (badness 10000) in paragraph at lines 540--543
+ [16] [17]
+Underfull \hbox (badness 10000) in paragraph at lines 577--580
 
  []
 
-[14] [15] [16] [17]
+[18] [19] [20] [21]
 Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on i
-nput line 684.
+nput line 713.
  (MECH6313_Exam.m
 LaTeX Font Info:    Font shape `OT1/cmtt/bx/n' in size <10> not available
 (Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 14.
- [18]
 LaTeX Font Info:    Trying to load font information for TS1+cmtt on input line 
-55.
+21.
 
 (C:\Users\Jonas\AppData\Local\Programs\MiKTeX\tex/latex/base\ts1cmtt.fd
 File: ts1cmtt.fd 2019/12/16 v2.5j Standard LaTeX font definitions
 )
-[19] [20] [21] [22] [23]) [24] (MECH6313-Exam.aux)
+[22] [23] [24] [25] [26] [27] [28] [29]) [30] (MECH6313-Exam.aux)
 Package rerunfilecheck Info: File `MECH6313-Exam.out' has not changed.
-(rerunfilecheck)             Checksum: 89CEA6BD25E1FFB68A25EA83A310BBF3;3274.
+(rerunfilecheck)             Checksum: E8092F039DD1E22930BDA4EBF376C15B;3226.
  ) 
 Here is how much of TeX's memory you used:
- 13632 strings out of 479337
- 197300 string characters out of 2857148
- 787361 words of memory out of 3000000
- 30469 multiletter control sequences out of 15000+200000
+ 13797 strings out of 479337
+ 200203 string characters out of 2857148
+ 779965 words of memory out of 3000000
+ 30521 multiletter control sequences out of 15000+200000
  414207 words of font info for 68 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 82i,25n,89p,400b,1971s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 82i,25n,89p,455b,1971s stack positions out of 5000i,500n,10000p,200000b,50000s
  <C:\Users\Jonas\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tctt
 1000.pk><C:/Users/Jonas/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfon
 ts/cm/cmbsy10.pfb><C:/Users/Jonas/AppData/Local/Programs/MiKTeX/fonts/type1/pub
@@ -634,9 +662,9 @@ s/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/Jonas/AppData/Local/Programs/Mi
 KTeX/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Users/Jonas/AppData/Local/Pro
 grams/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt10.pfb><C:/Users/Jonas/AppData/
 Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on MECH6313-Exam.pdf (24 pages, 304796 bytes).
+Output written on MECH6313-Exam.pdf (30 pages, 1911636 bytes).
 PDF statistics:
- 775 PDF objects out of 1000 (max. 8388607)
- 432 named destinations out of 1000 (max. 500000)
- 201 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 932 PDF objects out of 1000 (max. 8388607)
+ 538 named destinations out of 1000 (max. 500000)
+ 226 words of extra memory for PDF output out of 10000 (max. 10000000)
 

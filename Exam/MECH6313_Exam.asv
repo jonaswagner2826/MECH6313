@@ -3,15 +3,69 @@
 clear
 close all
 
-pblm1 = false;
+pblm1 = true;
 pblm2 = false;
 pblm3 = false;
 pblm4 = false;
-pblm5 = true;
+pblm5 = false;
 pblm6 = false;
 
 if pblm1
 %% Problem 1
+
+satVal = 3;
+
+tau = 0.01;
+mu = 0.9;
+% Phase Plot 1
+figure('position',[0,0,1200,1000])
+xmax = 0.25;
+ymax = 1;
+xmin = -2;
+ymin = -1.5;
+xstep = 0.25;
+ystep = xstep;
+
+[X,Y] = meshgrid(xmin:xstep:xmax,ymin:ystep:ymax);
+DX = max(min((X - (X.^3)/3 - Y)/tau, 5), -5);
+DY = max(min(X + mu, 5), -5);
+
+quiver(X,Y,DX,DY)
+title('Phase Portrait')
+hold on
+% x = [xmin:xstep:xmax];
+% y = max(min(1/2*tan(pi/2 * x), xmax), xmin);
+% plot(x,y, 'LineWidth', 2)
+% plot(y,x, 'LineWidth', 2)
+saveas(gcf,[pwd,'\Exam\fig\pblm1_phaseplot_mu09.png'])
+
+
+
+% tau = 0.1;
+mu = 1.1;
+% Phase Plot 2
+figure('position',[0,0,1200,1000])
+% xmax = 1;
+% ymax = xmax;
+% xmin = -1.5*xmax;
+% ymin = xmin;
+% xstep = 0.5;
+% ystep = xstep;
+
+[X,Y] = meshgrid(xmin:xstep:xmax,ymin:ystep:ymax);
+DX = max(min((X - (X.^3)/3 - Y)/tau, 5), -5);
+DY = max(min(X + mu, 5), -5);
+
+quiver(X,Y,DX,DY)
+title('Phase Portrait')
+hold on
+% x = [xmin:xstep:xmax];
+% y = max(min(1/2*tan(pi/2 * x), xmax), xmin);
+% plot(x,y, 'LineWidth', 2)
+% plot(y,x, 'LineWidth', 2)
+saveas(gcf,[pwd,'\Exam\fig\pblm1_phaseplot_mu11.png'])
+
+
 end
 
 if pblm2
@@ -39,7 +93,7 @@ end
 if phasePlt
 % ----------------------------------------------
 % Phase Plot 1
-figure()
+figure('position',[0,0,1200,1000])
 xmax = 2.5;
 ymax = xmax;
 xmin = -xmax;
@@ -58,10 +112,11 @@ x = [xmin:xstep:xmax];
 y = max(min(1/2*tan(pi/2 * x), xmax), xmin);
 plot(x,y, 'LineWidth', 2)
 plot(y,x, 'LineWidth', 2)
+saveas(gcf,[pwd,'\Exam\fig\pblm2_phaseplot.png'])
 
 
 % Phase Plot 2
-figure()
+figure('position',[0,0,1200,1000])
 xmax = 1;
 ymax = xmax;
 xmin = -xmax;
@@ -75,15 +130,20 @@ DY = max(min(-1/2 * tan(pi*Y/2) + X, 1), -1);
 
 quiver(X,Y,DX,DY)
 title('Phase Portrait (Zoomed-In)')
-% hold on
-% x = [xmin:xstep:xmax];
-% y = max(min(1/2*tan(pi/2 * x), xmax), xmin);
-% plot(x,y, 'LineWidth', 2)
-% plot(y,x, 'LineWidth', 2)
+hold on
+% Region of Attraction
+viscircles([[0.5,0.5;-0.5,-0.5]],[0.5,0.5])
+x=[-1,-1,1,1,-1,1];
+y=[1,-1,-1,1,1,-1];
+plot(x,y,'c','LineWidth',4)
+% Eq-Points
+scatter([-0.5,0.5],[-0.5,0.5],100,'rp')
+scatter([0],[0],100,'kp')
+saveas(gcf,[pwd,'\Exam\fig\pblm2_phaseplot_origin.png'])
 
 
 % Phase Plot 3
-figure()
+figure('position',[0,0,1200,1000])
 xmax = 4;
 ymax = xmax;
 xmin = -xmax;
@@ -102,33 +162,15 @@ x = [xmin:xstep:xmax];
 y = max(min(1/2*tan(pi/2 * x), xmax), xmin);
 plot(x,y, 'LineWidth', 2)
 plot(y,x, 'LineWidth', 2)
-
-
-% U = X;
-% V = 0.5*Y;
-
-% 
-% 
-% sys def
-
-% 
-% % Simulation Setup
-% x_0 = [-0.1;-0.05];
-% 
-% N = 500;
-% t_step = 0.01;
-% t_max = N * t_step - t_step;
-% T = reshape(0:t_step:t_max,N,1);
-% U = 0*T;
-% SYS2 = nlsim(sys2a,U,T,x_0);
-
-% Phase Plot
-% fig = SYS2.phasePlot(1,2,'Problem 1 - Phase Plot (Relaxed System)');
+saveas(gcf,[pwd,'\Exam\fig\pblm2_phaseplot_zoomOut.png'])
 end
-sys2a = nlsys(@pblm2a)
+
+
+
 if linSysCalc
 % -------------------------------------------------
 % Linearized System Calc
+sys2a = nlsys(@pblm2a)
 syms x1 x2
 linsys2a_sym = sys2a.linearize([x1;x2])
 linsys2_0 = sys2a.linearize([0;0])
@@ -148,14 +190,6 @@ eig(linsys2_n125p125)
 end
 
 
-
-% ------------------------------------------
-% lyap calc
-
-
-
-
-
 end
 
 if pblm3
@@ -171,13 +205,10 @@ if pblm5
 
 syms x1 x2
 eq1 = 0 == -x1 + x2^3 + 1;
-eq2 = 0 == -4*x1
-
-
+eq2 = 0 == -4*x1^2 + 3*x2;
+solve([eq1,eq2],[x1,x2])
 
 sys5 = nlsys(@pblm5a)
-
-
 
 % Phase Plot 2
 figure()
@@ -189,8 +220,8 @@ xstep = 0.1;
 ystep = xstep;
 
 [X,Y] = meshgrid(xmin:xstep:xmax,ymin:ystep:ymax);
-DX = max(min(-X + Y^3 + 1, 1), -1);
-DY = max(min(-4*X^2 + 3*Y, 1), -1);
+DX = -X + Y^3 + 1%max(min(, 1), -1);
+DY = -4*X^2 + 3*Y%max(min(, 1), -1);
 
 quiver(X,Y,DX,DY)
 
@@ -208,7 +239,59 @@ end
 
 
 %% Local Functions
-function y = pblm2a(x,u)
+function y = pblm1a(x,u)
+    % pblm1c function
+    arguments
+        x (2,:) = [0; 0];
+        u (1,:) = 0;
+    end
+    
+    % Array Sizes
+    n = 2;
+    p = 1;
+    
+    
+    % Parameters
+    tau = 0.1;
+    mu = 0.9;
+    
+    
+    % State Upadate Eqs
+    y(1,1) = (x(1) - (x(1)^3)/3 - x(2))/tau;
+    y(2,1) = x(1) + mu;
+    
+    if nargin == 0
+        y = [n;p];
+    end 
+end
+
+function y = pblm1b(x,u)
+    % pblm1c function
+    arguments
+        x (2,:) = [0; 0];
+        u (1,:) = 0;
+    end
+    
+    % Array Sizes
+    n = 2;
+    p = 1;
+    
+    % Parameters
+    tau = 0.1;
+    mu = 1.1;
+    
+    
+    % State Upadate Eqs
+    y(1,1) = (x(1) - (x(1)^3)/3 - x(2))/tau;
+    y(2,1) = x(1) + mu;
+    
+    if nargin == 0
+        y = [n;p];
+    end 
+end
+
+
+function y = pblm2b(x,u)
     % pblm1c function
     arguments
         x (2,:) = [0; 0];

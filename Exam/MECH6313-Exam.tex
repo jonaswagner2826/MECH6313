@@ -167,25 +167,29 @@ At which value of $\mu$ does a bifurcation occur and what type of bifurcation is
 \textbf{Solution:}
 The stability properties of the linearized system indicate that a hopf bifurcation occur when $$\mu = 1$$ and the system condenses the system into a single equalibrium point at the (parameter dependent) equalibrium point of $$X_{eq} = \mqty[-\mu\\\frac{1}{3}\mu^3 - \mu]$$.
 
-
+\newpage
 \subsection{Part c}
 \textbf{Problem:}
 Assume $\tau << 1$ and sketch the phase portrait for two values of $\mu$, one just below and one just above the bifurcation value.\\
 
 \noindent
 \textbf{Solution:}
+As can be seen in the two phase portraits, \figurename \ \ref{fig:pblm1phaseplot_mu01} and \figurename \ \ref{fig:pblm1phaseplot_mu2}, the stable focus becomes unstable when bifurcation occurs.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=\linewidth]{fig/pblm1_phaseplot_mu01}
+	\caption{Phase Portrait for Problem 1 with the parameter below the critical value.}
+	\label{fig:pblm1phaseplot_mu01}
+\end{figure}
 
 
-
-
-
-
-
-
-
-
-
-
+\begin{figure}[p]
+	\centering
+	\includegraphics[width=\linewidth]{fig/pblm1_phaseplot_mu2}
+	\caption{Phase Portrait for Problem 1 with the parameter above the critical value.}
+	\label{fig:pblm1phaseplot_mu2}
+\end{figure}
 
 %----------------------------------------------------------------------------
 \newpage
@@ -314,19 +318,32 @@ Using quadratic Lyapunov functions, estimate the region of attraction of each as
 %\end{align}
 
 
+For the asymptotically stable equalibrium point in quadrant 1, a relative system can be defined with $$\tilde{x} = x-x_{eq}$$ resulting in
+\begin{align}
+	f(\tilde{x}) 
+	&= \mqty[-\frac{1}{2} \tan(\frac{\pi (\tilde{x}_1 + x_{1eq})}{2}) + \tilde{x}_2 + x_{2eq}\\ -\frac{1}{2} \tan(\frac{\pi (\tilde{x}_2 + x_{2eq})}{2}) + \tilde{x}_1 + x_{1eq}]\\
+	&= \mqty[-\frac{1}{2} \tan(\frac{\pi \tilde{x}_1}{2} + \frac{\pi}{4}) + \tilde{x}_2 + \frac{1}{2}\\ -\frac{1}{2} \tan(\frac{\pi \tilde{x}_2}{2} + \frac{\pi}{4}) + \tilde{x}_1 + \frac{1}{2}]
+\end{align}
+Additionally, an invarient set boundary can be defined by $$\tilde{x}_1^2 + \tilde{x}_2^2 = r^2$$ which represents a simple radial boundary.\\
+The maximum positive invariant set boundary can be calculated by solving for $r$ s.t. $$f^T(x) \cdot \grad{V(x)} \leq 0$$ and is shown as follows:
+\begin{align}
+	V(x) &= \tilde{x}_1^2 + \tilde{x}_2^2 = r^2\\
+	\grad{V(x)} &= \mqty[2 \tilde{x}_1\\ 2 \tilde{x}_2]\\
+	f^T(x) \cdot \grad{V(x)} &= \mqty[-\frac{1}{2} \tan(\frac{\pi \tilde{x}_1}{2} + \frac{\pi}{4}) + \tilde{x}_2 + \frac{1}{2}\\ -\frac{1}{2} \tan(\frac{\pi \tilde{x}_2}{2} + \frac{\pi}{4}) + \tilde{x}_1 + \frac{1}{2}]^T \mqty[2 \tilde{x}_1\\ 2 \tilde{x}_2]\\
+	&\begin{aligned}
+		=&\qty(-\frac{1}{2} \tan(\frac{\pi \tilde{x}_1}{2} + \frac{\pi}{4}) + \tilde{x}_2 + \frac{1}{2})(2\tilde{x}_1)\\
+		&+\qty(-\frac{1}{2} \tan(\frac{\pi \tilde{x}_2}{2} + \frac{\pi}{4}) + \tilde{x}_1 + \frac{1}{2})(2\tilde{x}_2)
+	\end{aligned}\\
+	&\begin{aligned}
+		=& \ \tilde{x}_1\tan(\frac{\pi \tilde{x}_1}{2} + \frac{\pi}{4}) + \tilde{x}_2 \tan(\frac{\pi \tilde{x}_2}{2} + \frac{\pi}{4})\\
+		&+4\tilde{x}_1 \tilde{x}_2 + \tilde{x}_1 +\tilde{x}_2
+	\end{aligned}
+\end{align}
+Which when solved results in a conservative region of attraction of radius $r\leq0.5$. (or maybe strictly less-than... calculator acted funny when solving it)
 
+Additionally, when the process was repeated for the 3rd quadrant equilibrium point, the results were the same and the conservative region of attraction had a radius of $r=0.5$.
 
-
-
-
-
-
-
-
-
-
-
-
+A few other equilibrium points were tested and it was clear that the asymptotic eq-points were unstable, but of the other stable eq-points (done numerically) they were all very very conservative results using this method. (SOS is probably a better option... or perhaps a more complicated elliptical bound instead)
 
 \newpage
 \subsubsection{Part d}
@@ -335,10 +352,30 @@ Plot the phase portrait of the system and show on it the exact regions of attrac
 
 \noindent
 \textbf{Solution:}
+The phase portrait of the system was plotted along with the important indicators for equilibrium points and boundary regions as seen in \figurename \ \ref{fig:pblm2phaseplot}, \figurename \ \ref{fig:pblm2phaseplot_zoomOut}, and \figurename \ \ref{fig:pblm2phaseplot_origin}.
 
 
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=\linewidth]{fig/pblm2_phaseplot}
+	\caption{Phase Portrait for Problem 2}
+	\label{fig:pblm2phaseplot}
+\end{figure}
+
+\begin{figure}[p]
+	\centering
+	\includegraphics[width=\linewidth]{fig/pblm2_phaseplot_zoomOut}
+	\caption{Phase Portrait for Problem 2 that is zoomed out to demonstrate the infinite nature of equilibrium points.}
+	\label{fig:pblm2phaseplot_zoomOut}
+\end{figure}
 
 
+\begin{figure}[p]
+	\centering
+	\includegraphics[width=\linewidth]{fig/pblm2_phaseplot_origin}
+	\caption{Phase Portrait for Problem 2 focusing on the origin with regions of convergences and equilibrium points.}
+	\label{fig:pblm2phaseplot_origin}
+\end{figure}
 
 %----------------------------------------------------------------------------
 \newpage
@@ -601,26 +638,6 @@ Let $D = x\in\real^2$. The divergence is given as:
 Since $\div{f}$ is constant (and not identically zero) within the entire region $D$, there is sufficient evidence to say that no periodic orbits exist and therefore the system has no closed orbits.
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 %----------------------------------------------------------------------------
 \newpage
 \section{Problem 6}
@@ -662,9 +679,21 @@ The roots of this polynomial are then calculated as the eigenvalues:
 From this it is apparent that, locally, there exists a stable focus around the origin.
 
 \newpage
-\subsection{Lyapnov Indirect Method}
-The system is given as 
+\subsection{Lyapnov Method}
+The maximum positive invariant set boundary can be calculated by solving for $r$ s.t. $$f^T(x) \cdot \grad{V(x)} \leq 0$$ and is shown as follows:
+\begin{align}
+	V(x) &= x_1^2 + x_2^2 = r^2\\
+	\grad{V(x)} &= \mqty[2 x_1\\ 2 x_2]\\
+	f^T(x) \cdot \grad{V(x)}
+	&= \mqty[x_2 &-(\sin(x_1) + 2)(x_1 + x_2)] \mqty[2 x_1\\ 2 x_2]\\
+	&= 2 x_1 x_2 - 2 x_2(x_1 \sin(x_1) + 2 x_1 + x_2 \sin(x_1) + 2 x_2)\\
+	&= 2 x_1 x_2 - 2 x_1 x_2 \sin(x_1) - 4 x_1 x_2 - 2 x_2^2 \sin(x_1) - 4 x_2^2\\
+	&= -2 x_1 x_2 (1 + \sin(x_1)) - 2 x_2^2 (2 + \sin(x_1))
+\end{align}
+The second term is clearly not problimatic: $$- 2 x_2^2 (2 + \sin(x_1)) \leq 0, \ \forall x_1,x_2 \in \real$$
 
+However, the first term is not as straight forward. It is true that $$1+\sin(x_1) \geq 0$$ and that in quadrants 1 and 3, the term satisfies the requirements. In quadrants 2 and 4 it becomes problematic as the term does not always remain negative. However, it is possible to prove that the boundary region itself is unbounded as $$\abs{2x_1 x_2(1+sin(x_1))} \leq \abs{2x_2^2 (2+sin(x_1))}, \forall \ x_1,x_2 \in \real$$
+This leads to the conclusion that the system is Globally Asymptotically Stable since the region of convergence is $x_1,x_2 \in \real$.
 
 
 
